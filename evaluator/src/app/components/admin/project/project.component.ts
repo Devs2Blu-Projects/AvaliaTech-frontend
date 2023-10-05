@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogProjectComponent } from './dialog-project/dialog-project.component';
 
 @Component({
   selector: 'app-project',
@@ -7,4 +9,20 @@ import { Component } from '@angular/core';
 })
 export class ProjectComponent {
 
+  constructor(private _dialog: MatDialog){
+
+  }
+
+  openDialogProject(){
+    const dialogRef = this._dialog.open(DialogProjectComponent)
+    dialogRef.afterClosed().subscribe({
+      next: (val)=>{
+        if(val) this.getProjectsList();
+      }
+    })
+  }
+
+  getProjectsList(){
+    
+  }
 }
