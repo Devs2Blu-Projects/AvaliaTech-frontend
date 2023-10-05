@@ -12,7 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogProjectComponent } from './components/admin/project/dialog-project/dialog-project.component'; 
 import {MatDialogModule} from '@angular/material/dialog';
 import { CriterionComponent } from './components/admin/criterion/criterion.component';
-import { DialogCriterionComponent } from './components/admin/criterion/dialog-criterion/dialog-criterion.component'; 
+import { DialogCriterionComponent } from './components/admin/criterion/dialog-criterion/dialog-criterion.component';
+import { EvaluatorComponent } from './components/admin/evaluator/evaluator.component';
+import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-evaluator/dialog-evaluator.component'; 
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { DialogCriterionComponent } from './components/admin/criterion/dialog-cr
     ProjectComponent,
     DialogProjectComponent,
     CriterionComponent,
-    DialogCriterionComponent
+    DialogCriterionComponent,
+    EvaluatorComponent,
+    DialogEvaluatorComponent
   ],
   imports: [
     BrowserModule,
