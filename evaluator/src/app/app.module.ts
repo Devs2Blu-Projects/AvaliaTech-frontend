@@ -10,7 +10,11 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogProjectComponent } from './components/admin/project/dialog-project/dialog-project.component'; 
-import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { CriterionComponent } from './components/admin/criterion/criterion.component';
+import { DialogCriterionComponent } from './components/admin/criterion/dialog-criterion/dialog-criterion.component';
+import { EvaluatorComponent } from './components/admin/evaluator/evaluator.component';
+import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-evaluator/dialog-evaluator.component'; 
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     LoginComponent,
     AdminComponent,
     ProjectComponent,
-    DialogProjectComponent
+    DialogProjectComponent,
+    CriterionComponent,
+    DialogCriterionComponent,
+    EvaluatorComponent,
+    DialogEvaluatorComponent
   ],
   imports: [
     BrowserModule,
