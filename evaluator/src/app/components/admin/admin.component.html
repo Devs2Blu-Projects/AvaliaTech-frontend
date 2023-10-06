@@ -1,0 +1,18 @@
+
+<div class="sidebar">
+    <img src="https://cdn.sonicadigital.com.br/blusoft-inst/storage/custom-page/3039/1280x720-620ff3f482ae1.png" alt="">
+    <h1 class="cadastro">CADASTROS</h1>
+    <button [routerLink]="['/equipes']">Equipes</button>
+    <button [routerLink]="['/avaliadores']">Avaliadores</button>
+    <button [routerLink]="['/criterios']">Critérios</button>
+    <button [routerLink]="['/projetos']">Projetos</button>
+    <h1 class="gerenciamento">GERENCIAMENTO</h1>
+    <button [routerLink]="['/apresentacoes']">Apresentações</button>
+
+    <button class="btn-exit">Sair</button>
+
+  </div>
+  <div class="rotas content">
+    <router-outlet></router-outlet>
+  </div>
+  

@@ -14,7 +14,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CriterionComponent } from './components/admin/criterion/criterion.component';
 import { DialogCriterionComponent } from './components/admin/criterion/dialog-criterion/dialog-criterion.component';
 import { EvaluatorComponent } from './components/admin/evaluator/evaluator.component';
-import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-evaluator/dialog-evaluator.component'; 
+import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-evaluator/dialog-evaluator.component';
+import { TeamComponent } from './components/admin/team/team.component';
+import { DialogTeamComponent } from './components/admin/team/dialog-team/dialog-team.component';
+import { PresentationComponent } from './components/admin/presentation/presentation.component'; 
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-ev
     CriterionComponent,
     DialogCriterionComponent,
     EvaluatorComponent,
-    DialogEvaluatorComponent
+    DialogEvaluatorComponent,
+    TeamComponent,
+    DialogTeamComponent,
+    PresentationComponent
   ],
   imports: [
     BrowserModule,
