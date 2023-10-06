@@ -1,16 +1,21 @@
-
+@import url(src/styles.scss);
 .body{
   padding: 30px;
+  font-family: var(--font);
 }
 h1 {
   text-align: center;
-  color: #1e2447;
+  font-size: 1.75rem;
+  font-weight: 400;
 }
 
+.bold{
+  font-weight: 700;
+}
 .line {
   width: 100%;
   height: 1px;
-  background-color: #b7b7b7;
+  background-color: var(--grey);
   margin: 15px auto; 
 }
 label {
@@ -18,17 +23,17 @@ label {
   margin-top: 10px;
   text-align: left;
   margin-left: 20px;
-  color: #1e2447;
+  color: var(--dark-blue);
 }
 input {
   width: 100%;
   height: 50px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--grey);
   padding: 10px;
   outline: none;
 }
 input:focus{
-  border-color: #1e2447;
+  border-color: var(--dark-blue);
 }
 .input-container{
   padding: 0 40px;
@@ -43,7 +48,7 @@ input:focus{
   width: 100%;
 }
 .icon{
-  background-color: #1e2447;
+  background-color: var(--dark-blue);
   min-width: 50px;
   height: 50px;
   display: flex;
@@ -55,12 +60,12 @@ input:focus{
   text-decoration: none;
   width: 250px;
   height: 50px;
-  background-color: #1e2447;
-  color: #f8f8f8;
+  background-color: var(--dark-blue);
+  color: var(--white);
   transition: 0.3s ease;
 }
 .btn-cadastrar:hover{
-  background-color: #1e2447d0;
+  background-color: var(--dark-blue-hover);
 }
 button {
   border: none;
@@ -81,7 +86,7 @@ thead th,
 tbody td {
   padding: 10px;
   text-align: center;
-  border-bottom: 1px solid #b7b7b7;
+  border-bottom: 1px solid var(--grey);
 }
 
 tbody tr:last-child td {

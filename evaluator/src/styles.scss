@@ -1,7 +1,13 @@
-*{
-    font-family: 'Montserrat', sans-serif;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+
+@import url(assets/reset.css);
+:root{
+    --font:'Montserrat', sans-serif;
+    --white: #f8f8f8;
+    --grey: #b7b7b7;
+    --dark-blue: #1e2447;
+    --dark-blue-hover: #1e2447d0;
+    --light-blue: #1890ff;
+    --golden: #e2a52c;
+    --red: #dc143c;
+    --shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
-html, body { height: 100%; }

@@ -1,7 +1,14 @@
 
-img{
+.img{
     width: 250px;
-    height: auto;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 230px;
+      height: auto;
+    }
 }
 .cadastro, .gerenciamento{
     text-align: center;
@@ -9,26 +16,28 @@ img{
     padding-top: 15px;
     margin: 0;
     font-size: 1.3rem;
+    font-family: var(--font);
 }
 .sidebar {
     margin: 0;
     padding: 0;
     width: 250px;
-    background-color: #1e2447;
+    background-color: var(--dark-blue);
     position: fixed;
     height: 100%;
     overflow: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-family: var(--font);
   }
   .sidebar button {
-    background-color: #e2a52c;
+    background-color: var(--golden);
     border: none;
     width: 200px;
     height: 30px;
     margin: 10px 0;
-    color: #f8f8f8;
+    color: var(--white);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -36,7 +45,7 @@ img{
     font-size: 1rem;
   }
   .sidebar .btn-exit{
-    background-color: #dc143c;
+    background-color: var(--red);
     margin-top: 40px;
   }
 
