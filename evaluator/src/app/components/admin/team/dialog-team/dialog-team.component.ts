@@ -3,25 +3,25 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-dialog-evaluator',
-  templateUrl: './dialog-evaluator.component.html',
-  styleUrls: ['./dialog-evaluator.component.scss']
+  selector: 'app-dialog-team',
+  templateUrl: './dialog-team.component.html',
+  styleUrls: ['./dialog-team.component.scss']
 })
-export class DialogEvaluatorComponent {
+export class DialogTeamComponent {
 
-  formEvaluator: any
+  formTeam: any
   showPassword: boolean = false;
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
-  constructor(public _fb:FormBuilder, private _dialogRef:MatDialogRef<DialogEvaluatorComponent>) { 
-    this.formEvaluator = _fb.group({
-      nome: '',
+  constructor(public _fb:FormBuilder, private _dialogRef:MatDialogRef<DialogTeamComponent>) { 
+    this.formTeam = _fb.group({
+      representante: '',
       usuario: '',
       senha: '',
-      email: ''
+      email:''
     })
   }
 
