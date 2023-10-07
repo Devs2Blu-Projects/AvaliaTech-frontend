@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProjectComponent } from './components/admin/project/project.component';
@@ -20,6 +20,7 @@ import { TeamComponent } from './components/admin/team/team.component';
 import { DialogTeamComponent } from './components/admin/team/dialog-team/dialog-team.component';
 import { PresentationComponent } from './components/admin/presentation/presentation.component';
 import { DialogRandomComponent } from './components/admin/presentation/dialog-random/dialog-random.component'; 
+import { FilterTablePipe } from './shared/filter-table/filter-table';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DialogRandomComponent } from './components/admin/presentation/dialog-ra
     TeamComponent,
     DialogTeamComponent,
     PresentationComponent,
-    DialogRandomComponent
+    DialogRandomComponent,
+    FilterTablePipe
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { DialogRandomComponent } from './components/admin/presentation/dialog-ra
     MatIconModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
