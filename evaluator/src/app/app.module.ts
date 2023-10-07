@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProjectComponent } from './components/admin/project/project.component';
@@ -17,7 +18,8 @@ import { EvaluatorComponent } from './components/admin/evaluator/evaluator.compo
 import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-evaluator/dialog-evaluator.component';
 import { TeamComponent } from './components/admin/team/team.component';
 import { DialogTeamComponent } from './components/admin/team/dialog-team/dialog-team.component';
-import { PresentationComponent } from './components/admin/presentation/presentation.component'; 
+import { PresentationComponent } from './components/admin/presentation/presentation.component';
+import { DialogRandomComponent } from './components/admin/presentation/dialog-random/dialog-random.component'; 
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { PresentationComponent } from './components/admin/presentation/presentat
     DialogEvaluatorComponent,
     TeamComponent,
     DialogTeamComponent,
-    PresentationComponent
+    PresentationComponent,
+    DialogRandomComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { PresentationComponent } from './components/admin/presentation/presentat
     MatTableModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

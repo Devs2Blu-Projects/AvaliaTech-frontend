@@ -1,4 +1,4 @@
-
+@import url(src/styles.scss);
 .img{
     width: 250px;
     height: 120px;
@@ -73,7 +73,7 @@
     div.content {
         margin-left: 0;
     }
-    img{
+    .img{
         display: none;
     }
   }

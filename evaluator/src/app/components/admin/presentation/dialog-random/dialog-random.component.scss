@@ -1,0 +1,27 @@
+.content {
+    width: 40rem;
+    height: 10rem;
+    background-color: var(--dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  h1 {
+    color: var(--white);
+    margin: 0;
+    font-size: 3rem;
+  }
+  
+  @media (max-width: 768px) {
+    .content {
+      width: 80vw;
+      height: 30vh;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  

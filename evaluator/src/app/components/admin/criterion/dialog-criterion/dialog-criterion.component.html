@@ -1,1 +1,31 @@
-<p>dialog-criterion works!</p>
+<div class="dialog-form">
+    <h2>Formulário de Critério</h2>
+    <div class="line"></div>
+    <form [formGroup]="formCriterion" (ngSubmit)="onSubmit()">
+      
+      <div class="input-container">
+        <label for="type">TIPO</label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fas fa-user fa-lg"></i>
+          </div>
+          <input type="text" class="input-form" id="type" placeholder="Ex.: Funcionalidade" formControlName="tipo">
+        </div>
+      </div>
+      <div class="input-container ">
+        <label for="description">DESCRIÇÃO</label>
+        <div class="input-group">
+          <div class="icon icon-textarea">
+            <i class="fa-solid fa-envelope fa-lg"></i>
+          </div>
+          <textarea class="input-form" name="description" id="description" cols="30" rows="5" formControlName="descricao"></textarea>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="cancel" [mat-dialog-close]="false">Cancelar</button>
+        <button type="submit" class="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
+  

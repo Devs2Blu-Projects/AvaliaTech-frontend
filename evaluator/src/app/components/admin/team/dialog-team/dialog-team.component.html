@@ -1,1 +1,56 @@
-<p>dialog-team works!</p>
+<div class="dialog-form">
+    <h2>Formulário de Equipe</h2>
+    <div class="line"></div>
+    <form [formGroup]="formTeam" (ngSubmit)="onSubmit()">
+      
+      <div class="input-container">
+        <label for="representative">REPRESENTANTE</label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fas fa-user fa-lg"></i>
+          </div>
+          <input type="text" class="input-form" id="representative" placeholder="Ex.: João da Silva" formControlName="representante">
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="email">EMAIL</label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fa-solid fa-envelope fa-lg"></i>
+          </div>
+          <input type="email" class="input-form" id="email" placeholder="Ex.: joao.silva@gmail.com" formControlName="email">
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="user">USUÁRIO</label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fas fa-user fa-lg"></i>
+          </div>
+          <input type="text" class="input-form" id="user" placeholder="Ex.: joao.silva" formControlName="usuario">
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="password">SENHA</label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fa-solid fa-key fa-lg"></i>
+          </div>
+          <input [type]="showPassword ? 'text' : 'password'" class="input-form" id="password" formControlName="senha">
+          <span
+          class="toggle-password"
+          (click)="togglePasswordVisibility()"
+          [ngClass]="{ 'show-password': showPassword }"
+        >
+          <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+        </span>
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button type="button" class="cancel" [mat-dialog-close]="false">Cancelar</button>
+        <button type="submit" class="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
+  

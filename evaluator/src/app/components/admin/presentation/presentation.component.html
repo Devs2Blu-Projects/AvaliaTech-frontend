@@ -1,1 +1,73 @@
-<p>presentation works!</p>
+<div class="body">
+    <div class="header">
+        <h1>APRESENTAÇÕES</h1>
+        <div class="line"></div>
+    </div>
+    <div class="input-container">
+        <label for="filter">FILTRAR</label>
+        <div class="input-icons">
+            <div class="search-input">
+                <div class="icon">
+                    <i class="fas fa-search fa-lg" style="color: #ffffff;"></i>
+                </div>
+                <input type="text" class="input-filter" id="filter">
+            </div>
+
+            <button class="btn-sortear" (click)="openDialogRandom()">SORTEAR</button>
+        </div>
+
+    </div>
+
+    <h2 class="title-table">EM ESPERA</h2>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th class="bold">ID</th>
+                    <th>EQUIPE</th>
+                    <th>STACK</th>
+                    <th>CRITÉRIOS</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Equipe A</td>
+                    <td>Stack A</td>
+                    <td>Critérios A</td>
+                    <td class="btn-actions">
+                        <button><i class="fa-solid fa-play fa-xl"></i></button>
+                        <button><i class="fa-solid fa-stop fa-xl"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="title-table">FINALIZADAS</h2>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th class="bold">ID</th>
+                    <th>EQUIPE</th>
+                    <th>STACK</th>
+                    <th>CRITÉRIOS</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Equipe A</td>
+                    <td>Stack A</td>
+                    <td>Critérios A</td>
+                    <td class="btn-actions">
+                        <button><i class="fa-solid fa-play fa-xl"></i></button>
+                        <button><i class="fa-solid fa-stop fa-xl"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
