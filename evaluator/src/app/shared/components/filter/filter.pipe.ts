@@ -4,9 +4,9 @@ import {Pipe, PipeTransform} from '@angular/core';
   Reference: https://stackoverflow.com/questions/40678206/angular-2-filter-search-list
 */
 @Pipe({
-  name: 'filterTable'
+  name: 'filter'
 })
-export class FilterTablePipe implements PipeTransform {
+export class FilterPipe implements PipeTransform {
 
   public transform(value: any, columns: string[], term: string) {
     if (!term || !value) return value;

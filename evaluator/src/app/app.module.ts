@@ -20,7 +20,7 @@ import { TeamComponent } from './components/admin/team/team.component';
 import { DialogTeamComponent } from './components/admin/team/dialog-team/dialog-team.component';
 import { PresentationComponent } from './components/admin/presentation/presentation.component';
 import { DialogRandomComponent } from './components/admin/presentation/dialog-random/dialog-random.component'; 
-import { FilterTablePipe } from './shared/filter-table/filter-table';
+import { FilterPipe } from './shared/components/filter/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { FilterTablePipe } from './shared/filter-table/filter-table';
     DialogTeamComponent,
     PresentationComponent,
     DialogRandomComponent,
-    FilterTablePipe
+    FilterPipe
   ],
   imports: [
     BrowserModule,
