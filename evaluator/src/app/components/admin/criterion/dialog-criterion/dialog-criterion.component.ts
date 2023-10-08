@@ -14,16 +14,7 @@ export class DialogCriterionComponent {
 
   constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
-<<<<<<< Updated upstream
   ngOnInit(): void { this.buildForm(); }
-=======
-  constructor(public _fb:FormBuilder, private _dialogRef:MatDialogRef<DialogCriterionComponent>) { 
-    this.formCriterion = _fb.group({
-      nome: '',
-      descricao: ''
-    })
-  }
->>>>>>> Stashed changes
 
   buildForm(): void {
     this._fb.group({

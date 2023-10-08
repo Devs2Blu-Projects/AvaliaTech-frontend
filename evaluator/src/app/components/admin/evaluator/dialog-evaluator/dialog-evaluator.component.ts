@@ -9,7 +9,6 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
   styleUrls: ['./dialog-evaluator.component.scss']
 })
 export class DialogEvaluatorComponent {
-<<<<<<< Updated upstream
   form!: FormGroup;
   elapsedTime: number = 0;
   showPassword: boolean = false;
@@ -17,18 +16,6 @@ export class DialogEvaluatorComponent {
   constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
   ngOnInit(): void { this.buildForm(); }
-=======
-
-  formEvaluator: any
-
-  constructor(public _fb:FormBuilder, private _dialogRef:MatDialogRef<DialogEvaluatorComponent>) { 
-    this.formEvaluator = _fb.group({
-      nome: '',
-      usuario: '',
-      senha: ''
-    })
-  }
->>>>>>> Stashed changes
 
   buildForm(): void {
     this.form = this._fb.group({
