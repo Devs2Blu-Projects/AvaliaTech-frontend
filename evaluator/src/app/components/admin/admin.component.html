@@ -1,15 +1,18 @@
 <div class="sidebar">
   <div class="img">
-    <img src="assets/img/logo-devs2blu.png" alt="logo devs2blu">
+    <button class="button-home" [routerLink]="['/admin/home']"><img src="assets/img/logo-devs2blu.png"
+        alt="logo devs2blu"></button>
   </div>
-  <h1 class="cadastro"> CADASTROS </h1>
-  <button [routerLink]="['/admin/equipes']"> Equipes </button>
-  <button [routerLink]="['/admin/avaliadores']"> Avaliadores </button>
-  <button [routerLink]="['/admin/criterios']"> Critérios </button>
-  <button [routerLink]="['/admin/projetos']"> Projetos </button>
-  <h1 class="gerenciamento"> GERENCIAMENTO </h1>
-  <button [routerLink]="['/admin/apresentacoes']"> Apresentações </button>
-  <button class="btn-exit"> Sair </button>
+  <h1 class="cadastro">CADASTROS</h1>
+  <button class="button-menu" [routerLink]="['/admin/equipes']">Equipes</button>
+  <button class="button-menu" [routerLink]="['/admin/avaliadores']">Avaliadores</button>
+  <button class="button-menu" [routerLink]="['/admin/criterios']">Critérios</button>
+  <button class="button-menu" [routerLink]="['/admin/projetos']">Projetos</button>
+  <h1 class="gerenciamento">GERENCIAMENTO</h1>
+  <button class="button-menu" [routerLink]="['/admin/apresentacoes']">Apresentações</button>
+
+  <button class="btn-exit">Sair</button>
+
 </div>
 <div class="rotas content">
   <router-outlet></router-outlet>

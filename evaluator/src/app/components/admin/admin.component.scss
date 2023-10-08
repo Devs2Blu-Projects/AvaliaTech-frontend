@@ -37,7 +37,14 @@
   font-family: var(--font);
 }
 
-.sidebar button {
+.sidebar .button-home {
+  border: none;
+  text-decoration: none;
+  background: none;
+}
+
+.sidebar .button-menu,
+.btn-exit {
   background-color: var(--golden);
   border: none;
   width: 200px;
@@ -49,11 +56,19 @@
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.sidebar .button-menu:hover {
+  background-color: var(--golden-hover);
 }
 
 .sidebar .btn-exit {
   background-color: var(--red);
   margin-top: 40px;
+}
+.sidebar .btn-exit:hover{
+  background-color: var(--red-hover);
 }
 
 div.content {

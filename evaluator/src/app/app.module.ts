@@ -23,6 +23,10 @@ import { ProjectComponent } from './components/admin/project/project.component';
 import { DialogProjectComponent } from './components/admin/project/dialog-project/dialog-project.component';
 import { PresentationComponent } from './components/admin/presentation/presentation.component';
 import { DialogPresentationComponent } from './components/admin/presentation/dialog-presentation/dialog-presentation.component';
+import { HomeComponent } from './components/admin/home/home.component';
+import { GroupComponent } from './components/group/group.component';
+import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
+import { DialogGroupComponent } from './components/group/dialog-group/dialog-group.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { DialogPresentationComponent } from './components/admin/presentation/dia
     ProjectComponent,
     DialogProjectComponent,
     PresentationComponent,
-    DialogPresentationComponent
+    DialogPresentationComponent,
+    HomeComponent,
+    GroupComponent,
+    EvaluatorsComponent,
+    DialogGroupComponent
   ],
   imports: [
     BrowserModule,
