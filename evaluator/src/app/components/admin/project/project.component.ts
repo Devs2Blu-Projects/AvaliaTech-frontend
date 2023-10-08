@@ -1,28 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogProjectComponent } from './dialog-project/dialog-project.component';
+import { HttpService } from '../../../shared/services/http/http.service';
+import { UpdateService } from '../../../shared/services/update/update.service';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnInit {
+  data: any = [];
+  elapsedTime: number = 0;
+  notification: string = '';
 
-  constructor(private _dialog: MatDialog){
+  constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
+  ngOnInit(): void {
+    this.getAll();
+    this._updateService.update
+      .subscribe({
+        next: () => {
+          this.getAll();
+          this.notification = this._updateService.getNotification();
+        }, error: (error: any) => { console.error(error); }
+      });
   }
 
-  openDialogProject(){
-    const dialogRef = this._dialog.open(DialogProjectComponent)
-    dialogRef.afterClosed().subscribe({
-      next: (val)=>{
-        if(val) this.getProjectsList();
-      }
-    })
+  getAll(): void {
+    this._updateService.startTimer();
+    this._httpService.getAll('projects')
+      .subscribe({
+        next: (response: any) => {
+          this.data = response;
+          this.elapsedTime = this._updateService.stopTimer();
+        }, error: (error: any) => { console.error(error); }
+      });
   }
 
-  getProjectsList(){
-    
-  }
+  openDialog(): void { this._dialog.open(DialogProjectComponent); }
 }

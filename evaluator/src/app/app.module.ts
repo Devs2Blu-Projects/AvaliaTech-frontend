@@ -1,50 +1,56 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
+
+import { FilterPipe } from './shared/pipes/filter.pipe';
+
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { ProjectComponent } from './components/admin/project/project.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatIconModule} from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogProjectComponent } from './components/admin/project/dialog-project/dialog-project.component'; 
-import {MatDialogModule} from '@angular/material/dialog';
-import { CriterionComponent } from './components/admin/criterion/criterion.component';
-import { DialogCriterionComponent } from './components/admin/criterion/dialog-criterion/dialog-criterion.component';
-import { EvaluatorComponent } from './components/admin/evaluator/evaluator.component';
-import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-evaluator/dialog-evaluator.component';
 import { TeamComponent } from './components/admin/team/team.component';
 import { DialogTeamComponent } from './components/admin/team/dialog-team/dialog-team.component';
+import { EvaluatorComponent } from './components/admin/evaluator/evaluator.component';
+import { DialogEvaluatorComponent } from './components/admin/evaluator/dialog-evaluator/dialog-evaluator.component';
+import { CriterionComponent } from './components/admin/criterion/criterion.component';
+import { DialogCriterionComponent } from './components/admin/criterion/dialog-criterion/dialog-criterion.component';
+import { ProjectComponent } from './components/admin/project/project.component';
+import { DialogProjectComponent } from './components/admin/project/dialog-project/dialog-project.component';
 import { PresentationComponent } from './components/admin/presentation/presentation.component';
-import { DialogRandomComponent } from './components/admin/presentation/dialog-random/dialog-random.component'; 
+import { DialogPresentationComponent } from './components/admin/presentation/dialog-presentation/dialog-presentation.component';
 
 @NgModule({
   declarations: [
+    FilterPipe,
     AppComponent,
     LoginComponent,
+    TeamComponent,
     AdminComponent,
-    ProjectComponent,
-    DialogProjectComponent,
-    CriterionComponent,
-    DialogCriterionComponent,
+    DialogTeamComponent,
     EvaluatorComponent,
     DialogEvaluatorComponent,
-    TeamComponent,
-    DialogTeamComponent,
+    CriterionComponent,
+    DialogCriterionComponent,
+    ProjectComponent,
+    DialogProjectComponent,
     PresentationComponent,
-    DialogRandomComponent
+    DialogPresentationComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatTableModule,
     MatIconModule,
-    BrowserAnimationsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
