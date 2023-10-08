@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogRandomComponent } from './dialog-random.component';
+import { DialogRandomComponent } from './dialog-presentation.component';
 
 describe('DialogRandomComponent', () => {
   let component: DialogRandomComponent;
