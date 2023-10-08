@@ -37,7 +37,18 @@
   font-family: var(--font);
 }
 
+<<<<<<< Updated upstream
 .sidebar button {
+=======
+.sidebar .button-home {
+  border: none;
+  text-decoration: none;
+  background: none;
+}
+
+.sidebar .button-menu,
+.btn-exit {
+>>>>>>> Stashed changes
   background-color: var(--golden);
   border: none;
   width: 200px;
@@ -49,12 +60,26 @@
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+<<<<<<< Updated upstream
+=======
+  transition: 0.3s ease;
+}
+
+.sidebar .button-menu:hover {
+  background-color: var(--golden-hover);
+>>>>>>> Stashed changes
 }
 
 .sidebar .btn-exit {
   background-color: var(--red);
   margin-top: 40px;
 }
+<<<<<<< Updated upstream
+=======
+.sidebar .btn-exit:hover{
+  background-color: var(--red-hover);
+}
+>>>>>>> Stashed changes
 
 div.content {
   margin-left: 250px;
@@ -71,12 +96,21 @@ div.content {
   .sidebar button {
     float: left;
     margin: 4px 0;
+<<<<<<< Updated upstream
   }
 
   .sidebar .btn-exit {
     margin-top: 0;
   }
 
+=======
+  }
+
+  .sidebar .btn-exit {
+    margin-top: 0;
+  }
+
+>>>>>>> Stashed changes
   .cadastro,
   .gerenciamento {
     padding: 0;
@@ -97,4 +131,8 @@ div.content {
     text-align: center;
     float: none;
   }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

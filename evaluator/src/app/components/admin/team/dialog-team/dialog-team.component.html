@@ -10,6 +10,7 @@
         </div>
         <input type="text" class="input-form" id="representative" placeholder="Ex. João da Silva" formControlName="name">
       </div>
+<<<<<<< Updated upstream
     </div>
     <div class="input-container">
       <label for="email"> EMAIL </label>
@@ -26,9 +27,19 @@
       <div class="input-group">
         <div class="icon">
           <i class="fas fa-user fa-lg"></i>
+=======
+      <div class="input-container">
+        <label for="user">USUÁRIO</label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fas fa-user fa-lg"></i>
+          </div>
+          <input type="text" class="input-form" id="user" placeholder="Ex.: joao.silva" formControlName="usuario">
+>>>>>>> Stashed changes
         </div>
         <input type="text" class="input-form" id="user" placeholder="Ex.: joao.silva" formControlName="username">
       </div>
+<<<<<<< Updated upstream
     </div>
     <div class="input-container">
       <label for="password"> SENHA </label>
@@ -40,6 +51,12 @@
         <span class="toggle-password" (click)="togglePassword()" [ngClass]="{ 'show-password': showPassword }">
           <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
         </span>
+=======
+  
+      <div class="form-actions">
+        <button type="button" class="cancel" [mat-dialog-close]="false">Cancelar</button>
+        <button type="submit" class="submit">Enviar</button>
+>>>>>>> Stashed changes
       </div>
     </div>
     <div class="form-actions">

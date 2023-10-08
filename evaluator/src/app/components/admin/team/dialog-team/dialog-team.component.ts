@@ -8,6 +8,7 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
   templateUrl: './dialog-team.component.html',
   styleUrls: ['./dialog-team.component.scss']
 })
+<<<<<<< Updated upstream
 export class DialogTeamComponent implements OnInit {
   form!: FormGroup;
   elapsedTime: number = 0;
@@ -16,6 +17,19 @@ export class DialogTeamComponent implements OnInit {
   constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
   ngOnInit(): void { this.buildForm(); }
+=======
+export class DialogTeamComponent {
+
+  formTeam: any
+
+  constructor(public _fb:FormBuilder, private _dialogRef:MatDialogRef<DialogTeamComponent>) { 
+    this.formTeam = _fb.group({
+      representante: '',
+      usuario: '',
+      senha: ''
+    })
+  }
+>>>>>>> Stashed changes
 
   buildForm(): void {
     this.form = this._fb.group({
