@@ -1,0 +1,20 @@
+
+<div class="sidebar">
+    <div class="img">
+      <img src="assets/logo-devs2blu.png" alt="logo devs2blu">
+    </div>
+    <h1 class="cadastro">CADASTROS</h1>
+    <button [routerLink]="['/equipes']">Equipes</button>
+    <button [routerLink]="['/avaliadores']">Avaliadores</button>
+    <button [routerLink]="['/criterios']">Critérios</button>
+    <button [routerLink]="['/projetos']">Projetos</button>
+    <h1 class="gerenciamento">GERENCIAMENTO</h1>
+    <button [routerLink]="['/apresentacoes']">Apresentações</button>
+
+    <button class="btn-exit">Sair</button>
+
+  </div>
+  <div class="rotas content">
+    <router-outlet></router-outlet>
+  </div>
+  
