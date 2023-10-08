@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpService } from 'src/app/shared/services/http/http.service';
+import { UpdateService } from 'src/app/shared/services/update/update.service';
 
 @Component({
   selector: 'app-dialog-evaluator',
@@ -8,27 +9,55 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog-evaluator.component.scss']
 })
 export class DialogEvaluatorComponent {
-
-  formEvaluator: any
+  form!: FormGroup;
+  elapsedTime: number = 0;
   showPassword: boolean = false;
 
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+  constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+
+  ngOnInit(): void { this.buildForm(); }
+
+  buildForm(): void {
+    this.form = this._fb.group({
+      id: [],
+      name: '',
+      email: '',
+      username: '',
+      password: '',
+      role: 'Evaluator'
+    });
   }
 
-  constructor(public _fb:FormBuilder, private _dialogRef:MatDialogRef<DialogEvaluatorComponent>) { 
-    this.formEvaluator = _fb.group({
-      nome: '',
-      usuario: '',
-      senha: '',
-      email: ''
-    })
+  clearForm(): void { this.form.reset(); }
+
+  patch(data: object): void { this.form.patchValue(data); }
+
+  onSubmit(data: any) {
+    if (this.form.valid) if (data.id) {
+      this._updateService.startTimer();
+      this._httpService.putById('evaluators', data.id, data)
+        .subscribe({
+          next: () => {
+            this.elapsedTime = this._updateService.stopTimer();
+            this._updateService.notify('Avaliador atualizado com sucesso.');
+            this._updateService.showToast();
+            this.clearForm();
+          },
+          error: (error: any) => { console.error(error); }
+        });
+    } else {
+      this._httpService.post('evaluators', data)
+        .subscribe({
+          next: () => {
+            this.elapsedTime = this._updateService.stopTimer();
+            this._updateService.notify('Avaliador adicionado com sucesso.');
+            this._updateService.showToast();
+            this.clearForm();
+          },
+          error: (error: any) => { console.error(error); }
+        });
+    }
   }
 
-  ngOnInit(): void {
-  }
-
-  onSubmit() {
-    
-  }
+  togglePasswordVisibility() { this.showPassword = !this.showPassword; }
 }
