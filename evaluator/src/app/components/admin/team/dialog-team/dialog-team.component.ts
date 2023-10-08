@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 
@@ -14,7 +13,7 @@ export class DialogTeamComponent implements OnInit {
   elapsedTime: number = 0;
   showPassword: boolean = false;
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogTeamComponent>) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
   ngOnInit(): void { this.buildForm(); }
 
@@ -29,9 +28,9 @@ export class DialogTeamComponent implements OnInit {
     });
   }
 
-  cancelForm() { this._dialogRef.close(); }
+  clearForm(): void { this.form.reset(); }
 
-  clearForm() { this.form.reset(); }
+  patch(data: object): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {

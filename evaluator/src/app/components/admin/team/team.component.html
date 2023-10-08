@@ -1,48 +1,58 @@
 <div class="body">
-    <div class="header">
-        <h1>EQUIPES</h1>
-        <div class="line"></div>
-    </div>
-    <div class="input-container">
-        <label for="filter">FILTRAR</label>
-        <div class="input-icons">
-            <div class="search-input">
-                <div class="icon">
-                    <i class="fas fa-search fa-lg" style="color: #ffffff;"></i>
-                </div>
-                <input type="text" class="input-filter" id="filter">
-            </div>
-
-            <button class="btn-cadastrar" (click)="openDialog()">CADASTRAR</button>
+  <div class="header">
+    <h1> EQUIPES </h1>
+    <div class="line"></div>
+  </div>
+  <div class="input-container">
+    <label for="filter"> FILTRAR </label>
+    <div class="input-icons">
+      <div class="search-input">
+        <div class="icon">
+          <i class="fas fa-search fa-lg" style="color: #ffffff;"></i>
         </div>
-
+        <input type="text" class="input-filter" id="filter">
+      </div>
+      <button class="btn-cadastrar" (click)="openDialog()"> CADASTRAR </button>
     </div>
-
-    <div class="table">
-        <table>
-            <thead>
-              <tr>
-                <th><b>ID</b></th>
-                <th>REPRESENTANTE</th>
-                <th>USUÁRIOS</th>
-                <th>SENHA</th>
-                <th>AÇÕES</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Josélinson</td>
-                <td>grupo1_c#</td>
-                <td>!asb97q3</td>
-                <td class="btn-actions">
-                  <button><i class="fa-solid fa-pencil" style="color: #1890ff;"></i></button>
-                  <button><i class="fa-regular fa-trash-can" style="color: #dc143c;"></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
+  </div>
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th> ID </th>
+          <th> REPRESENTANTE </th>
+          <th> USUÁRIOS </th>
+          <th> SENHA </th>
+          <th> AÇÕES </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> 1 </td>
+          <td> Josélinson </td>
+          <td> grupo1_c# </td>
+          <td> !asb97q3 </td>
+          <td class="btn-actions">
+            <button>
+              <i class="fa-solid fa-pencil" style="color: #1890ff;"></i>
+            </button>
+            <button>
+              <i class="fa-regular fa-trash-can" style="color: #dc143c;"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="..." class="rounded me-2" alt="...">
+    <strong class="me-auto"> HACK WEEK Serviços </strong>
+    <small> {{ elapsedTime }} </small>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    {{ notification }}
+  </div>
+</div>
