@@ -1,32 +1,28 @@
 <div class="dialog-form">
-    <h2>Formulário de Projeto</h2>
-    <div class="line"></div>
-    <form [formGroup]="formProject" (ngSubmit)="onSubmit()">
-      
-      <div class="input-container">
-        <label for="title">TÍTULO</label>
-        <div class="input-group">
-          <div class="icon">
-            <i class="fas fa-user fa-lg"></i>
-          </div>
-          <input type="text" class="input-form" id="title" formControlName="titulo">
+  <h2> Formulário de Projeto </h2>
+  <div class="line"></div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <div class="input-container">
+      <label for="title"> TÍTULO </label>
+      <div class="input-group">
+        <div class="icon">
+          <i class="fas fa-user fa-lg"></i>
         </div>
+        <input type="text" class="input-form" id="title" formControlName="titulo">
       </div>
-      
-      <div class="input-container" *ngFor="let criterio of listaCriterios; let i = index">
-        <div class="input-group input-group-checkbox">
-          <div class="checkbox">
-            <input type="checkbox" [formControlName]="'selecionarCriterio' + i">
-            <label>{{ criterio.toUpperCase() }}</label>
-          </div>
-          <input type="number" class="input-peso" [formControlName]="'pesoCriterio' + i" placeholder="Peso">
+    </div>
+    <div class="input-container" *ngFor="let criterio of criteriaList; let i = index">
+      <div class="input-group input-group-checkbox">
+        <div class="checkbox">
+          <input type="checkbox" [formControlName]="'selecionarCriterio' + i">
+          <label>{{ criterio.toUpperCase() }}</label>
         </div>
+        <input type="number" class="input-peso" [formControlName]="'pesoCriterio' + i" placeholder="Peso">
       </div>
-  
-      <div class="form-actions">
-        <button type="button" class="cancel" [mat-dialog-close]="false">Cancelar</button>
-        <button type="submit" class="submit">Enviar</button>
-      </div>
-    </form>
-  </div>
-  
+    </div>
+    <div class="form-actions">
+      <button type="button" class="cancel" mat-dialog-close> Cancelar </button>
+      <button type="submit" class="submit"> Enviar </button>
+    </div>
+  </form>
+</div>

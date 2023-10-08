@@ -11,4 +11,10 @@ export class HttpService {
   constructor(private _http: HttpClient) { }
 
   getAll(route: string): Observable<any> { return this._http.get(`${this._apiUrl}/${route}`); }
+
+  putById(route: string, id: number, data: object): Observable<any> { return this._http.put(`${this._apiUrl}/${route}/${id}`, data); }
+
+  post(route: string, data: object): Observable<any> { return this._http.post(`${this._apiUrl}/${route}`, data); }
+
+  deleteById(route: string, id: number): Observable<any> { return this._http.delete(`${this._apiUrl}/${route}/${id}`); }
 }
