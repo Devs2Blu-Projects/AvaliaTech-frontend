@@ -34,7 +34,8 @@ export class TeamComponent implements OnInit {
         next: (response: any) => {
           this.data = response;
           this.elapsedTime = this._updateService.stopTimer();
-        }, error: (error: any) => { console.error(error); }
+        },
+        error: (error: any) => { console.error(error); }
       });
   }
 

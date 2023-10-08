@@ -1,15 +1,15 @@
 <div class="dialog-form">
     <h2>Formulário de Equipe</h2>
     <div class="line"></div>
-    <form [formGroup]="formTeam" (ngSubmit)="onSubmit()">
-      
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+
       <div class="input-container">
         <label for="representative">REPRESENTANTE</label>
         <div class="input-group">
           <div class="icon">
             <i class="fas fa-user fa-lg"></i>
           </div>
-          <input type="text" class="input-form" id="representative" placeholder="Ex.: João da Silva" formControlName="representante">
+          <input type="text" class="input-form" id="representative" placeholder="Ex. João da Silva" formControlName="name">
         </div>
       </div>
       <div class="input-container">
@@ -18,7 +18,7 @@
           <div class="icon">
             <i class="fa-solid fa-envelope fa-lg"></i>
           </div>
-          <input type="email" class="input-form" id="email" placeholder="Ex.: joao.silva@gmail.com" formControlName="email">
+          <input type="email" class="input-form" id="email" placeholder="Ex. joao.silva@gmail.com" formControlName="email">
         </div>
       </div>
       <div class="input-container">
@@ -27,7 +27,7 @@
           <div class="icon">
             <i class="fas fa-user fa-lg"></i>
           </div>
-          <input type="text" class="input-form" id="user" placeholder="Ex.: joao.silva" formControlName="usuario">
+          <input type="text" class="input-form" id="user" placeholder="Ex.: joao.silva" formControlName="username">
         </div>
       </div>
       <div class="input-container">
@@ -36,21 +36,20 @@
           <div class="icon">
             <i class="fa-solid fa-key fa-lg"></i>
           </div>
-          <input [type]="showPassword ? 'text' : 'password'" class="input-form" id="password" formControlName="senha">
+          <input [type]="showPassword ? 'text' : 'password'" class="input-form" id="password" formControlName="password">
           <span
           class="toggle-password"
-          (click)="togglePasswordVisibility()"
+          (click)="togglePassword()"
           [ngClass]="{ 'show-password': showPassword }"
         >
           <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
         </span>
         </div>
       </div>
-  
+
       <div class="form-actions">
         <button type="button" class="cancel" [mat-dialog-close]="false">Cancelar</button>
         <button type="submit" class="submit">Enviar</button>
       </div>
     </form>
   </div>
-  
