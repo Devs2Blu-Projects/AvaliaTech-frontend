@@ -8,7 +8,15 @@ h1 {
   font-size: 1.75rem;
   font-weight: 400;
 }
-
+.fa-lg{
+  color: var(--white);
+}
+.fa-pencil{
+  color: var(--light-blue);
+}
+.fa-trash-can{
+  color: var(--red);
+}
 .bold{
   font-weight: 700;
 }
@@ -102,9 +110,6 @@ button {
   display: flex;
   justify-content: center;
   gap: 15px;
-}
-.bold{
-  font-weight: 700;
 }
 
 

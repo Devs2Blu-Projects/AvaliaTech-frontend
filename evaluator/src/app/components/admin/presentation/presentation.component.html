@@ -8,7 +8,7 @@
     <div class="input-icons">
       <div class="search-input">
         <div class="icon">
-          <i class="fas fa-search fa-lg" style="color: #ffffff;"></i>
+          <i class="fas fa-search fa-lg"></i>
         </div>
         <input type="text" class="input-filter" id="filter">
       </div>
@@ -78,7 +78,7 @@
                         <div class="name-evaluator">{{ item.name }}</div>
                         <div class="button-delete">
                           <button *ngIf="item.isIconVisible" class="delete-evaluator" (click)="item.isIconVisible = false">
-                            <i class="fa-regular fa-trash-can" style="color: #dc143c;"></i>
+                            <i class="fa-regular fa-trash-can"></i>
                           </button>
                       
                           <div class="button-delete" *ngIf="!item.isIconVisible">

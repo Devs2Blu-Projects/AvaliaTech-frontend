@@ -127,7 +127,9 @@ button {
   justify-content: center;
   gap: 15px;
 }
-
+.fa-lg{
+  color: var(--white);
+}
 .fa-play {
   color: var(--green)
 }
@@ -173,7 +175,9 @@ button {
   }
   
 }
-
+.fa-trash-can{
+  color: var(--red);
+}
 @media screen and (max-width: 768px) {
   .input-icons {
     display: flex;
