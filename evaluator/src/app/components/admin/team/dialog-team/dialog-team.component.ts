@@ -21,7 +21,6 @@ export class DialogTeamComponent implements OnInit {
     this.form = this._fb.group({
       id: [],
       name: '',
-      email: '',
       username: '',
       password: '',
       role: 'Team'
@@ -33,8 +32,8 @@ export class DialogTeamComponent implements OnInit {
   patch(data: object): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
+    this._updateService.startTimer();
     if (this.form.valid) if (data.id) {
-      this._updateService.startTimer();
       this._httpService.putById('teams', data.id, data)
         .subscribe({
           next: () => {
@@ -59,5 +58,5 @@ export class DialogTeamComponent implements OnInit {
     }
   }
 
-  togglePassword() { this.showPassword = !this.showPassword; }
+  togglePassword(): void { this.showPassword = !this.showPassword; }
 }

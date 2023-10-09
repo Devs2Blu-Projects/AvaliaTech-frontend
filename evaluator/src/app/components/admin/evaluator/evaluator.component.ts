@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEvaluatorComponent } from './dialog-evaluator/dialog-evaluator.component';
 import { HttpService } from '../../../shared/services/http/http.service';
@@ -17,12 +17,15 @@ export class EvaluatorComponent implements OnInit {
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
+  @ViewChild(DialogEvaluatorComponent) form!: DialogEvaluatorComponent;
+
   ngAfterViewInit() {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
       return new bootstrap.Popover(popoverTriggerEl);
     });
   }
+
   ngOnInit(): void {
     this.getAll();
     this._updateService.update
@@ -42,6 +45,21 @@ export class EvaluatorComponent implements OnInit {
           this.data = response;
           this.elapsedTime = this._updateService.stopTimer();
         }, error: (error: any) => { console.error(error); }
+      });
+  }
+
+  edit(data: object): void { this.form.patch(data); }
+
+  remove(data: any): void {
+    this._updateService.startTimer();
+    this._httpService.deleteById('evaluators', data.id)
+      .subscribe({
+        next: () => {
+          this.elapsedTime = this._updateService.stopTimer();
+          this._updateService.notify('Avaliador removido com sucesso.');
+          this._updateService.showToast();
+        },
+        error: (error: any) => { console.error(error); }
       });
   }
 

@@ -13,12 +13,12 @@ const routes: Routes = [
   // { path: 'publico', component: },
   { path: 'equipe', component: GroupComponent },
   { path: 'avaliador', component: EvaluatorsComponent},
+  { path: 'admin/home', component: HomeComponent },
   { path: 'admin/equipes', component: TeamComponent },
   { path: 'admin/avaliadores', component: EvaluatorComponent },
   { path: 'admin/criterios', component: CriterionComponent },
   { path: 'admin/projetos', component: ProjectComponent },
   { path: 'admin/apresentacoes', component: PresentationComponent },
-  { path: 'admin/home', component: HomeComponent },
 ];
 
 @NgModule({
