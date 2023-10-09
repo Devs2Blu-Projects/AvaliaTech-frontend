@@ -37,18 +37,9 @@
               </select>
             </div>
           </div>
-          <div class="input-container ">
-            <label for="description"> DESCRIÇÃO </label>
-            <div class="input-group">
-              <div class="icon icon-textarea">
-                <i class="fa-regular fa-pen-to-square fa-lg"></i>
-              </div>
-              <textarea class="input-form" name="description" id="description" cols="30" rows="5"
-                formControlName="description"></textarea>
-            </div>
-          </div>
+          
           <div class="input-container">
-            <label for="challenge"> LINGUAGEM </label>
+            <label for="challenge"> STACK </label>
             <div class="input-group">
               <div class="icon">
                 <i class="fa-solid fa-code fa-lg"></i>
@@ -56,17 +47,26 @@
               <select name="language">
                 <option value="c#"> C# </option>
                 <option value="java"> Java </option>
-                <option value="flutter"> Flutter </option>
               </select>
             </div>
           </div>
           <div class="input-container">
-            <label for="name-project"> TÍTULO DO PROJETO </label>
+            <label for="name-project"> NOME DO PROJETO </label>
             <div class="input-group">
               <div class="icon">
                 <i class="fa-regular fa-pen-to-square fa-lg"></i>
               </div>
               <input type="text" class="input-form" id="name-project" placeholder="Ex. Evaluation System" formControlName="title">
+            </div>
+          </div>
+          <div class="input-container ">
+            <label for="description"> DESCRIÇÃO </label>
+            <div class="input-group">
+              <div class="icon icon-textarea">
+                <i class="fa-regular fa-pen-to-square fa-lg"></i>
+              </div>
+              <textarea class="input-form" placeholder="Ex.: Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quas explicabo corporis soluta harum dolor minima beatae unde accusantium natus!&#10;&#10;Repositório: https://github.com/" name="description" id="description" cols="30" rows="5"
+                formControlName="description"></textarea>
             </div>
           </div>
           <div class="form-actions">
@@ -83,7 +83,7 @@
           <thead>
             <tr>
               <th> Nome do Critério </th>
-              <th> Barra de Progresso </th>
+              <th class="bar-progress"> &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; </th>
               <th> Nota </th>
             </tr>
           </thead>

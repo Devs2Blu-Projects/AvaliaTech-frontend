@@ -234,7 +234,6 @@ th {
     width: 100%;
     height: 20px;
     background: linear-gradient(to right, red, yellow, green);
-    border-radius: 10px;
 }
 
 .progress {
@@ -248,14 +247,14 @@ th {
 .ball {
     position: absolute;
     top: 50%;
-    width: 20px;
+    width: 8px;
     height: 20px;
-    background-color: var(--grey);
-    border: 2px solid rgb(105, 105, 105);
-    border-radius: 50%;
+    background-color: var(--dark-blue);
     transform: translateX(-50%) translateY(-50%);
 }
-
+.bar-progress{
+    width: 50%;
+}
 //FIM DA TABELA 
 .bold {
     font-weight: 700;

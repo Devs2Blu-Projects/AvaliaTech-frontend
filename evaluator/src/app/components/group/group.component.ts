@@ -16,10 +16,10 @@ export class GroupComponent {
   constructor() { }
 
   criteria = [
-    { nome: 'Critério 1', nota: 7.5 },
+    { nome: 'Critério 1', nota: 0 },
     { nome: 'Critério 2', nota: 9.0 },
     { nome: 'Critério 3', nota: 6.8 },
-    { nome: 'Critério 4', nota: 8.4 },
+    { nome: 'Critério 4', nota: 5 },
     { nome: 'Critério 5', nota: 9.8 },
   ];
 
