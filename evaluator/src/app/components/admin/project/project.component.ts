@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogProjectComponent } from './dialog-project/dialog-project.component';
 import { HttpService } from '../../../shared/services/http/http.service';
@@ -15,6 +15,8 @@ export class ProjectComponent implements OnInit {
   notification: string = '';
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
+
+  @ViewChild(DialogProjectComponent) form!: DialogProjectComponent;
 
   ngOnInit(): void {
     this.getAll();
@@ -35,6 +37,21 @@ export class ProjectComponent implements OnInit {
           this.data = response;
           this.elapsedTime = this._updateService.stopTimer();
         }, error: (error: any) => { console.error(error); }
+      });
+  }
+
+  edit(data: object): void { this.form.patch(data); }
+
+  remove(data: any): void {
+    this._updateService.startTimer();
+    this._httpService.deleteById('projects', data.id)
+      .subscribe({
+        next: () => {
+          this.elapsedTime = this._updateService.stopTimer();
+          this._updateService.notify('Projeto removido com sucesso.');
+          this._updateService.showToast();
+        },
+        error: (error: any) => { console.error(error); }
       });
   }
 

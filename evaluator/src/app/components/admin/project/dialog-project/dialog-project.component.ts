@@ -19,13 +19,16 @@ export class DialogProjectComponent implements OnInit {
 
   buildForm(): void {
     this.form = this._fb.group({
-      // TODO
+      id: [],
+      name: '',
+      criteria: '',
+      weight: []
     });
 
     // Adicione controles para seleção e peso de cada critério dinamicamente
-    this.criteriaList.forEach((criterio, index) => {
-      this.form.addControl('selecionarCriterio' + index, new FormControl(false)); // Checkbox
-      this.form.addControl('pesoCriterio' + index, new FormControl('')); // Campo de entrada numérica
+    this.criteriaList.forEach((criterion, index) => {
+      this.form.addControl('criterion' + index, new FormControl(false)); // Checkbox
+      this.form.addControl('weight' + index, new FormControl('')); // Campo de entrada numérica
     });
   }
 

@@ -27,21 +27,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td> 1 </td>
-          <td> Josélinson </td>
-          <td> grupo1_c# </td>
-          <td><button type="button" class="btn btn-generate-password" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="aqui vai a senha">
-            Gerar senha
-          </button>
-          
+        <tr *ngFor="let team of data">
+          <td> {{ team. id }} </td>
+          <td> {{ team.name }} </td>
+          <td> {{ team.username }} </td>
+          <td>
+            <button type="button" class="btn btn-generate-password" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="aqui vai a senha"> Gerar senha </button>
            </td>
           <td class="btn-actions">
             <button>
-              <i class="fa-solid fa-pencil" style="color: #1890ff;"></i>
+              <i class="fa-solid fa-pencil" style="color: #1890ff;" (click)="edit(team);"></i>
             </button>
             <button>
-              <i class="fa-regular fa-trash-can" style="color: #dc143c;"></i>
+              <i class="fa-regular fa-trash-can" style="color: #dc143c;" (click)="remove(team);"></i>
             </button>
           </td>
         </tr>
