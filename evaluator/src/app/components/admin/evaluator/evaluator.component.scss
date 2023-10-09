@@ -106,7 +106,19 @@ button {
 .bold{
   font-weight: 700;
 }
-
+.btn-generate-password{
+  background-color: var(--dark-blue);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  padding: 0 5px;
+}
+.btn-generate-password:hover{
+  background-color: var(--dark-blue-hover);
+}
+.btn-generate-password:focus{
+  box-shadow: none;
+}
 
 
 @media screen and (max-width: 768px) {
