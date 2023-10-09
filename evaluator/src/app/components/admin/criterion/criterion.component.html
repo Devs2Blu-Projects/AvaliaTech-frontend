@@ -12,7 +12,7 @@
         </div>
         <input type="text" class="input-filter" id="filter">
       </div>
-      <button class="btn-cadastrar" (click)="openDialog()"> CADASTRAR </button>
+      <button class="btn-cadastrar" (click)="openDialog();"> CADASTRAR </button>
     </div>
   </div>
   <div class="table">
@@ -20,22 +20,22 @@
       <thead>
         <tr>
           <th> ID </th>
-          <th> TIPO </th>
+          <th> NOME </th>
           <th> DESCRIÇÃO </th>
           <th> AÇÕES </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td> 1 </td>
-          <td> Tipo 1 </td>
-          <td> Lorem ipsum dolor sit amet. </td>
+        <tr *ngFor="let criterion of data">
+          <td> {{ criterion.id }} </td>
+          <td> {{ criterion.name }} </td>
+          <td> {{ criterion.description }} </td>
           <td class="btn-actions">
             <button>
-              <i class="fa-solid fa-pencil" style="color: #1890ff;"></i>
+              <i class="fa-solid fa-pencil" style="color: #1890ff;" (click)="edit(criterion);"></i>
             </button>
             <button>
-              <i class="fa-regular fa-trash-can" style="color: #dc143c;"></i>
+              <i class="fa-regular fa-trash-can" style="color: #dc143c;" (click)="remove(criterion);"></i>
             </button>
           </td>
         </tr>

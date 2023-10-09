@@ -21,7 +21,6 @@ export class DialogEvaluatorComponent {
     this.form = this._fb.group({
       id: [],
       name: '',
-      email: '',
       username: '',
       password: '',
       role: 'Evaluator'

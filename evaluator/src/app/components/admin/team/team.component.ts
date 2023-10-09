@@ -1,9 +1,9 @@
+import * as bootstrap from 'bootstrap';
 import { HttpService } from '../../../shared/services/http/http.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogTeamComponent } from './dialog-team/dialog-team.component';
 import { UpdateService } from '../../../shared/services/update/update.service';
-declare var bootstrap: any;
 
 @Component({
   selector: 'app-team',
@@ -17,12 +17,15 @@ export class TeamComponent implements OnInit {
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
+  @ViewChild(DialogTeamComponent) form!: DialogTeamComponent;
+
   ngAfterViewInit() {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
       return new bootstrap.Popover(popoverTriggerEl);
     });
   }
+
   ngOnInit(): void {
     this.getAll();
     this._updateService.update
@@ -41,6 +44,21 @@ export class TeamComponent implements OnInit {
         next: (response: any) => {
           this.data = response;
           this.elapsedTime = this._updateService.stopTimer();
+        },
+        error: (error: any) => { console.error(error); }
+      });
+  }
+
+  edit(data: object): void { this.form.patch(data); }
+
+  remove(data: any): void {
+    this._updateService.startTimer();
+    this._httpService.deleteById('teams', data.id)
+      .subscribe({
+        next: () => {
+          this.elapsedTime = this._updateService.stopTimer();
+          this._updateService.notify('Equipe removida com sucesso.');
+          this._updateService.showToast();
         },
         error: (error: any) => { console.error(error); }
       });

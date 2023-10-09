@@ -18,7 +18,7 @@ export class DialogCriterionComponent {
 
   buildForm(): void {
     this._fb.group({
-      type: '',
+      name: '',
       description: ''
     });
   }

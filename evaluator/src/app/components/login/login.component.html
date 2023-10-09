@@ -18,8 +18,8 @@
           <div class="icon-container">
             <i class="fa-solid fa-key fa-lg"></i>
           </div>
-          <input [type]="showPassword ? 'text' : 'password'" class="input-login" id="password" />
-          <span class="toggle-password" (click)="togglePasswordVisibility()"
+          <input [type]="showPassword ? 'text' : 'password'" class="input-login" id="password">
+          <span class="toggle-password" (click)="togglePassword();"
             [ngClass]="{ 'show-password': showPassword }">
             <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
           </span>
