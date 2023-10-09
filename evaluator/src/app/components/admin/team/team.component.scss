@@ -86,8 +86,21 @@ button {
   padding: 0;
   margin: 0;
   background: none;
+  cursor: pointer;
 }
-
+.btn-generate-password{
+  background-color: var(--dark-blue);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  padding: 0 5px;
+}
+.btn-generate-password:hover{
+  background-color: var(--dark-blue-hover);
+}
+.btn-generate-password:focus{
+  box-shadow: none;
+}
 table {
   width: 100%;
   border-collapse: separate;
@@ -107,12 +120,6 @@ tbody td {
 
 tbody tr:last-child td {
   border-bottom: none;
-}
-
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
 }
 
 .btn-actions {

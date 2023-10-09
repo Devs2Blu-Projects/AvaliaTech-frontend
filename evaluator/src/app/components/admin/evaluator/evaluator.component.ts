@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogEvaluatorComponent } from './dialog-evaluator/dialog-evaluator.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-evaluator',
@@ -16,6 +17,12 @@ export class EvaluatorComponent implements OnInit {
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
+  ngAfterViewInit() {
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl);
+    });
+  }
   ngOnInit(): void {
     this.getAll();
     this._updateService.update

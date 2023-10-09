@@ -7,34 +7,102 @@
     <div class="line"></div>
     <p class="intro">Está é a sua página de equipe <span style="font-weight: 500;">+DEVS2BLU HACK WEEK</span></p>
     <p>Aqui você cadastra e acompanha o estado atual do seu projeto</p>
-
-    <div class="div-cadastrar" >
-        <button class="btn-cadastrar" (click)="openDialog()">CADASTRAR</button>
-    </div>
-    <div class="table">
-        <table>
-            <thead>
-                <tr>
-                    <th class="bold">ID</th>
-                    <th>EQUIPE</th>
-                    <th>STACK</th>
-                    <th>CRITÉRIOS</th>
-                    <th>AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Equipe A</td>
-                    <td>Stack A</td>
-                    <td>Critérios A</td>
-                    <td class="btn-actions">
-                        <button><i class="fa-solid fa-pencil" style="color: #1890ff;"></i></button>
-                        <button><i class="fa-regular fa-trash-can" style="color: #dc143c;"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+</div>
+<div class="main">
+    <div class="line"></div>
+    <div class="form-table">
+        <div class="right-side">
+            <div class="dialog-form">
+                <h2> Formulário de Equipe </h2>
+                <div class="line"></div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                    <div class="input-container">
+                        <label for="members"> MEMBROS DA EQUIPE </label>
+                        <div class="input-group">
+                            <div class="icon">
+                                <i class="fa-solid fa-people-group fa-lg"></i>
+                            </div>
+                            <input type="text" class="input-form" id="members" placeholder="Ex.: Pedro Santana, Maria Ferreira, Guilherme Silva, ..."
+                                formControlName="name">
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <label for="challenge"> DESAFIO </label>
+                        <div class="input-group">
+                            <div class="icon">
+                                <i class="fa-regular fa-file-code fa-lg"></i>
+                            </div>
+                            <select [(ngModel)]="selectedDesafio" name="desafio">
+                                <option *ngFor="let desafio of listaDesafios" [value]="desafio">{{desafio.toUpperCase()}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="input-container ">
+                        <label for="description"> DESCRIÇÃO </label>
+                        <div class="input-group">
+                          <div class="icon icon-textarea">
+                            <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                          </div>
+                          <textarea class="input-form" name="description" id="description" cols="30" rows="5" formControlName="description"></textarea>
+                        </div>
+                      </div>
+                    <div class="input-container">
+                        <label for="challenge"> LINGUAGEM </label>
+                        <div class="input-group">
+                            <div class="icon">
+                                <i class="fa-solid fa-code fa-lg"></i>
+                            </div>
+                            <select name="language">
+                                <option value="c#">C#</option>
+                                <option value="java">Java</option>
+                                <option value="flutter">Flutter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <label for="name-project"> NOME DO PROJETO </label>
+                        <div class="input-group">
+                            <div class="icon">
+                                <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                            </div>
+                            <input type="text" class="input-form" id="name-project" placeholder="Ex.: Evaluation System"
+                                formControlName="name">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit"> {{tipo}} </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="left-side">
+            <div class="dialog-form">
+                <h2> Notas </h2>
+                <div class="line"></div>
+                <table>
+                    <thead>
+                      <tr>
+                        <th>Nome do Critério</th>
+                        <th>Barra de Progresso</th>
+                        <th>Nota</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let criterio of criterios">
+                        <td>{{ criterio.nome }}</td>
+                        <td>
+                          <div class="progress-bar">
+                            <div class="progress" [style.width.%]="(criterio.nota / 10) * 100"></div>
+                            <div class="ball" [style.left.%]="(criterio.nota / 10) * 100"></div>
+                          </div>
+                        </td>
+                        <td>{{ criterio.nota }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+            </div>
+        </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DialogGroupComponent } from './dialog-group/dialog-group.component';
-import { MatDialog } from '@angular/material/dialog';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-group',
@@ -9,9 +8,19 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class GroupComponent {
 
-  constructor(private _dialog:MatDialog){
+  form!: FormGroup
+  listaDesafios: string[] = ['desafio1', 'desafio2', 'desafio3'];
+  selectedDesafio: string = '';
+  tipo:string = 'Enviar'
+
+  criterios = [
+    { nome: 'Critério 1', nota: 7.5 },
+    { nome: 'Critério 2', nota: 9.0 },
+    { nome: 'Critério 3', nota: 6.8 },
+    { nome: 'Critério 4', nota: 8.4 },
+    { nome: 'Critério 5', nota: 9.8 },
+  ];
+  onSubmit(data:any){
     
   }
-
-  openDialog(): void { this._dialog.open(DialogGroupComponent); }
 }

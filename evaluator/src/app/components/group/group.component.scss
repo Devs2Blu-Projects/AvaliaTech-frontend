@@ -36,6 +36,7 @@
 // -------- END HEADER
 .body {
     padding: 30px 50px;
+    padding-bottom: 15px;
     font-family: var(--font);
     text-align: center;
 }
@@ -65,47 +66,205 @@ p {
     margin: 15px auto;
 }
 
+.main {
+    padding: 0 50px 30px 50px;
+}
+
+.form-table {
+    display: flex;
+    width: 100%;
+
+    h2 {
+        font-size: 1.5rem;
+        font-family: var(--font);
+        text-align: center;
+    }
+
+    .line {
+        width: 80%;
+    }
+
+    .right-side {
+        width: 50vw;
+
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: left;
+            margin-left: 20px;
+            color: var(--dark-blue);
+        }
+
+        select {
+            width: 100%;
+            border: 1px solid var(--grey);
+            text-decoration: none;
+            outline: none;
+            background-color: var(--white);
+            font-family: var(--font);
+            color: var(--dark-blue);
+        }
+
+        option {
+            font-family: var(--font);
+            color: var(--dark-blue);
+        }
+
+        .icon-textarea {
+            position: absolute;
+            top: 0;
+            left: -1px;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        textarea {
+            width: 100%;
+            border: 1px solid var(--grey);
+            padding: 10px;
+            outline: none;
+            resize: none;
+            padding-left: 3.7rem;
+            position: relative;
+        }
+
+        textarea:focus {
+            border-color: var(--dark-blue);
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            border: 1px solid var(--grey);
+            padding: 10px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--dark-blue);
+        }
+
+        .input-container {
+            padding: 0 40px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: nowrap;
+            width: 100%;
+        }
+
+        .input-icons {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .icon {
+            background-color: var(--dark-blue);
+            min-width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fa-lg {
+            color: var(--white);
+        }
+
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+
+            button {
+                border: none;
+                text-decoration: none;
+                width: 12rem;
+                height: 2.5rem;
+                font-size: 1.2rem;
+            }
+
+            .submit {
+                color: var(--white);
+                background-color: var(--dark-blue);
+            }
+        }
+
+        .btn-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+    }
+
+    .left-side {
+        width: 50vw;
+    }
+}
+
+//TABELA DE NOTAS
 table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 10px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey);
+    font-family: var(--font);
+    text-align: center;
 }
 
 th {
-    font-weight: 500;
+    background-color: var(--white);
 }
 
-thead th,
-tbody td {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid var(--grey);
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to right, red, yellow, green);
+    border-radius: 10px;
 }
 
-tbody tr:last-child td {
-    border-bottom: none;
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: transparent;
 }
 
-button {
-    border: none;
-    outline: none;
-    padding: 0;
-    margin: 0;
-    background: none;
+.ball {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--grey);
+    border: 2px solid rgb(105, 105, 105);
+    border-radius: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 
-.btn-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
+//FIM DA TABELA 
 .bold {
     font-weight: 700;
 }
-.div-cadastrar{
+
+.div-cadastrar {
     padding: 20px;
 }
+
 .btn-cadastrar {
     border: none;
     text-decoration: none;
@@ -114,4 +273,33 @@ button {
     background-color: var(--dark-blue);
     color: var(--white);
     transition: 0.3s ease;
+}
+
+@media screen and (max-width: 700px) {
+    .form-table {
+        display: flex;
+        flex-wrap: wrap;
+
+        .line {
+            width: 100%;
+        }
+
+        .right-side {
+            width: 100vw;
+        }
+
+        .left-side {
+            width: 100vw;
+        }
+    }
+
+    .input-container {
+        padding: 0 !important;
+    }
+
+    .submit {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
 }

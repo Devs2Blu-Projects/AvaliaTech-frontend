@@ -26,7 +26,6 @@ import { DialogPresentationComponent } from './components/admin/presentation/dia
 import { HomeComponent } from './components/admin/home/home.component';
 import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
-import { DialogGroupComponent } from './components/group/dialog-group/dialog-group.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +45,7 @@ import { DialogGroupComponent } from './components/group/dialog-group/dialog-gro
     DialogPresentationComponent,
     HomeComponent,
     GroupComponent,
-    EvaluatorsComponent,
-    DialogGroupComponent
+    EvaluatorsComponent
   ],
   imports: [
     BrowserModule,

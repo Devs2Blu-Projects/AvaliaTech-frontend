@@ -57,22 +57,6 @@ input::placeholder {
   width: 100%;
 }
 
-#password {
-  position: relative;
-}
-
-.toggle-password {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.show-password {
-  color: var(--dark-blue);
-}
-
 .icon {
   background-color: var(--dark-blue);
   min-width: 2.5rem;
