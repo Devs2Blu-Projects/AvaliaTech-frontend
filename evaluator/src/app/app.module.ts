@@ -26,6 +26,8 @@ import { PresentationComponent } from './components/admin/presentation/presentat
 import { DialogPresentationComponent } from './components/admin/presentation/dialog-presentation/dialog-presentation.component';
 import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { EvaluatorsComponent } from './components/evaluators/evaluators.componen
     MatTableModule,
     MatIconModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    CdkAccordionModule,
+    PopoverModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

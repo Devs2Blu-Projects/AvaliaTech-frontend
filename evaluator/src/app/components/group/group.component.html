@@ -32,8 +32,8 @@
               <div class="icon">
                 <i class="fa-regular fa-file-code fa-lg"></i>
               </div>
-              <select [(ngModel)]="selectedDesafio" name="desafio">
-                <option *ngFor="let desafio of listaDesafios" [value]="desafio">{{desafio.toUpperCase()}}</option>
+              <select [(ngModel)]="challenge" name="desafio">
+                <option *ngFor="let desafio of challengeList" [value]="desafio">{{desafio.toUpperCase()}}</option>
               </select>
             </div>
           </div>
@@ -70,7 +70,7 @@
             </div>
           </div>
           <div class="form-actions">
-            <button type="submit" class="submit"> {{ tipo }} </button>
+            <button type="submit" class="submit"> {{ type }} </button>
           </div>
         </form>
       </div>
@@ -88,7 +88,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let criterio of criterios">
+            <tr *ngFor="let criterio of criteria">
               <td> {{ criterio.nome }} </td>
               <td>
                 <div class="progress-bar">
