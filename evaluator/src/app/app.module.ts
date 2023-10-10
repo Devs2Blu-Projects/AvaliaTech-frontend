@@ -29,6 +29,7 @@ import { EvaluatorsComponent } from './components/evaluators/evaluators.componen
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { RankingComponent } from './components/ranking/ranking.component';
+import { DialogAssessmentComponent } from './components/evaluators/dialog-assessment/dialog-assessment.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { RankingComponent } from './components/ranking/ranking.component';
     DialogPresentationComponent,
     GroupComponent,
     EvaluatorsComponent,
-    RankingComponent
+    RankingComponent,
+    DialogAssessmentComponent
   ],
   imports: [
     BrowserModule,

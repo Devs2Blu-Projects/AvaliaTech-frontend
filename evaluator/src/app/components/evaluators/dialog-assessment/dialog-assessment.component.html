@@ -1,0 +1,31 @@
+<div class="dialog-form">
+    <h2> NOME DA EQUIPE </h2>
+    <h3><span class="bold">Stack: </span>C#</h3>
+    <div class="line"></div>
+    <form class="formGroup">
+        <table>
+            <thead>
+              <tr>
+                <th class="bold criterion"> CRITÉRIOS </th>
+                <th class="bold weight"> PESO </th>
+                <th class="bold note"> NOTA </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let criterion of listCriteria">
+                <td> {{criterion.nome}} </td>
+                <td class="td-weight"> {{criterion.peso}} </td>
+                <td>
+                    <input type="number" class="input-form" placeholder="Ex.: 7,5">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      
+      <div class="form-actions">
+        <button type="button" class="cancel" mat-dialog-close> Cancelar </button>
+        <button type="submit" class="submit"> Enviar </button>
+      </div>
+    </form>
+  </div>
+  

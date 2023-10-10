@@ -17,8 +17,7 @@
           <th class="bold"> ID </th>
           <th> EQUIPE </th>
           <th> STACK </th>
-          <th> CRITÉRIOS </th>
-          <th> AÇÕES </th>
+          <th> AVALIAR </th>
         </tr>
       </thead>
       <tbody>
@@ -26,10 +25,8 @@
           <td> 1 </td>
           <td> Equipe A </td>
           <td> Stack A </td>
-          <td> Critérios A </td>
           <td class="btn-actions">
-            <button><i class="fa-solid fa-pencil" style="color: #1890ff;"></i></button>
-            <button><i class="fa-regular fa-trash-can" style="color: #dc143c;"></i></button>
+            <button (click)="openDialog()"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
           </td>
         </tr>
       </tbody>
