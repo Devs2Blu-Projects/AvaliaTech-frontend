@@ -8,7 +8,15 @@ h1 {
   font-size: 1.75rem;
   font-weight: 400;
 }
-
+.fa-lg{
+  color: var(--white);
+}
+.fa-pencil{
+  color: var(--light-blue);
+}
+.fa-trash-can{
+  color: var(--red);
+}
 .bold{
   font-weight: 700;
 }
@@ -119,7 +127,9 @@ button {
 .btn-generate-password:focus{
   box-shadow: none;
 }
-
+.bold {
+  font-weight: 700;
+}
 
 @media screen and (max-width: 768px) {
   .input-icons {

@@ -127,7 +127,9 @@ button {
   justify-content: center;
   gap: 15px;
 }
-
+.fa-lg{
+  color: var(--white);
+}
 .fa-play {
   color: var(--green)
 }
@@ -135,8 +137,47 @@ button {
 .fa-stop {
   color: var(--red);
 }
-
-
+.td-accordion{
+  width: 500px;
+}
+.example-accordion-item-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.li-evaluators{
+  width: 100%;
+  display: flex;
+  height: 1.5rem;
+  .name-evaluator{
+    width: 50%;
+    font-style: italic;
+    text-align: left;
+  }
+  .button-delete{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    .btn-confirm{
+      background-color: var(--red);
+      color: var(--white);
+      padding: 0 4px;
+      border-radius: 3px;
+    }
+    .btn-closeP{
+      background-color: var(--grey);
+      color: var(--white);
+      padding: 0 4px;
+      border-radius: 3px;
+    }
+  }
+  
+}
+.fa-trash-can{
+  color: var(--red);
+}
 @media screen and (max-width: 768px) {
   .input-icons {
     display: flex;
@@ -154,5 +195,20 @@ button {
 
   .body {
     padding: 30px 0;
+  }
+}
+@media screen and (max-width: 400px){
+
+  .li-evaluators{
+    height: auto;
+  }
+  .button-delete{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .name-evaluator{
+    display: flex;
+    align-items: center;
   }
 }

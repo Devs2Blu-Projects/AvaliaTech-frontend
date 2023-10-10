@@ -1,0 +1,79 @@
+<div class="header">
+    <div class="img"><img src="assets/img/logo-devs2blu.png" alt="logo devs2blu"></div>
+    <button class="btn-exit"> SAIR </button>
+</div>
+<div class="body-loading">
+    <h1>Calculando o resultado</h1>
+    <h1>AGUARDE</h1>
+    <div class="loader">
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+        <span class="loader-block"></span>
+  </div>
+  
+  
+</div>
+<div class="ranking-container" *ngIf="">
+    <div class="podium">
+        <!-- Primeiro lugar (Dourado) -->
+        <div class="card gold" *ngIf="groups.length > 0">
+            <div class="bg">
+                <h1>1º Lugar</h1>
+                <i class="fas fa-medal fa-2xl"></i>
+                <h2>{{ groups[0].projectName.toUpperCase() }}</h2>
+                <p><span class="bold">STACK: </span>{{ groups[0].stack }}</p>
+            </div>
+            <div class="blob"></div>
+        </div>
+
+        <!-- Segundo lugar (Prata) -->
+        <div class="card silver" *ngIf="groups.length > 1">
+            <div class="bg">
+                <h1>2º Lugar</h1>
+                <i class="fas fa-medal fa-2xl"></i>
+                <h2>{{ groups[1].projectName }}</h2>
+                <p><span class="bold">STACK: </span>{{ groups[1].stack }}</p>
+            </div>
+            <div class="blob"></div>
+        </div>
+
+        <!-- Terceiro lugar (Bronze) -->
+        <div class="card bronze" *ngIf="groups.length > 2">
+            <div class="bg">
+                <h1>3º Lugar</h1>
+                <i class="fas fa-medal fa-2xl"></i>
+                <h2>{{ groups[2].projectName }}</h2>
+                <p><span class="bold">STACK: </span>{{ groups[2].stack }}</p>
+            </div>
+            <div class="blob"></div>
+        </div>
+    </div>
+
+    <!-- TODOS GRUPOS -->
+    <div class="other-groups">
+        <h1>TODOS GRUPOS</h1>
+        <div class="group" *ngFor="let group of groups; let i = index" [ngClass]="{'gold-list': i === 0, 'silver-list': i === 1, 'bronze-list': i === 2}">
+          <div class="icon-left" >
+            <div class="icon" *ngIf="i < 3">
+                <i class="fa-solid fa-ranking-star fa-xl"></i>
+            </div>
+            <div class="line-y"></div>
+            <div class="position">{{i + 1}}</div>
+            <div class="line-y"></div>
+          </div>
+          <div class="right">
+            <h2>{{ group.projectName }}</h2>
+            <p><span class="bold">STACK: </span>{{ group.stack }}</p>
+            <p><span class="bold">Membros: </span>{{ group.teamMembers }}</p>
+          </div>
+        </div>
+      </div>
+      
+      
+</div>
