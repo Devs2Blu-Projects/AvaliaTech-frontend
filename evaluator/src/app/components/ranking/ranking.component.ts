@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class RankingComponent implements OnInit{
 
   groups: any[];
+  public revelado: boolean = false;
+  public botaoVisivel: boolean = true;
 
   constructor() {
     this.groups = [
@@ -43,7 +45,15 @@ export class RankingComponent implements OnInit{
       },
     ];
   }
+  
   ngOnInit(): void {
     this.groups.sort((a, b) => b.rating - a.rating);
+  }
+
+  revelarOcultar() {
+    this.botaoVisivel = false;
+    setTimeout(() => {
+      this.revelado = true;
+    }, 100);
   }
 }
