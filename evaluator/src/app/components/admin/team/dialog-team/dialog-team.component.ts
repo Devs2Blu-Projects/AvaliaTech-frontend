@@ -23,7 +23,7 @@ export class DialogTeamComponent implements OnInit {
       name: '',
       username: '',
       password: '',
-      role: 'Team'
+      role: 'Group'
     });
   }
 
