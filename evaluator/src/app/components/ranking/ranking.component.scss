@@ -330,17 +330,24 @@ body {
     color: #cd7f32;
   }
 }
+.gold-list, .silver-list, .bronze-list{
+  color: var(--white);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.274);
 
+}
 .gold-list {
-  background-color: gold;
+  background: linear-gradient(to bottom right, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+              linear-gradient(to top left, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
 }
 
 .silver-list {
-  background-color: silver;
+  background: linear-gradient(to top right, #C0C0C0 0%, #A9A9A9 8%, #808080b6 30%, #696969a9 40%, transparent 80%),
+              linear-gradient(to bottom left, #FFFFFF 0%, #EAEAEA 8%, #B0B0B0 25%, #707070 62.5%, #707070 100%);
 }
 
 .bronze-list {
-  background-color: #cd7f32;
+  background: linear-gradient(to bottom right, #D6A16B 0%, #B57F4B 8%, #865a2e 30%, #7d5431 40%, transparent 80%),
+              linear-gradient(to top left, #e9ccae 0%, #D6A16B 8%, #B57F4B 25%, rgba(88, 51, 17, 0.89) 62.5%, rgba(88, 51, 17, 0.89) 100%);
 }
 
 .gold-list,
@@ -390,6 +397,9 @@ body {
     background-color: var(--grey);
   }
 }
+.other-groups .bold, h2{
+  font-weight: bold;
+}
 .btn-revelar{
   width: 300px;
   height: 50px;
@@ -406,18 +416,6 @@ body {
 .btn-revelar:hover {
   transform: scale(1.05); 
   animation: shake 1s cubic-bezier(0.36, 2.26, 0.72, -0.64) infinite;
-}
-
-@keyframes shake {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translate(-2px, -2px) rotate(-2deg);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translate(2px, 2px) rotate(2deg);
-  }
 }
 
 .fade{
@@ -448,5 +446,17 @@ body {
 
   100% {
     transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate(-2px, -2px) rotate(-2deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translate(2px, 2px) rotate(2deg);
   }
 }

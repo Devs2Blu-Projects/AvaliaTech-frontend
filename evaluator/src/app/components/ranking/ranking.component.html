@@ -56,12 +56,12 @@
     </div>
 
     <button class="btn-revelar" *ngIf="botaoVisivel" (click)="revelarOcultar()">
-        {{ revelado ? 'Ocultar' : 'Revelar' }}
+        {{ revelado ? 'Ocultar' : 'REVELAR' }}
       </button>
 
     <!-- TODOS GRUPOS -->
     <div class="other-groups" *ngIf="revelado" [ngClass]="{ 'fade-transition': revelado }">
-        <h1>TODOS GRUPOS</h1>
+        <h1>RANKING COMPLETO</h1>
         <div class="group" *ngFor="let group of groups; let i = index" [ngClass]="{'gold-list': i === 0, 'silver-list': i === 1, 'bronze-list': i === 2}">
           <div class="icon-left" >
             <div class="icon" *ngIf="i < 3">
