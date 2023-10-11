@@ -10,7 +10,7 @@
         <div class="icon">
           <i class="fas fa-search fa-lg"></i>
         </div>
-        <input type="text" class="input-filter" id="filter">
+        <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
       </div>
       <button class="btn-sortear" (click)="openDialog()"> SORTEAR </button>
     </div>
@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let presentation of data | filter:filterCols:filter">
           <td> 1 </td>
           <td> Equipe A </td>
           <td> Stack A </td>
@@ -53,7 +53,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let item of items; let i = index">
+        <ng-container *ngFor="let item of items | filter:filterCols:filter; let i = index">
           <tr>
             <td> {{item.id}} </td>
             <td> {{item.equipe}} </td>
@@ -95,14 +95,13 @@
             </td>
           </tr>
         </ng-container>
-
       </tbody>
     </table>
   </div>
 </div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
   <div class="toast-header">
-    <img src="..." class="rounded me-2" alt="...">
+    <img class="rounded me-2" alt="...">
     <strong class="me-auto"> HACK WEEK Serviços </strong>
     <small> {{ elapsedTime }} </small>
     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

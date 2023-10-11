@@ -15,7 +15,7 @@
       <div class="dialog-form">
         <h2> Formulário de Equipe </h2>
         <div class="line"></div>
-        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
           <div class="input-container">
             <label for="members"> MEMBROS DA EQUIPE </label>
             <div class="input-group">
@@ -32,8 +32,8 @@
               <div class="icon">
                 <i class="fa-regular fa-file-code fa-lg"></i>
               </div>
-              <select [(ngModel)]="challenge" name="desafio">
-                <option *ngFor="let desafio of challengeList" [value]="desafio">{{desafio.toUpperCase()}}</option>
+              <select name="desafio" formControlName="challenge">
+                <option *ngFor="let challenge of challengeList" [value]="challenge">{{challenge.toUpperCase()}}</option>
               </select>
             </div>
           </div>
@@ -44,7 +44,7 @@
               <div class="icon">
                 <i class="fa-solid fa-code fa-lg"></i>
               </div>
-              <select name="language">
+              <select name="language" formControlName="language">
                 <option value="c#"> C# </option>
                 <option value="java"> Java </option>
               </select>
@@ -88,15 +88,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let criterio of criteria">
-              <td> {{ criterio.nome }} </td>
+            <tr *ngFor="let criterion of criteria">
+              <td> {{ criterion.name }} </td>
               <td>
                 <div class="progress-bar">
-                  <div class="progress" [style.width.%]="(criterio.nota / 10) * 100"></div>
-                  <div class="ball" [style.left.%]="(criterio.nota / 10) * 100"></div>
+                  <div class="progress" [style.width.%]="(criterion.grade / 10) * 100"></div>
+                  <div class="ball" [style.left.%]="(criterion.grade / 10) * 100"></div>
                 </div>
               </td>
-              <td>{{ criterio.nota }}</td>
+              <td>{{ criterion.grade }}</td>
             </tr>
           </tbody>
         </table>

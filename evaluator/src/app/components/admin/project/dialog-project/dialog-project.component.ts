@@ -21,7 +21,14 @@ export class DialogProjectComponent implements OnInit {
     this.form = this._fb.group({
       id: [],
       name: '',
-      criteria: '',
+      propositionCriteria: this._fb.array([
+        this._fb.group({
+          id: [],
+          weight: '',
+          propositionId: '',
+          criterionId: '',
+        })
+      ]),
       weight: []
     });
 
@@ -39,7 +46,7 @@ export class DialogProjectComponent implements OnInit {
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
       this._updateService.startTimer();
-      this._httpService.putById('projects', data.id, data)
+      this._httpService.putById('proposition', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();
@@ -50,7 +57,7 @@ export class DialogProjectComponent implements OnInit {
           error: (error: any) => { console.error(error); }
         });
     } else {
-      this._httpService.post('projects', data)
+      this._httpService.post('proposition', data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();
