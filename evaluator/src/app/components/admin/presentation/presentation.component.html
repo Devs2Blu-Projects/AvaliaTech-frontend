@@ -8,7 +8,7 @@
     <div class="input-icons">
       <div class="search-input">
         <div class="icon">
-          <i class="fas fa-search fa-lg" style="color: #ffffff;"></i>
+          <i class="fas fa-search fa-lg"></i>
         </div>
         <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
       </div>
@@ -49,25 +49,52 @@
           <th class="bold"> ID </th>
           <th> EQUIPE </th>
           <th> STACK </th>
-          <th> CRITÉRIOS </th>
-          <th> AÇÕES </th>
+          <th> AVALIAÇÕES </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let presentation of data | filter:filterCols:filter">
-          <td> 1 </td>
-          <td> Equipe A </td>
-          <td> Stack A </td>
-          <td> Critérios A </td>
-          <td class="btn-actions">
-            <button>
-              <i class="fa-solid fa-play fa-xl"></i>
-            </button>
-            <button>
-              <i class="fa-solid fa-stop fa-xl"></i>
-            </button>
-          </td>
-        </tr>
+        <ng-container *ngFor="let item of items; let i = index | filter:filterCols:filter">
+          <tr>
+            <td> {{item.id}} </td>
+            <td> {{item.equipe}} </td>
+            <td> {{item.stack}} </td>
+            <td class="td-accordion">
+              <cdk-accordion class="example-accordion">
+                <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button"
+                  tabindex="0" [attr.id]="'accordion-header-' + i" [attr.aria-controls]="'accordion-body-' + i">
+                  <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+                    Avaliações por avaliador
+                    <span>
+                      <i
+                        [ngClass]="{'fa-solid': true, 'fa-angle-up': accordionItem.expanded, 'fa-angle-down': !accordionItem.expanded}"></i>
+                    </span>
+                  </div>
+                  <div class="example-accordion-item-body" role="region"
+                    [style.display]="accordionItem.expanded ? '' : 'none'"
+                    [attr.id]="'accordion-body-' + 'AQUI-VAI-O-ID1'"
+                    [attr.aria-labelledby]="'accordion-header-' + 'AQUI-VAI-O-ID1'">
+                    <ul>
+                      <li class="li-evaluators" *ngFor="let item of avaliadores">
+                        <div class="name-evaluator">{{ item.name }}</div>
+                        <div class="button-delete">
+                          <button *ngIf="item.isIconVisible" class="delete-evaluator" (click)="item.isIconVisible = false">
+                            <i class="fa-regular fa-trash-can"></i>
+                          </button>
+                      
+                          <div class="button-delete" *ngIf="!item.isIconVisible">
+                            <button class="btn-closeP" (click)="closePopover(item)">Cancelar</button>
+                            <button class="btn-confirm" (click)="confirmDelete(item)">Deletar</button>
+                          </div>
+                        </div>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </cdk-accordion-item>
+              </cdk-accordion>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

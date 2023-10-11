@@ -29,6 +29,10 @@ import { PresentationComponent } from './components/admin/presentation/presentat
 import { DialogPresentationComponent } from './components/admin/presentation/dialog-presentation/dialog-presentation.component';
 import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { RankingComponent } from './components/ranking/ranking.component';
+import { DialogAssessmentComponent } from './components/evaluators/dialog-assessment/dialog-assessment.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,9 @@ import { EvaluatorsComponent } from './components/evaluators/evaluators.componen
     PresentationComponent,
     DialogPresentationComponent,
     GroupComponent,
-    EvaluatorsComponent
+    EvaluatorsComponent,
+    RankingComponent,
+    DialogAssessmentComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,9 @@ import { EvaluatorsComponent } from './components/evaluators/evaluators.componen
     MatTableModule,
     MatIconModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    CdkAccordionModule,
+    PopoverModule.forRoot()
   ],
   providers: [
     {

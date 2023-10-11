@@ -8,7 +8,7 @@
     <div class="input-icons">
       <div class="search-input">
         <div class="icon">
-          <i class="fas fa-search fa-lg" style="color: #ffffff;"></i>
+          <i class="fas fa-search fa-lg" ></i>
         </div>
         <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
       </div>
@@ -19,7 +19,7 @@
     <table>
       <thead>
         <tr>
-          <th> ID </th>
+          <th class="bold"> ID </th>
           <th> NOME </th>
           <th> DESCRIÇÃO </th>
           <th> AÇÕES </th>
@@ -32,10 +32,10 @@
           <td> {{ criterion.description }} </td>
           <td class="btn-actions">
             <button>
-              <i class="fa-solid fa-pencil" style="color: #1890ff;" (click)="edit(criterion);"></i>
+              <i class="fa-solid fa-pencil"  (click)="edit(criterion);"></i>
             </button>
             <button>
-              <i class="fa-regular fa-trash-can" style="color: #dc143c;" (click)="remove(criterion);"></i>
+              <i class="fa-regular fa-trash-can" (click)="remove(criterion);"></i>
             </button>
           </td>
         </tr>
