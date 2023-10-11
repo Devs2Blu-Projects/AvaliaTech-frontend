@@ -14,6 +14,9 @@ export class CriterionComponent implements OnInit{
   elapsedTime: number = 0;
   notification: string = '';
 
+  filter = '';
+  filterCols = ['id','name','description'];
+
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   @ViewChild(DialogCriterionComponent) form!: DialogCriterionComponent;
@@ -31,7 +34,7 @@ export class CriterionComponent implements OnInit{
 
   getAll(): void {
     this._updateService.startTimer();
-    this._httpService.getAll('criteria')
+    this._httpService.getAll('criterion')
       .subscribe({
         next: (response: any) => {
           this.data = response;

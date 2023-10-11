@@ -10,7 +10,7 @@
         <div class="icon">
           <i class="fas fa-search fa-lg"></i>
         </div>
-        <input type="text" class="input-filter" id="filter">
+        <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
       </div>
       <button class="btn-cadastrar" (click)="openDialog();"> CADASTRAR </button>
     </div>
@@ -25,9 +25,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let project of data">
+        <tr *ngFor="let project of data | filter:filterCols:filter">
           <td> {{ project.id }} </td>
-          <td> {{ project.id }} </td>
+          <td> {{ project.propositionCriteria.length }} </td>
           <td> {{ project.name }} </td>
           <td class="btn-actions">
             <button>
@@ -42,9 +42,9 @@
     </table>
   </div>
 </div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
   <div class="toast-header">
-    <img src="..." class="rounded me-2" alt="...">
+    <img class="rounded me-2" alt="...">
     <strong class="me-auto"> HACK WEEK Serviços </strong>
     <small> {{ elapsedTime }} </small>
     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

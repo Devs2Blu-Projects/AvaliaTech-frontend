@@ -15,6 +15,9 @@ export class EvaluatorComponent implements OnInit {
   elapsedTime: number = 0;
   notification: string = '';
 
+  filter = '';
+  filterCols = ['id','name','username'];
+
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   @ViewChild(DialogEvaluatorComponent) form!: DialogEvaluatorComponent;
@@ -39,7 +42,7 @@ export class EvaluatorComponent implements OnInit {
 
   getAll(): void {
     this._updateService.startTimer();
-    this._httpService.getAll('evaluators')
+    this._httpService.getAll('user/role/user')
       .subscribe({
         next: (response: any) => {
           this.data = response;
@@ -52,7 +55,7 @@ export class EvaluatorComponent implements OnInit {
 
   remove(data: any): void {
     this._updateService.startTimer();
-    this._httpService.deleteById('evaluators', data.id)
+    this._httpService.deleteById('user', data.id)
       .subscribe({
         next: () => {
           this.elapsedTime = this._updateService.stopTimer();

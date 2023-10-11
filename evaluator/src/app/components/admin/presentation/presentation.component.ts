@@ -18,6 +18,9 @@ export class PresentationComponent implements OnInit {
   isIconVisible = true;
   expandedItemId: number | null = null
 
+  filter = '';
+  filterCols = ['id','name','username'];
+
   items: any[] = [
     { id: 1, equipe: 'Equipe A', stack: 'Stack A' },
     { id: 2, equipe: 'Equipe B', stack: 'Stack B' },
@@ -30,6 +33,7 @@ export class PresentationComponent implements OnInit {
     { id: 4, name: 'Maria Claudia', isIconVisible: true },
     
   ];
+
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
   ngAfterViewInit() {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
@@ -50,7 +54,7 @@ export class PresentationComponent implements OnInit {
 
   getAll(): void {
     this._updateService.startTimer();
-    this._httpService.getAll('presentations')
+    this._httpService.getAll('group')
       .subscribe({
         next: (response: any) => {
           this.data = response;

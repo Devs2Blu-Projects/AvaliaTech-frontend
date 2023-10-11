@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './shared/services/auth/token.interceptor';
+
 import { FilterPipe } from './shared/pipes/filter.pipe';
 
 import { AppComponent } from './app.component';
@@ -66,7 +69,13 @@ import { DialogAssessmentComponent } from './components/evaluators/dialog-assess
     CdkAccordionModule,
     PopoverModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
