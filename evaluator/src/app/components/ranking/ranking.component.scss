@@ -1,51 +1,5 @@
 @import url(src/styles.scss);
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(68, 68, 68, 0.7);
-  z-index: 9999;
-}
-
-.btn-revelar {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 50px;
-  background-color: var(--dark-blue);
-  border: none;
-  text-decoration: none;
-  font-family: var(--font);
-  font-size: 1.3rem;
-  color: var(--white);
-  z-index: 10000;
-  transition: transform 0.4s ease-in-out;
-  box-shadow: var(--shadow);
-}
-
-.btn-revelar:hover {
-  transform: translate(-50%, -50%) scale(1.5);
-
-}
-
-.btn-revelar.revelando {
-  animation: revelarAnimacao 3s ease-in-out forwards;
-}
-
-.tremor1 {
-  animation: shake1 7s cubic-bezier(0.36, 2.26, 0.72, -0.64) both;
-}
-.tremor2 {
-  animation: shake2 4s cubic-bezier(0.36, 2.26, 0.72, -0.64) both;
-}
-.tremor3 {
-  animation: shake3 3s cubic-bezier(0.36, 2.26, 0.72, -0.64) both;
-}
 
 // -------- HEADER
 .header {
@@ -316,7 +270,9 @@ body {
   font-family: var(--font);
   color: var(--white);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  z-index: -1;
+  transition: 0.5s ease-in-out;
+  z-index: 0;
+  cursor: pointer;
 
   h1 {
     padding: 20px 20px 35px;
@@ -335,6 +291,18 @@ body {
   }
 
 }
+.card:hover{
+  transform: scale(1.2);
+}
+// .tremor1 {
+//   animation: shake1 3s cubic-bezier(0.36, 2.26, 0.72, -0.64) infinite;
+// }
+// .tremor2 {
+//   animation: shake2 3s cubic-bezier(0.36, 2.26, 0.72, -0.64) infinite;
+// }
+// .tremor3 {
+//   animation: shake3 3s cubic-bezier(0.36, 2.26, 0.72, -0.64) infinite;
+// }
 
 .bold {
   font-weight: 500;
@@ -443,7 +411,23 @@ body {
   filter: blur(12px);
   animation: blob-bounce 5s infinite ease;
 }
-
+.right{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  .description{
+    width: 70%;
+  }
+  .note{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    width: 30%;
+    max-width: 30%;
+    padding-right: 15px;
+  }
+}
 // ---- END CARD
 .group {
   display: flex;
@@ -499,53 +483,72 @@ h2 {
   }
 }
 
-@keyframes revelarAnimacao {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
+// @keyframes shake1 {
+//   0%,
+//   100% {
+//     transform: translate(0, 0) rotate(0deg);
+//   }
+//   10%, 30%, 50%, 70%, 90% {
+//     transform: translate(-3px, -3px) rotate(-3deg);
+//   }
+//   20%, 40%, 60%, 80% {
+//     transform: translate(3px, 3px) rotate(3deg);
+//   }
+// }
 
-  100% {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-}
+// @keyframes shake2 {
+//   0%,
+//   100% {
+//     transform: translate(0, 0) rotate(0deg);
+//   }
+//   10%, 30%, 50%, 70%, 90% {
+//     transform: translate(2px, -2px) rotate(2deg);
+//   }
+//   20%, 40%, 60%, 80% {
+//     transform: translate(-2px, 2px) rotate(-2deg);
+//   }
+// }
 
-@keyframes shake1 {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translate(-3px, -3px) rotate(-3deg);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translate(3px, 3px) rotate(3deg);
-  }
-}
+// @keyframes shake3 {
+//   0%,
+//   100% {
+//     transform: translate(0, 0) rotate(0deg);
+//   }
+//   10%, 30%, 50%, 70%, 90% {
+//     transform: translate(-4px, 0px) rotate(-4deg);
+//   }
+//   20%, 40%, 60%, 80% {
+//     transform: translate(4px, 0px) rotate(4deg);
+//   }
+// }
 
-@keyframes shake2 {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translate(2px, -2px) rotate(2deg);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translate(-2px, 2px) rotate(-2deg);
-  }
-}
+@media screen and (max-width: 780px) {
+  .other-groups {
+    h1 {
+      font-size: 1.2rem; /* Reduza o tamanho da fonte para telas menores */
+    }
+    
+    .group {
+      display: flex;
+      flex-direction: column; /* Altere para layout de coluna em telas menores */
+    }
 
-@keyframes shake3 {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translate(-4px, 0px) rotate(-4deg);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translate(4px, 0px) rotate(4deg);
+    .icon-left {
+      display: flex;
+      align-items: center;
+      padding-right: 10px;
+      margin-bottom: 10px; /* Adicione margem inferior para separar os grupos na lista */
+    }
+
+    .position {
+      padding: 10px;
+      font-size: 1.2rem; /* Reduza o tamanho da fonte para telas menores */
+    }
+
+    .line-y {
+      width: 100%;
+      height: 1px; /* Altere para uma linha horizontal */
+      margin: 10px 0; /* Adicione margens para espaçamento entre os elementos */
+    }
   }
 }

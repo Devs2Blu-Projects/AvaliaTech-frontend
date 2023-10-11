@@ -12,9 +12,7 @@ export class RankingComponent implements OnInit{
   revelado1: boolean = false;
   revelado2: boolean = false;
   revelado3: boolean = false;
-  botaoVisivel: boolean = true;
-  overlayVisible: boolean = true;
-
+  currentRevelado: number = 3;
 
   constructor() {
     this.groups = [
@@ -49,7 +47,9 @@ export class RankingComponent implements OnInit{
         rating: 8.2,
       },
     ];
+    this.groups.sort((a, b) => b.rating - a.rating);
   }
+  
   ngOnInit(): void {
     
   }
@@ -93,38 +93,22 @@ export class RankingComponent implements OnInit{
       removeCanvas();
     }, duration);
   }
-  revelarOcultar() {
-    this.botaoVisivel = false;
-  
-    const botao = document.querySelector('.btn-revelar');
-    if (botao) {
-      botao.classList.add('revelando');
-    }
-    const cards = document.querySelectorAll('.card');
-    const ranking = document.querySelector('.other-groups')
 
-    if (cards.length >= 3) {
-      cards[0].classList.add('tremor1');
-      cards[1].classList.add('tremor2');
-      cards[2].classList.add('tremor3');
-    }
-    this.overlayVisible = false;
-    if (cards.length >= 3) {
-      setTimeout(() => {
-        cards[2].classList.remove('tremor3');
-        this.revelado3 = true;
-      }, 1000);
-  
-      setTimeout(() => {
-        cards[1].classList.remove('tremor2');
-        this.revelado2 = true;
-      }, 2000);
-  
-      setTimeout(() => {
-        cards[0].classList.remove('tremor1');
-        this.revelado1 = true;
-        this.rainConfetti();
-      }, 4000);
+  revelar() {
+    const cards = document.querySelectorAll('.card');
+
+    if (this.currentRevelado === 3) {
+      //cards[2].classList.remove('tremor3');
+      this.revelado3 = true;
+      this.currentRevelado = 2;
+    } else if (this.currentRevelado === 2) {
+      //cards[1].classList.remove('tremor2');
+      this.revelado2 = true;
+      this.currentRevelado = 1;
+    } else if (this.currentRevelado === 1) {
+      //cards[0].classList.remove('tremor1');
+      this.revelado1 = true;
+      this.rainConfetti();
     }
   }
   

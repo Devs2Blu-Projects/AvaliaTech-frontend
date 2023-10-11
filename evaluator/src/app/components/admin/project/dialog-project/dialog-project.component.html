@@ -1,5 +1,5 @@
 <div class="dialog-form">
-  <h2> Formulário de Projeto </h2>
+  <h2> Formulário de Desafio </h2>
   <div class="line"></div>
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value);">
     <div class="input-container">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div formArrayName="propositionCriteria">
-      <div class="input-container" *ngFor="let criterion of criteriaList; let i = index" [formGroupName]="i">
+      <div class="input-container" *ngFor="let criterion of criteriaList; let i = index">
         <div class="input-group input-group-checkbox">
           <div class="checkbox">
             <input type="checkbox" formControlName="criterionId">

@@ -1,5 +1,4 @@
 <div class="body">
-    <div class="overlay" *ngIf="overlayVisible"></div>
 
     <div class="header">
         <div class="img"><img src="assets/img/logo-devs2blu.png" alt="logo devs2blu"></div>
@@ -22,7 +21,7 @@
   
 </div> -->
     <div class="ranking-container">
-        <div class="podium">
+        <div class="podium" (click)="revelar()">
             <!-- Primeiro lugar (Dourado) -->
             <div class="card gold" *ngIf="groups.length > 0">
                 <div class="bg">
@@ -57,8 +56,6 @@
             </div>
         </div>
 
-        <button class="btn-revelar" *ngIf="botaoVisivel" (click)="revelarOcultar()"> REVELAR </button>
-
         <!-- TODOS GRUPOS -->
         <div class="other-groups" *ngIf="revelado1">
             <h1>RANKING COMPLETO</h1>
@@ -73,9 +70,16 @@
                     <div class="line-y"></div>
                 </div>
                 <div class="right">
-                    <h2>{{ group.projectName }}</h2>
-                    <p><span class="bold">STACK: </span>{{ group.stack }}</p>
-                    <p><span class="bold">Membros: </span>{{ group.teamMembers }}</p>
+                    <div class="description">
+                        <h2>{{ group.projectName }}</h2>
+                        <p><span class="bold">STACK: </span>{{ group.stack }}</p>
+                        <p><span class="bold">Membros: </span>{{ group.teamMembers }}</p>
+                    </div>
+                    <div class="note">
+                        <div class="line-y"></div>
+                        <h2>Nota Final: <span class="bold">{{group.rating | number:'1.1-1'}}</span></h2>
+                    </div>
+                    
                 </div>
             </div>
         </div>
