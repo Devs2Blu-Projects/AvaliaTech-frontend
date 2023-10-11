@@ -13,6 +13,7 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class EvaluatorComponent implements OnInit {
   data: any = [];
+  newPassword: string = '';
 
   filter = '';
   filterCols = ['id', 'name', 'username'];
@@ -21,13 +22,6 @@ export class EvaluatorComponent implements OnInit {
 
   @ViewChild(DialogEvaluatorComponent) form!: DialogEvaluatorComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
-
-  ngAfterViewInit() {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
-    });
-  }
 
   ngOnInit(): void {
     this.getAll();
@@ -70,6 +64,19 @@ export class EvaluatorComponent implements OnInit {
           console.error(error);
         }
       });
+  }
+
+  generatePassword(data: any) {
+    this.newPassword = 'Gerando...'
+
+    this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' }).subscribe({
+      next: (response) => {
+        console.log(this.newPassword)
+        this.newPassword = response
+        console.log(this.newPassword)
+      },
+      error: (error: any) => { console.error(error); }
+    })
   }
 
   openDialog(): void { this._dialog.open(DialogEvaluatorComponent); }

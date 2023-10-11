@@ -198,9 +198,10 @@ p {
         }
 
         .btn-actions {
-            display: flex;
             justify-content: center;
-            gap: 15px;
+            button {
+                margin: 0 8px;
+            }
         }
     }
 

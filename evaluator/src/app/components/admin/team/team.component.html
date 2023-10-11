@@ -32,7 +32,8 @@
           <td> {{ team.name }} </td>
           <td> {{ team.username }} </td>
           <td>
-            <button type="button" class="btn btn-generate-password" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="aqui vai a senha"> Gerar senha </button>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(team)" placement="bottom"> Gerar senha </button>
+            <ng-template #popTemplate>{{ newPassword }}</ng-template>
            </td>
           <td class="btn-actions">
             <button>

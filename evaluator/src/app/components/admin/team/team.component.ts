@@ -13,6 +13,7 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class TeamComponent implements OnInit {
   data: any = [];
+  newPassword: string = '';
 
   filter = '';
   filterCols = ['id','name','username'];
@@ -72,5 +73,17 @@ export class TeamComponent implements OnInit {
       });
   }
 
+  generatePassword(data: any) {
+    this.newPassword = 'Gerando...'
+
+    this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' }).subscribe({
+      next: (response) => {
+        console.log(this.newPassword)
+        this.newPassword = response
+        console.log(this.newPassword)
+      },
+      error: (error: any) => { console.error(error); }
+    })
+  }
   openDialog(): void { this._dialog.open(DialogTeamComponent); }
 }
