@@ -32,8 +32,8 @@
               <div class="icon">
                 <i class="fa-regular fa-file-code fa-lg"></i>
               </div>
-              <selectname="desafio" formControlName="challenge">
-                <option *ngFor="let challenge of challengeList" [value]="challenge">{{desafio.toUpperCase()}}</option>
+              <select name="desafio" formControlName="challenge">
+                <option *ngFor="let challenge of challengeList" [value]="challenge">{{challenge.toUpperCase()}}</option>
               </select>
             </div>
           </div>

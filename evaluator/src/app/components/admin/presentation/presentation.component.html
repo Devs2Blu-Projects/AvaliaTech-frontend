@@ -53,7 +53,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let item of items; let i = index | filter:filterCols:filter">
+        <ng-container *ngFor="let item of items | filter:filterCols:filter; let i = index">
           <tr>
             <td> {{item.id}} </td>
             <td> {{item.equipe}} </td>
