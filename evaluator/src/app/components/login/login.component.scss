@@ -79,6 +79,14 @@ input:focus {
 .button-login:hover {
   background-color: var(--dark-blue-hover);
 }
+.button-login-disabled {
+  background-color: var(--grey); 
+  cursor: not-allowed;
+  opacity: 0.7; 
+}
+.button-login-disabled:hover{
+  background: var(--grey);
+}
 
 .input-password {
   position: relative;

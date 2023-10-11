@@ -26,7 +26,7 @@
           </span>
         </div>
       </div>
-      <button type="submit" class="button-login"> ENTRAR </button>
+      <button type="submit" class="button-login" [disabled]="isLoggingIn" [class.button-login-disabled]="isLoggingIn"> ENTRAR </button>
     </form>
   </div>
 </div>

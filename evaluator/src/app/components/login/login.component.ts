@@ -11,6 +11,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 export class LoginComponent implements OnInit {
   form!: FormGroup;
   showPassword: boolean = false;
+  isLoggingIn: boolean = false;
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _appRouting: AppRoutingModule) { }
 
@@ -24,17 +25,21 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(creds: any): void {
+    this.isLoggingIn = true;
     if (this.form.valid) {
+      
       this._authService.login(creds.username, creds.password)
         .subscribe({
           next: (response) => {
             localStorage.setItem('token', response);
             this._appRouting.refresh();
             this._appRouting.homepage();
+            this.isLoggingIn = false;
           },
           error: (error: any) => {
             console.error(error);
             alert(error.error) // TODO: Apresentar "toast" ou preencher div com o erro
+            this.isLoggingIn = false;
           }
         });
     }
