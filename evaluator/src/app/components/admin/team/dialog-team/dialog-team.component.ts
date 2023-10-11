@@ -23,7 +23,7 @@ export class DialogTeamComponent implements OnInit {
       name: '',
       username: '',
       password: '',
-      role: 'Group'
+      role: 'group'
     });
   }
 
@@ -34,7 +34,7 @@ export class DialogTeamComponent implements OnInit {
   onSubmit(data: any) {
     this._updateService.startTimer();
     if (this.form.valid) if (data.id) {
-      this._httpService.putById('teams', data.id, data)
+      this._httpService.putById('user', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();
@@ -45,7 +45,7 @@ export class DialogTeamComponent implements OnInit {
           error: (error: any) => { console.error(error); }
         });
     } else {
-      this._httpService.post('teams', data)
+      this._httpService.post('user', data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();

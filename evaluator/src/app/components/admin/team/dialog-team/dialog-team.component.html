@@ -1,7 +1,7 @@
 <div class="dialog-form">
   <h2> Formulário de Equipe </h2>
   <div class="line"></div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form);">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value);">
     <div class="input-container">
       <label for="representative"> REPRESENTANTE </label>
       <div class="input-group">

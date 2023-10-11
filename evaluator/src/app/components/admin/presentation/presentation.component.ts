@@ -14,6 +14,9 @@ export class PresentationComponent implements OnInit {
   elapsedTime: number = 0;
   notification: string = '';
 
+  filter = '';
+  filterCols = ['id','name','username'];
+
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -29,7 +32,7 @@ export class PresentationComponent implements OnInit {
 
   getAll(): void {
     this._updateService.startTimer();
-    this._httpService.getAll('presentations')
+    this._httpService.getAll('group')
       .subscribe({
         next: (response: any) => {
           this.data = response;

@@ -17,7 +17,7 @@ export class DialogCriterionComponent {
   ngOnInit(): void { this.buildForm(); }
 
   buildForm(): void {
-    this._fb.group({
+    this.form = this._fb.group({
       name: '',
       description: ''
     });
@@ -30,7 +30,7 @@ export class DialogCriterionComponent {
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
       this._updateService.startTimer();
-      this._httpService.putById('criteria', data.id, data)
+      this._httpService.putById('criterion', data.id, data)
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();
@@ -41,7 +41,7 @@ export class DialogCriterionComponent {
           error: (error: any) => { console.error(error); }
         });
     } else {
-      this._httpService.post('criteria', data)
+      this._httpService.post('criterion', data)
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();

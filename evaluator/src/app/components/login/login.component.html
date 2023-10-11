@@ -1,6 +1,6 @@
 <div class="body">
   <div class="container">
-    <form [formGroup]="form" (ngSubmit)="onLogin(form);">
+    <form [formGroup]="form" (ngSubmit)="onLogin(form.value);">
       <h1> LOGIN </h1>
       <div class="line"></div>
       <div class="form-login">

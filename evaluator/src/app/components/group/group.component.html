@@ -15,7 +15,7 @@
       <div class="dialog-form">
         <h2> Formulário de Equipe </h2>
         <div class="line"></div>
-        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
           <div class="input-container">
             <label for="members"> MEMBROS DA EQUIPE </label>
             <div class="input-group">
@@ -32,7 +32,7 @@
               <div class="icon">
                 <i class="fa-regular fa-file-code fa-lg"></i>
               </div>
-              <select [(ngModel)]="challenge" name="desafio">
+              <select name="desafio" formControlName="challenge">
                 <option *ngFor="let challenge of challengeList" [value]="challenge"> {{ challenge.toUpperCase() }} </option>
               </select>
             </div>
@@ -53,7 +53,7 @@
               <div class="icon">
                 <i class="fa-solid fa-code fa-lg"></i>
               </div>
-              <select name="language">
+              <select name="language" formControlName="language">
                 <option value="c#"> C# </option>
                 <option value="java"> Java </option>
                 <option value="flutter"> Flutter </option>

@@ -14,6 +14,9 @@ export class ProjectComponent implements OnInit {
   elapsedTime: number = 0;
   notification: string = '';
 
+  filter = '';
+  filterCols = ['id','name'];
+
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   @ViewChild(DialogProjectComponent) form!: DialogProjectComponent;
@@ -31,7 +34,7 @@ export class ProjectComponent implements OnInit {
 
   getAll(): void {
     this._updateService.startTimer();
-    this._httpService.getAll('projects')
+    this._httpService.getAll('proposition')
       .subscribe({
         next: (response: any) => {
           this.data = response;
@@ -44,7 +47,7 @@ export class ProjectComponent implements OnInit {
 
   remove(data: any): void {
     this._updateService.startTimer();
-    this._httpService.deleteById('projects', data.id)
+    this._httpService.deleteById('proposition', data.id, { responseType: 'text' })
       .subscribe({
         next: () => {
           this.elapsedTime = this._updateService.stopTimer();

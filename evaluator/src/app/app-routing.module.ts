@@ -10,18 +10,38 @@ import { PresentationComponent } from './components/admin/presentation/presentat
 import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { LoginComponent } from './components/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
 
-const routes: Routes = [
-  { path: 'admin/home', component: HomeComponent },
-  { path: 'admin/equipes', component: TeamComponent },
-  { path: 'admin/avaliadores', component: EvaluatorComponent },
-  { path: 'admin/criterios', component: CriterionComponent },
-  { path: 'admin/projetos', component: ProjectComponent },
-  { path: 'admin/apresentacoes', component: PresentationComponent },
-  { path: 'equipe', component: GroupComponent },
-  { path: 'avaliador', component: EvaluatorsComponent },
-  // { path: 'publico', component: }
+const publicRoutes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  // { path: 'ranking', component: RankingComponent },
+  // { path: '**', component: PageNotFoundComponent },
 ];
+
+const adminRoutes: Routes = [
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
+    children: [
+      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'equipes', component: TeamComponent, canActivate: [AuthGuard] },
+      { path: 'avaliadores', component: EvaluatorComponent, canActivate: [AuthGuard] },
+      { path: 'criterios', component: CriterionComponent, canActivate: [AuthGuard] },
+      { path: 'projetos', component: ProjectComponent, canActivate: [AuthGuard] },
+      { path: 'apresentacoes', component: PresentationComponent, canActivate: [AuthGuard] },
+    ],
+  },
+];
+
+const groupRoutes: Routes = [
+  { path: 'equipe', component: GroupComponent, canActivate: [AuthGuard] },
+];
+
+const userRoutes: Routes = [
+  { path: 'avaliador', component: EvaluatorsComponent, canActivate: [AuthGuard] },
+];
+
+const routes: Routes = [...publicRoutes, ...adminRoutes, ...groupRoutes, ...userRoutes];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -29,29 +49,30 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
   constructor(private _authService: AuthService, private _router: Router) {
+    this.refresh()
+  }
+
+  refresh() {
     const role: string = this._authService.getRole();
     const routes: Routes = this.getUserRoutes(role);
 
     this._router.resetConfig(routes);
   }
 
+  homepage() {
+    this._router.navigate([this._router.config[0]?.path])
+  }
+
   private getUserRoutes(role: string): Routes {
     switch (role) {
       case 'admin':
-        return [
-          { path: 'admin/home', component: HomeComponent, canActivate: [AuthGuard] },
-          { path: 'admin/equipes', component: TeamComponent, canActivate: [AuthGuard] },
-          { path: 'admin/avaliadores', component: EvaluatorComponent, canActivate: [AuthGuard] },
-          { path: 'admin/criterios', component: CriterionComponent, canActivate: [AuthGuard] },
-          { path: 'admin/projetos', component: ProjectComponent, canActivate: [AuthGuard] },
-          { path: 'admin/apresentacoes', component: PresentationComponent, canActivate: [AuthGuard] }
-        ];
+        return [...adminRoutes, ...publicRoutes];
       case 'group':
-        return [{ path: 'equipe', component: GroupComponent, canActivate: [AuthGuard] }];
+        return [...groupRoutes, ...publicRoutes];
       case 'user':
-        return [{ path: 'avaliador', component: EvaluatorsComponent, canActivate: [AuthGuard] }];
+        return [...userRoutes, ...publicRoutes];
       default:
-        return [/*{ path: 'publico', component:  }*/];
+        return publicRoutes;
     }
   }
 }

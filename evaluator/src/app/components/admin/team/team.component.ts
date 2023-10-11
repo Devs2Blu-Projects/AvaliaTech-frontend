@@ -15,6 +15,9 @@ export class TeamComponent implements OnInit {
   elapsedTime: number = 0;
   notification: string = '';
 
+  filter = '';
+  filterCols = ['id','name','username'];
+
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   @ViewChild(DialogTeamComponent) form!: DialogTeamComponent;
@@ -39,7 +42,7 @@ export class TeamComponent implements OnInit {
 
   getAll(): void {
     this._updateService.startTimer();
-    this._httpService.getAll('teams')
+    this._httpService.getAll('user/role/group')
       .subscribe({
         next: (response: any) => {
           this.data = response;
@@ -53,7 +56,7 @@ export class TeamComponent implements OnInit {
 
   remove(data: any): void {
     this._updateService.startTimer();
-    this._httpService.deleteById('teams', data.id)
+    this._httpService.deleteById('user', data.id, { responseType: 'text' })
       .subscribe({
         next: () => {
           this.elapsedTime = this._updateService.stopTimer();

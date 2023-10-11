@@ -23,7 +23,7 @@ export class DialogEvaluatorComponent {
       name: '',
       username: '',
       password: '',
-      role: 'Evaluator'
+      role: 'user'
     });
   }
 
@@ -34,7 +34,7 @@ export class DialogEvaluatorComponent {
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
       this._updateService.startTimer();
-      this._httpService.putById('evaluators', data.id, data)
+      this._httpService.putById('user', data.id, data)
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();
@@ -45,7 +45,7 @@ export class DialogEvaluatorComponent {
           error: (error: any) => { console.error(error); }
         });
     } else {
-      this._httpService.post('evaluators', data)
+      this._httpService.post('user', data)
         .subscribe({
           next: () => {
             this.elapsedTime = this._updateService.stopTimer();
