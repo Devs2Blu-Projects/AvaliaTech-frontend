@@ -9,8 +9,12 @@ import * as confetti from 'canvas-confetti';
 export class RankingComponent implements OnInit{
 
   groups: any[];
-  public revelado: boolean = false;
-  public botaoVisivel: boolean = true;
+  revelado1: boolean = false;
+  revelado2: boolean = false;
+  revelado3: boolean = false;
+  botaoVisivel: boolean = true;
+  overlayVisible: boolean = true;
+
 
   constructor() {
     this.groups = [
@@ -50,7 +54,7 @@ export class RankingComponent implements OnInit{
     
   }
   rainConfetti() {
-    const duration = 50000; // Duração da chuva de confetes em milissegundos (5 segundos)
+    const duration = 50000;
   
     const canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
@@ -78,12 +82,12 @@ export class RankingComponent implements OnInit{
     });
   
     myConfetti({
-      particleCount: 700,  // Número de confetes
-      spread: 150,          // Espalhamento dos confetes
-      origin: { y: 0 }, // Origem da chuva (começa a partir de 60% da altura da tela)
+      particleCount: 700,
+      spread: 150,
+      origin: { y: 0 },
     });
   
-    // Limpar os confetes após a duração especificada
+
     setTimeout(() => {
       window.removeEventListener('resize', handleResize);
       removeCanvas();
@@ -91,10 +95,37 @@ export class RankingComponent implements OnInit{
   }
   revelarOcultar() {
     this.botaoVisivel = false;
-    setTimeout(() => {
-      this.revelado = true;
-    }, 100);
-    this.rainConfetti();
+  
+    const botao = document.querySelector('.btn-revelar');
+    if (botao) {
+      botao.classList.add('revelando');
+    }
+    const cards = document.querySelectorAll('.card');
+    const ranking = document.querySelector('.other-groups')
+
+    if (cards.length >= 3) {
+      cards[0].classList.add('tremor1');
+      cards[1].classList.add('tremor2');
+      cards[2].classList.add('tremor3');
+    }
+    this.overlayVisible = false;
+    if (cards.length >= 3) {
+      setTimeout(() => {
+        cards[2].classList.remove('tremor3');
+        this.revelado3 = true;
+      }, 1000);
+  
+      setTimeout(() => {
+        cards[1].classList.remove('tremor2');
+        this.revelado2 = true;
+      }, 2000);
+  
+      setTimeout(() => {
+        cards[0].classList.remove('tremor1');
+        this.revelado1 = true;
+        this.rainConfetti();
+      }, 4000);
+    }
   }
   
 }
