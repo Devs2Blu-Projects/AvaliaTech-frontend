@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ToastComponent } from './../../../../shared/components/toast/toast.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 
 @Component({
-  selector: 'app-dialog-project',
-  templateUrl: './dialog-project.component.html',
-  styleUrls: ['./dialog-project.component.scss']
+  selector: 'app-dialog-challenge',
+  templateUrl: './dialog-challenge.component.html',
+  styleUrls: ['./dialog-challenge.component.scss']
 })
-export class DialogProjectComponent implements OnInit {
+export class DialogChallengeComponent implements OnInit {
   form!: FormGroup;
-  elapsedTime: number = 0;
   criteriaList: any[] = ['criterio1', 'criterio2', 'criterio3', 'criterio4', 'criterio5'];
 
   constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+
+  @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void { this.buildForm(); }
 
@@ -49,23 +51,33 @@ export class DialogProjectComponent implements OnInit {
       this._httpService.putById('proposition', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
-            this.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Projeto atualizado com sucesso.');
-            this._updateService.showToast();
+            this.toast.elapsedTime = this._updateService.stopTimer();
+            this._updateService.notify('Desafio atualizado com sucesso.');
+            this.toast.showToast();
             this.clearForm();
           },
-          error: (error: any) => { console.error(error); }
+          error: (error: any) => {
+            this.toast.elapsedTime = this._updateService.stopTimer();
+            this._updateService.notify('Erro ao atualizar desafio.');
+            this.toast.showToast();
+            console.error(error);
+          }
         });
     } else {
       this._httpService.post('proposition', data, { responseType: 'text' })
         .subscribe({
           next: () => {
-            this.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Projeto adicionado com sucesso.');
-            this._updateService.showToast();
+            this.toast.elapsedTime = this._updateService.stopTimer();
+            this._updateService.notify('Desafio adicionado com sucesso.');
+            this.toast.showToast();
             this.clearForm();
           },
-          error: (error: any) => { console.error(error); }
+          error: (error: any) => {
+            this.toast.elapsedTime = this._updateService.stopTimer();
+            this._updateService.notify('Erro ao adicionar desafio.');
+            this.toast.showToast();
+            console.error(error);
+          }
         });
     }
   }

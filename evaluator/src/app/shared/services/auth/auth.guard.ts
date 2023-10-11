@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
+import { Router, UrlTree } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class AuthGuard {
   constructor(private _authService: AuthService, private _router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+  canActivate(): boolean | UrlTree {
     const role = this._authService.getRole();
 
     if (role === 'admin' || role === 'group' || role === 'user') return true;

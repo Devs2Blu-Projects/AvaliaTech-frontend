@@ -9,7 +9,7 @@ import { ProjectComponent } from './components/admin/project/project.component';
 import { PresentationComponent } from './components/admin/presentation/presentation.component';
 import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
-import { AuthGuard } from './shared/guards/auth.guard';
+import { AuthGuard } from './shared/services/auth/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 

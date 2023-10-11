@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogCriterionComponent } from './dialog-criterion/dialog-criterion.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-criterion',
@@ -11,8 +12,6 @@ import { UpdateService } from '../../../shared/services/update/update.service';
 })
 export class CriterionComponent implements OnInit{
   data: any = [];
-  elapsedTime: number = 0;
-  notification: string = '';
 
   filter = '';
   filterCols = ['id','name','description'];
@@ -20,6 +19,7 @@ export class CriterionComponent implements OnInit{
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   @ViewChild(DialogCriterionComponent) form!: DialogCriterionComponent;
+  @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
     this.getAll();
@@ -27,19 +27,20 @@ export class CriterionComponent implements OnInit{
       .subscribe({
         next: () => {
           this.getAll();
-          this.notification = this._updateService.getNotification();
-        }, error: (error: any) => { console.error(error); }
+          this.toast.notification = this._updateService.getNotification();
+        }
       });
   }
 
   getAll(): void {
-    this._updateService.startTimer();
     this._httpService.getAll('criterion')
       .subscribe({
-        next: (response: any) => {
-          this.data = response;
-          this.elapsedTime = this._updateService.stopTimer();
-        }, error: (error: any) => { console.error(error); }
+        next: (response: any) => { this.data = response; },
+        error: (error: any) => {
+          this._updateService.notify('Erro ao carregar critérios.');
+          this.toast.showToast();
+          console.error(error);
+        }
       });
   }
 
@@ -47,14 +48,19 @@ export class CriterionComponent implements OnInit{
 
   remove(data: any) {
     this._updateService.startTimer();
-    this._httpService.deleteById('criteria', data.id)
+    this._httpService.deleteById('criterion', data.id)
       .subscribe({
         next: () => {
-          this.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Critério removido com sucesso.');
-          this._updateService.showToast();
+          this.toast.elapsedTime = this._updateService.stopTimer();
+          this._updateService.notify('Critério excluído com sucesso.');
+          this.toast.showToast();
         },
-        error: (error: any) => { console.error(error); }
+        error: (error: any) => {
+          this.toast.elapsedTime = this._updateService.stopTimer();
+          this._updateService.notify('Erro ao excluir critério.');
+          this.toast.showToast();
+          console.error(error);
+        }
       });
   }
 

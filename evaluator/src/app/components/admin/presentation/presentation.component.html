@@ -80,14 +80,14 @@
                           <button *ngIf="item.isIconVisible" class="delete-evaluator" (click)="item.isIconVisible = false">
                             <i class="fa-regular fa-trash-can"></i>
                           </button>
-                      
+
                           <div class="button-delete" *ngIf="!item.isIconVisible">
                             <button class="btn-closeP" (click)="closePopover(item)">Cancelar</button>
                             <button class="btn-confirm" (click)="confirmDelete(item)">Deletar</button>
                           </div>
                         </div>
                       </li>
-                      
+
                     </ul>
                   </div>
                 </cdk-accordion-item>
@@ -97,16 +97,5 @@
         </ng-container>
       </tbody>
     </table>
-  </div>
-</div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
-  <div class="toast-header">
-    <img class="rounded me-2" alt="...">
-    <strong class="me-auto"> HACK WEEK Serviços </strong>
-    <small> {{ elapsedTime }} </small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-  <div class="toast-body">
-    {{ notification }}
   </div>
 </div>

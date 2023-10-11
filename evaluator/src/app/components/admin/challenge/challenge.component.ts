@@ -1,33 +1,25 @@
-import * as bootstrap from 'bootstrap';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogEvaluatorComponent } from './dialog-evaluator/dialog-evaluator.component';
+import { DialogChallengeComponent } from './dialog-challenge/dialog-challenge.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
-  selector: 'app-evaluator',
-  templateUrl: './evaluator.component.html',
-  styleUrls: ['./evaluator.component.scss']
+  selector: 'app-challenge',
+  templateUrl: './challenge.component.html',
+  styleUrls: ['./challenge.component.scss']
 })
-export class EvaluatorComponent implements OnInit {
+export class ChallengeComponent implements OnInit {
   data: any = [];
 
   filter = '';
-  filterCols = ['id', 'name', 'username'];
+  filterCols = ['id','name'];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
-  @ViewChild(DialogEvaluatorComponent) form!: DialogEvaluatorComponent;
+  @ViewChild(DialogChallengeComponent) form!: DialogChallengeComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
-
-  ngAfterViewInit() {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
-    });
-  }
 
   ngOnInit(): void {
     this.getAll();
@@ -41,36 +33,36 @@ export class EvaluatorComponent implements OnInit {
   }
 
   getAll(): void {
-    this._httpService.getAll('user/role/user')
+    this._httpService.getAll('proposition')
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar avaliadores.');
+          this._updateService.notify('Erro ao carregar desafios.');
           this.toast.showToast();
           console.error(error);
         }
       });
   }
 
-  edit(data: object): void { this.form.patch(data); }
+  edit(data: any): void { this.form.patch(data); }
 
   remove(data: any): void {
     this._updateService.startTimer();
-    this._httpService.deleteById('user', data.id)
+    this._httpService.deleteById('proposition', data.id, { responseType: 'text' })
       .subscribe({
         next: () => {
           this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Avaliador excluído com sucesso.');
+          this._updateService.notify('Desafio excluído com sucesso.');
           this.toast.showToast();
         },
         error: (error: any) => {
           this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Erro ao excluir avaliador.');
+          this._updateService.notify('Erro ao excluir desafio.');
           this.toast.showToast();
           console.error(error);
         }
       });
   }
 
-  openDialog(): void { this._dialog.open(DialogEvaluatorComponent); }
+  openDialog(): void { this._dialog.open(DialogChallengeComponent); }
 }
