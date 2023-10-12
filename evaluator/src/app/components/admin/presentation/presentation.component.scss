@@ -66,14 +66,15 @@ input:focus {
   align-items: center;
 }
 
-.btn-sortear {
+.btn-finish {
   border: none;
   text-decoration: none;
   width: 250px;
   height: 50px;
-  background-color: var(--dark-blue);
+  background-color: var(--red);
   color: var(--white);
   transition: 0.3s ease;
+  font-weight: 500;
 }
 
 .btn-sortear:hover {
@@ -153,7 +154,7 @@ button {
   .name-evaluator{
     width: 50%;
     font-style: italic;
-    text-align: left;
+    text-align: right;
   }
   .button-delete{
     width: 50%;
@@ -175,6 +176,9 @@ button {
   }
   
 }
+.color-score{
+  color: var(--light-blue);
+}
 .fa-trash-can{
   color: var(--red);
 }
@@ -184,7 +188,7 @@ button {
     flex-wrap: wrap;
   }
 
-  .btn-sortear {
+  .btn-finish {
     width: 100%;
   }
 
