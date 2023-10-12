@@ -15,7 +15,6 @@
       <button class="btn-finish" (click)="openDialog()"> ENCERRAR APRESENTAÇÕES </button>
     </div>
   </div>
-  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
   <h2 class="title-table"> EM ESPERA </h2>
   <div cdkDropList (cdkDropListDropped)="drop($event)">
     <div class="table await">
@@ -41,6 +40,8 @@
       </table>
     </div>
   </div>
+  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
+
   <h2 class="title-table"> FINALIZADAS </h2>
   <div class="table finish">
     <table>
@@ -100,4 +101,6 @@
       </tbody>
     </table>
   </div>
+  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
+
 </div>

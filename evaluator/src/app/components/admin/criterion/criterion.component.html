@@ -15,7 +15,6 @@
       <button class="btn-cadastrar" (click)="openDialog();"> CADASTRAR </button>
     </div>
   </div>
-  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
   <div class="table">
     <table>
       <thead>
@@ -43,5 +42,7 @@
       </tbody>
     </table>
   </div>
+  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
+
 </div>
 <app-toast></app-toast>
