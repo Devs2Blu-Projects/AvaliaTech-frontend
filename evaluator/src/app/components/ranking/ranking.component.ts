@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import * as confetti from 'canvas-confetti';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ranking',
@@ -49,44 +49,44 @@ export class RankingComponent implements OnInit{
     ];
     this.groups.sort((a, b) => b.rating - a.rating);
   }
-  
+
   ngOnInit(): void {
-    
+
   }
   rainConfetti() {
     const duration = 50000;
-  
+
     const canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
     const context = canvas.getContext('2d');
-  
+
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.pointerEvents = 'none';
-  
+
     const removeCanvas = () => {
       document.body.removeChild(canvas);
     };
-  
+
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-  
+
     window.addEventListener('resize', handleResize);
     handleResize();
-  
+
     const myConfetti = confetti.create(canvas, {
       resize: true,
     });
-  
+
     myConfetti({
       particleCount: 700,
       spread: 150,
       origin: { y: 0 },
     });
-  
+
 
     setTimeout(() => {
       window.removeEventListener('resize', handleResize);
@@ -111,5 +111,5 @@ export class RankingComponent implements OnInit{
       this.rainConfetti();
     }
   }
-  
+
 }

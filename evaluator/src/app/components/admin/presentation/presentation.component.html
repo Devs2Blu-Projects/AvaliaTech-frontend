@@ -12,7 +12,7 @@
         </div>
         <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
       </div>
-      <button class="btn-finish" (click)="openDialog()"> ENCERRAR APRESENTAÇÕES </button>
+      <button class="btn-finish" (click)="openDialog();"> ENCERRAR APRESENTAÇÕES </button>
     </div>
   </div>
   <h2 class="title-table"> EM ESPERA </h2>
@@ -29,11 +29,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="row-box" *ngFor="let item of items | filter:filterCols:filter; index as i" cdkDrag>
-            <td>{{orderNumbers + i}}</td>
-            <td>{{item.equipe}}</td>
-            <td>{{item.stack}}</td>
-            <td>{{item.nomeequipe}}</td>
+          <tr class="row-box" *ngFor="let item of items | filter: filterCols: filter; index as i" cdkDrag>
+            <td> {{ orderNumbers + i }} </td>
+            <td> {{ item.equipe }} </td>
+            <td> {{ item.stack }} </td>
+            <td> {{ item.nomeequipe }}</td>
             <td><button><i class="fa-solid fa-circle-stop fa-lg"></i></button></td>
           </tr>
         </tbody>

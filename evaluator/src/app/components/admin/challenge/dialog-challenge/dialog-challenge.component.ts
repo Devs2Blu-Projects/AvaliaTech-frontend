@@ -11,7 +11,6 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogChallengeComponent implements OnInit {
   form!: FormGroup;
-  criteriaList: any[] = ['criterio1', 'criterio2', 'criterio3', 'criterio4', 'criterio5'];
 
   constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
@@ -22,21 +21,7 @@ export class DialogChallengeComponent implements OnInit {
   buildForm(): void {
     this.form = this._fb.group({
       id: [],
-      name: '',
-      propositionCriteria: this._fb.array([
-        this._fb.group({
-          id: [],
-          weight: [],
-          propositionId: [],
-          criterionId: [],
-        })
-      ])
-    });
-
-    // Adicione controles para seleção e peso de cada critério dinamicamente
-    this.criteriaList.forEach((criterion, index) => {
-      this.form.addControl('criterion' + index, new FormControl(false)); // Checkbox
-      this.form.addControl('weight' + index, new FormControl('')); // Campo de entrada numérica
+      name: ''
     });
   }
 

@@ -20,6 +20,11 @@ export class PresentationComponent implements OnInit {
   filter = '';
   filterCols = ['id', 'name', 'username'];
 
+  items: any[] = [
+    { id: 1, equipe: 'Equipe A', stack: 'Stack A' },
+    { id: 2, equipe: 'Equipe B', stack: 'Stack B' },
+    { id: 3, equipe: 'Equipe C', stack: 'Stack C' },
+  ];
   avaliadores = [
     { id: 1, name: 'Raphael', isIconVisible: true },
     { id: 2, name: 'Rob', isIconVisible: true },
@@ -56,13 +61,10 @@ export class PresentationComponent implements OnInit {
 
   openDialog(): void { this._dialog.open(DialogPresentationComponent); }
 
-  closePopover(aval: any) {
-    aval.isIconVisible = true;
-  }
-  confirmDelete(aval:any) {
+  closePopover(aval: any) { aval.isIconVisible = true; }
+
+  confirmDelete(aval: any) {
     // Implemente a lógica de exclusão aqui
   }
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
-  }
+  drop(event: CdkDragDrop<string[]>) { moveItemInArray(this.items, event.previousIndex, event.currentIndex); }
 }
