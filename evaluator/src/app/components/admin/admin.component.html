@@ -7,9 +7,8 @@
         <option value="" disabled selected hidden>Selecione um evento</option>
         <option value="">2022.2</option>
         <option value="">2023.1</option>
-        <option value="">2023.2</option>
-      </select>
-      <button class="btn-add-event" title="Adicionar evento"><i class="fa-solid fa-plus"></i></button>  
+        <option class="add-event" value="add-event" [routerLink]="['/admin/adicionar_evento']">Adicionar evento +<i class="fa-solid fa-plus"></i></option>
+      </select> 
     </div>
   <h1 class="cadastro"> ACESSOS </h1>
   <button class="button-menu" [routerLink]="['/admin/equipes']">Equipes</button>

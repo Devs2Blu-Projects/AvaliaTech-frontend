@@ -1,0 +1,33 @@
+<div class="body">
+    <div class="header">
+        <h1> CRIAR NOVO EVENTO </h1>
+        <div class="line"></div>
+    </div>
+    <!-- <form [formGroup]="form" (ngSubmit)="onSubmit(form.value);"> -->
+    <form>
+        <div class="input-container">
+            <label for="name"> NOME DO EVENTO </label>
+            <div class="input-group">
+                <div class="icon">
+                    <i class="fas fa-users-between-lines fa-lg"></i>
+                </div>
+                <input type="text" class="input-form" id="name" placeholder="Ex.: Devs2Blu 2024"
+                    formControlName="name">
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="date"> DATA DE INÍCIO </label>
+            <div class="input-group">
+                <div class="icon">
+                    <i class="fas fa-calendar-days fa-lg"></i>
+                </div>
+                <input type="date" class="input-form" id="date"
+                    formControlName="date">
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="submit"> CRIAR </button>
+            </div>
+        </div>
+    </form>
+</div>
+<app-toast></app-toast>
