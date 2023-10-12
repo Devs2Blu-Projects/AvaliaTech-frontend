@@ -19,14 +19,14 @@
     <table>
       <thead>
         <tr>
-          <th class="bold"> ID </th>
+          <th> <i class="fa-solid fa-list fa-lg"></i> </th>
           <th> NOME DO DESAFIO </th>
           <th> AÇÕES </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let challenge of data | filter: filterCols: filter">
-          <td> {{ challenge.id }} </td>
+          <td> <i class="fa-solid fa-award fa-lg"></i> </td>
           <td> {{ challenge.propositionCriteria.length }} </td>
           <td> {{ challenge.name }} </td>
           <td class="btn-actions">

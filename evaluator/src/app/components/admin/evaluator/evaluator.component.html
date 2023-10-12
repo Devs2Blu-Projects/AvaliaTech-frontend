@@ -19,7 +19,7 @@
     <table>
       <thead>
         <tr>
-          <th class="bold"> ID </th>
+          <th > <i class="fa-solid fa-users fa-lg"></i> </th>
           <th> NOME </th>
           <th> USUÁRIOS </th>
           <th> SENHA </th>
@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let evaluator of data | filter:filterCols:filter">
-          <td> {{ evaluator.id }}</td>
+          <td> <i class="fa-solid fa-user-tie fa-lg"></i> </td>
           <td> {{ evaluator.name }} </td>
           <td> {{ evaluator.username }} </td>
           <td>

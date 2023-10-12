@@ -19,7 +19,7 @@
     <table>
       <thead>
         <tr>
-          <th class="bold"> ID </th>
+          <th> <i class="fa-solid fa-users fa-lg"></i> </th>
           <th> REPRESENTANTE </th>
           <th> USUÁRIOS </th>
           <th> SENHA </th>
@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let team of data | filter:filterCols:filter">
-          <td> {{ team. id }} </td>
+          <td> <i class="fa-solid fa-user fa-lg"></i> </td>
           <td> {{ team.name }} </td>
           <td> {{ team.username }} </td>
           <td>
