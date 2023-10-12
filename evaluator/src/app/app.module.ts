@@ -33,6 +33,7 @@ import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { DialogAssessmentComponent } from './components/evaluators/dialog-assessment/dialog-assessment.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ToastComponent } from './shared/components/toast/toast.component';
 
 @NgModule({
@@ -69,7 +70,8 @@ import { ToastComponent } from './shared/components/toast/toast.component';
     MatDialogModule,
     HttpClientModule,
     PopoverModule.forRoot(),
-    CdkAccordionModule
+    CdkAccordionModule,
+    DragDropModule
   ],
   providers: [
     {

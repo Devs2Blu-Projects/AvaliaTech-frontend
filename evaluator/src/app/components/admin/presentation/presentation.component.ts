@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPresentationComponent } from './dialog-presentation/dialog-presentation.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
@@ -14,6 +15,7 @@ export class PresentationComponent implements OnInit {
   data: any = [];
   isIconVisible = true;
   expandedItemId: number | null = null
+  orderNumbers: number = 1;
 
   filter = '';
   filterCols = ['id', 'name', 'username'];
@@ -59,5 +61,8 @@ export class PresentationComponent implements OnInit {
   }
   confirmDelete(aval:any) {
     // Implemente a lógica de exclusão aqui
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
   }
 }

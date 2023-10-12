@@ -12,11 +12,12 @@ import { EvaluatorsComponent } from './components/evaluators/evaluators.componen
 import { AuthGuard } from './shared/services/auth/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { RankingComponent } from './components/ranking/ranking.component';
 
 const publicRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/ranking', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  // { path: 'ranking', component: RankingComponent },
+  { path: 'ranking', component: RankingComponent },
   // { path: '**', component: PageNotFoundComponent },
 ];
 

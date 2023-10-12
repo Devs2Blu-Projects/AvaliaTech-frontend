@@ -13,6 +13,7 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 export class LoginComponent implements OnInit {
   form!: FormGroup;
   showPassword: boolean = false;
+  isLoggingIn: boolean = false;
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _appRouting: AppRoutingModule, private _updateService: UpdateService) { }
 
@@ -34,13 +35,16 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(creds: any): void {
+    this.isLoggingIn = true;
     if (this.form.valid) {
+
       this._authService.login(creds.username, creds.password)
         .subscribe({
           next: (response) => {
             localStorage.setItem('token', response);
             this._appRouting.refresh();
             this._appRouting.homepage();
+            this.isLoggingIn = false;
           },
           error: () => {
             this._updateService.notify('Usuário não autorizado.');
