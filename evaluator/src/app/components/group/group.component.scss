@@ -182,7 +182,6 @@ p {
             display: flex;
             justify-content: flex-end;
             gap: 1rem;
-
             button {
                 border: none;
                 text-decoration: none;
@@ -192,15 +191,10 @@ p {
             }
 
             .submit {
+                margin-right: 40px;
                 color: var(--white);
                 background-color: var(--dark-blue);
             }
-        }
-
-        .btn-actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
         }
     }
 
@@ -255,6 +249,10 @@ th {
 .bar-progress{
     width: 50%;
 }
+.final-score{
+    padding-top: 20px;
+    font-family: var(--font);
+}
 //FIM DA TABELA 
 .bold {
     font-weight: 700;
@@ -299,6 +297,7 @@ th {
     .submit {
         width: 100% !important;
         margin-bottom: 20px;
+        margin-right: 0  !important;
     }
 
 }
