@@ -7,47 +7,61 @@ import { Component } from '@angular/core';
 })
 export class DialogAssessmentComponent {
 
+
   listCriteria: any[] = [
     {
       nome: 'Usabilidade',
-      peso: 4
+      peso: 4,
+      nota: null
     },
     {
       nome: 'Desempenho',
-      peso: 7
+      peso: 7,
+      nota: null
     },
     {
       nome: 'Segurança',
-      peso: 3
+      peso: 3,
+      nota: null
     },
     {
       nome: 'Compatibilidade',
-      peso: 6
+      peso: 6,
+      nota: null
     },
     {
       nome: 'Manutenibilidade',
-      peso: 8
+      peso: 8,
+      nota: null
     },
     {
       nome: 'Inovação',
-      peso: 5
+      peso: 5,
+      nota: null
     },
     {
       nome: 'Custo',
-      peso: 2
+      peso: 2,
+      nota: null
     },
     {
       nome: 'Integração',
-      peso: 6
+      peso: 6,
+      nota: null
     },
     {
       nome: 'Documentação',
-      peso: 4
+      peso: 4,
+      nota: null
     },
     {
       nome: 'Suporte',
-      peso: 3
+      peso: 3,
+      nota: null
     }
   ];
+  checkInvalidNote(criterion:any): boolean {
+    return criterion.nota < 0 || criterion.nota > 5;
+  }
   
 }
