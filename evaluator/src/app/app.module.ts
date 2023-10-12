@@ -35,6 +35,7 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { DialogAssessmentComponent } from './components/evaluators/dialog-assessment/dialog-assessment.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ToastComponent } from './shared/components/toast/toast.component';
+import { NoRegistryComponent } from './shared/components/no-registry/no-registry.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ToastComponent } from './shared/components/toast/toast.component';
     EvaluatorsComponent,
     RankingComponent,
     DialogAssessmentComponent,
-    ToastComponent
+    ToastComponent,
+    NoRegistryComponent
   ],
   imports: [
     BrowserModule,
