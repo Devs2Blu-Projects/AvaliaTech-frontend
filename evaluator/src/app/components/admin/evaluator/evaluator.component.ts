@@ -1,9 +1,10 @@
+import * as bootstrap from 'bootstrap';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEvaluatorComponent } from './dialog-evaluator/dialog-evaluator.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
-declare var bootstrap: any;
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-evaluator',
@@ -12,22 +13,15 @@ declare var bootstrap: any;
 })
 export class EvaluatorComponent implements OnInit {
   data: any = [];
-  elapsedTime: number = 0;
-  notification: string = '';
+  newPassword: string = '';
 
   filter = '';
-  filterCols = ['id','name','username'];
+  filterCols = ['id', 'name', 'username'];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   @ViewChild(DialogEvaluatorComponent) form!: DialogEvaluatorComponent;
-
-  ngAfterViewInit() {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
-    });
-  }
+  @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
     this.getAll();
@@ -35,19 +29,20 @@ export class EvaluatorComponent implements OnInit {
       .subscribe({
         next: () => {
           this.getAll();
-          this.notification = this._updateService.getNotification();
-        }, error: (error: any) => { console.error(error); }
+          this.toast.notification = this._updateService.getNotification();
+        }
       });
   }
 
   getAll(): void {
-    this._updateService.startTimer();
     this._httpService.getAll('user/role/user')
       .subscribe({
-        next: (response: any) => {
-          this.data = response;
-          this.elapsedTime = this._updateService.stopTimer();
-        }, error: (error: any) => { console.error(error); }
+        next: (response: any) => { this.data = response; },
+        error: (error: any) => {
+          this._updateService.notify('Erro ao carregar avaliadores.');
+          this.toast.showToast();
+          console.error(error);
+        }
       });
   }
 
@@ -58,12 +53,30 @@ export class EvaluatorComponent implements OnInit {
     this._httpService.deleteById('user', data.id)
       .subscribe({
         next: () => {
-          this.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Avaliador removido com sucesso.');
-          this._updateService.showToast();
+          this.toast.elapsedTime = this._updateService.stopTimer();
+          this._updateService.notify('Avaliador excluído com sucesso.');
+          this.toast.showToast();
         },
-        error: (error: any) => { console.error(error); }
+        error: (error: any) => {
+          this.toast.elapsedTime = this._updateService.stopTimer();
+          this._updateService.notify('Erro ao excluir avaliador.');
+          this.toast.showToast();
+          console.error(error);
+        }
       });
+  }
+
+  generatePassword(data: any) {
+    this.newPassword = 'Gerando...'
+
+    this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' }).subscribe({
+      next: (response) => {
+        console.log(this.newPassword)
+        this.newPassword = response
+        console.log(this.newPassword)
+      },
+      error: (error: any) => { console.error(error); }
+    })
   }
 
   openDialog(): void { this._dialog.open(DialogEvaluatorComponent); }

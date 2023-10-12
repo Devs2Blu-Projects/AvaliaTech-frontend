@@ -32,7 +32,8 @@
           <td> {{ evaluator.name }} </td>
           <td> {{ evaluator.username }} </td>
           <td>
-            <button type="button" class="btn btn-generate-password" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="aqui vai a senha"> Gerar senha </button>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(evaluator)" placement="bottom"> Gerar senha </button>
+            <ng-template #popTemplate>{{ newPassword }}</ng-template>
           </td>
           <td class="btn-actions">
             <button>
@@ -47,14 +48,4 @@
     </table>
   </div>
 </div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
-  <div class="toast-header">
-    <img class="rounded me-2" alt="...">
-    <strong class="me-auto"> HACK WEEK Serviços </strong>
-    <small> {{ elapsedTime }} </small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-  <div class="toast-body">
-    {{ notification }}
-  </div>
-</div>
+<app-toast></app-toast>
