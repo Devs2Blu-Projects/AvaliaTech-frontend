@@ -24,7 +24,6 @@ export class DialogEvaluatorComponent {
       id: [],
       name: '',
       username: '',
-      password: '',
       role: 'user'
     });
   }

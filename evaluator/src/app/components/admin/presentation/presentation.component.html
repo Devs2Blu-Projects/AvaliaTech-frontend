@@ -59,43 +59,7 @@
             <td> {{item.id}} </td>
             <td> {{item.equipe}} </td>
             <td> {{item.stack}} </td>
-            <td class="td-accordion">
-              <cdk-accordion class="example-accordion">
-                <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button"
-                  tabindex="0" [attr.id]="'accordion-header-' + '{{item.id}}'"
-                  [attr.aria-controls]="'accordion-body-' + '{{item.id}}'">
-                  <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
-                    Avaliações por avaliador
-                    <span>
-                      <i
-                        [ngClass]="{'fa-solid': true, 'fa-angle-up': accordionItem.expanded, 'fa-angle-down': !accordionItem.expanded}"></i>
-                    </span>
-                  </div>
-                  <div class="example-accordion-item-body" role="region"
-                    [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + '{{item.id}}'"
-                    [attr.aria-labelledby]="'accordion-header-' + '{{item.id}}'">
-                    <ul>
-                      <li class="li-evaluators" *ngFor="let item of avaliadores">
-                        <div class="name-evaluator">{{ item.name }} | <span class="color-score">Nota Final: 8.7 </span>
-                        </div>
-                        <div class="button-delete">
-                          <button *ngIf="item.isIconVisible" class="delete-evaluator"
-                            (click)="item.isIconVisible = false">
-                            <i class="fa-regular fa-trash-can"></i>
-                          </button>
-
-                          <div class="button-delete" *ngIf="!item.isIconVisible">
-                            <button class="btn-closeP" (click)="closePopover(item)">Cancelar</button>
-                            <button class="btn-confirm" (click)="confirmDelete(item)">Deletar</button>
-                          </div>
-                        </div>
-                      </li>
-
-                    </ul>
-                  </div>
-                </cdk-accordion-item>
-              </cdk-accordion>
-            </td>
+            <td><button class="btn-list-evaluators" (click)="openDialogEvaluators()">Ver lista de avaliadores</button></td>
           </tr>
         </ng-container>
       </tbody>

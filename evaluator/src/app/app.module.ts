@@ -37,6 +37,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ToastComponent } from './shared/components/toast/toast.component';
 import { NoRegistryComponent } from './shared/components/no-registry/no-registry.component';
 import { FormNewEventComponent } from './components/admin/form-new-event/form-new-event.component';
+import { ListEvaluatorsComponent } from './components/admin/presentation/list-evaluators/list-evaluators.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { FormNewEventComponent } from './components/admin/form-new-event/form-ne
     DialogAssessmentComponent,
     ToastComponent,
     NoRegistryComponent,
-    FormNewEventComponent
+    FormNewEventComponent,
+    ListEvaluatorsComponent
   ],
   imports: [
     BrowserModule,
