@@ -21,6 +21,7 @@ export class DialogCriterionComponent {
   buildForm(): void {
     this.form = this._fb.group({
       name: '',
+      weight: [],
       description: ''
     });
   }

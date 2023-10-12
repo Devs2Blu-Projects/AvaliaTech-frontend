@@ -30,12 +30,13 @@
   select{
     width: 170px;
     border: none;
-    background-color: var(--golden);
-    color: var(--white);
+    height: 30px;
+    background-color: var(--white);
+    color: var(--dark-blue);
   }
   #events option{
     border: none;
-    background-color: var(--golden-hover);
+    background-color: var(--white);
   }
 }
 .fa-plus:hover {

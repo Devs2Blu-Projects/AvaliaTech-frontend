@@ -78,7 +78,7 @@
                     </div>
                     <div class="note">
                         <div class="line-y"></div>
-                        <h2>Nota Final: <span class="bold">{{group.rating | number:'1.1-1'}}</span></h2>
+                        <h2>Nota Final: <span class="bold">{{group.rating.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}}</span></h2>
                     </div>
                     
                 </div>

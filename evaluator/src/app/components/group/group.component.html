@@ -96,7 +96,7 @@
                   <div class="ball" [style.left.%]="(criterion.grade / 10) * 100"></div>
                 </div>
               </td>
-              <td>{{ criterion.grade }}</td>
+              <td>{{ criterion.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}}</td>
             </tr>
           </tbody>
         </table>

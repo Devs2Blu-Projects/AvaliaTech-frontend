@@ -70,7 +70,8 @@ import { ToastComponent } from './shared/components/toast/toast.component';
     MatDialogModule,
     HttpClientModule,
     PopoverModule.forRoot(),
-    CdkAccordionModule
+    CdkAccordionModule,
+    DragDropModule
   ],
   providers: [
     {
