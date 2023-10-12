@@ -1,0 +1,21 @@
+@import url(src/styles.scss);
+img{
+    height: 20px;
+    width: auto;
+}
+.toast-header{
+    padding: 5px;
+    border-bottom: 1px solid var(--golden);
+}
+.me-auto{
+    color: var(--dark-blue);
+    font-family: var(--font);
+}
+.toast-body{
+    font-family: var(--font);
+    color: var(--dark-blue);
+    padding: 5px;
+}
+.btn-close{
+    margin-right: 5px;
+}
