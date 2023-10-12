@@ -12,37 +12,36 @@
         </div>
         <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
       </div>
-      <button class="btn-sortear" (click)="openDialog()"> SORTEAR </button>
+      <button class="btn-finish" (click)="openDialog()"> ENCERRAR APRESENTAÇÕES </button>
     </div>
   </div>
   <h2 class="title-table"> EM ESPERA </h2>
-  <div class="table">
-    <table>
-      <thead>
-        <tr>
-          <th class="bold"> ID </th>
-          <th> EQUIPE </th>
-          <th> STACK </th>
-          <th> CRITÉRIOS </th>
-          <th> AÇÕES </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let presentation of data | filter:filterCols:filter">
-          <td> 1 </td>
-          <td> Equipe A </td>
-          <td> Stack A </td>
-          <td> Critérios A </td>
-          <td class="btn-actions">
-            <button><i class="fa-solid fa-play fa-xl"></i></button>
-            <button><i class="fa-solid fa-stop fa-xl"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="table await">
+      <table>
+        <thead>
+          <tr>
+            <th class="bold"> ORDEM </th>
+            <th> NOME DA EQUIPE </th>
+            <th> STACK </th>
+            <th> NOME DO PROJETO </th>
+            <th> ENCERRAR </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-box" *ngFor="let item of items | filter:filterCols:filter; index as i" cdkDrag>
+            <td>{{orderNumbers + i}}</td>
+            <td>{{item.equipe}}</td>
+            <td>{{item.stack}}</td>
+            <td>{{item.nomeequipe}}</td>
+            <td><button><i class="fa-solid fa-circle-stop fa-lg"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <h2 class="title-table"> FINALIZADAS </h2>
-  <div class="table">
+  <div class="table finish">
     <table>
       <thead>
         <tr>
@@ -61,7 +60,8 @@
             <td class="td-accordion">
               <cdk-accordion class="example-accordion">
                 <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button"
-                  tabindex="0" [attr.id]="'accordion-header-' + i" [attr.aria-controls]="'accordion-body-' + i">
+                  tabindex="0" [attr.id]="'accordion-header-' + '{{item.id}}'"
+                  [attr.aria-controls]="'accordion-body-' + '{{item.id}}'">
                   <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
                     Avaliações por avaliador
                     <span>
@@ -70,24 +70,25 @@
                     </span>
                   </div>
                   <div class="example-accordion-item-body" role="region"
-                    [style.display]="accordionItem.expanded ? '' : 'none'"
-                    [attr.id]="'accordion-body-' + 'AQUI-VAI-O-ID1'"
-                    [attr.aria-labelledby]="'accordion-header-' + 'AQUI-VAI-O-ID1'">
+                    [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + '{{item.id}}'"
+                    [attr.aria-labelledby]="'accordion-header-' + '{{item.id}}'">
                     <ul>
                       <li class="li-evaluators" *ngFor="let item of avaliadores">
-                        <div class="name-evaluator">{{ item.name }}</div>
+                        <div class="name-evaluator">{{ item.name }} | <span class="color-score">Nota Final: 8.7 </span>
+                        </div>
                         <div class="button-delete">
-                          <button *ngIf="item.isIconVisible" class="delete-evaluator" (click)="item.isIconVisible = false">
+                          <button *ngIf="item.isIconVisible" class="delete-evaluator"
+                            (click)="item.isIconVisible = false">
                             <i class="fa-regular fa-trash-can"></i>
                           </button>
-                      
+
                           <div class="button-delete" *ngIf="!item.isIconVisible">
                             <button class="btn-closeP" (click)="closePopover(item)">Cancelar</button>
                             <button class="btn-confirm" (click)="confirmDelete(item)">Deletar</button>
                           </div>
                         </div>
                       </li>
-                      
+
                     </ul>
                   </div>
                 </cdk-accordion-item>
@@ -97,16 +98,5 @@
         </ng-container>
       </tbody>
     </table>
-  </div>
-</div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
-  <div class="toast-header">
-    <img class="rounded me-2" alt="...">
-    <strong class="me-auto"> HACK WEEK Serviços </strong>
-    <small> {{ elapsedTime }} </small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-  <div class="toast-body">
-    {{ notification }}
   </div>
 </div>

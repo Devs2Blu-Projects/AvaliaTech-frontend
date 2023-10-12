@@ -3,12 +3,12 @@
   <div class="line"></div>
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value);">
     <div class="input-container">
-      <label for="representative"> REPRESENTANTE </label>
+      <label for="representative"> NOME DA EQUIPE </label>
       <div class="input-group">
         <div class="icon">
           <i class="fas fa-user fa-lg"></i>
         </div>
-        <input type="text" class="input-form" id="representative" placeholder="Ex. Nome Sobrenome"
+        <input type="text" class="input-form" id="representative" placeholder="Ex.: Grupo1_C#"
           formControlName="name">
       </div>
     </div>
@@ -27,3 +27,4 @@
     </div>
   </form>
 </div>
+<app-toast></app-toast>

@@ -95,6 +95,13 @@ input::placeholder {
     background-color: var(--dark-blue);
   }
 }
+.max-score{
+  font-weight: lighter;
+  font-style: italic;
+}
+.invalid-note {
+  border: 2px solid var(--red); // Adicione qualquer estilo desejado para notas inválidas
+}
 
 @media (max-width: 768px) {
   .dialog-form {

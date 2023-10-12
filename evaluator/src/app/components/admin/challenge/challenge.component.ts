@@ -1,24 +1,24 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogCriterionComponent } from './dialog-criterion/dialog-criterion.component';
+import { DialogChallengeComponent } from './dialog-challenge/dialog-challenge.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
-  selector: 'app-criterion',
-  templateUrl: './criterion.component.html',
-  styleUrls: ['./criterion.component.scss']
+  selector: 'app-challenge',
+  templateUrl: './challenge.component.html',
+  styleUrls: ['./challenge.component.scss']
 })
-export class CriterionComponent implements OnInit{
+export class ChallengeComponent implements OnInit {
   data: any = [];
 
   filter = '';
-  filterCols = ['id','name','description'];
+  filterCols = ['id','name'];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
-  @ViewChild(DialogCriterionComponent) form!: DialogCriterionComponent;
+  @ViewChild(DialogChallengeComponent) form!: DialogChallengeComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
@@ -33,36 +33,36 @@ export class CriterionComponent implements OnInit{
   }
 
   getAll(): void {
-    this._httpService.getAll('criterion')
+    this._httpService.getAll('proposition')
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar critérios.');
+          this._updateService.notify('Erro ao carregar desafios.');
           this.toast.showToast();
           console.error(error);
         }
       });
   }
 
-  edit(data: object): void { this.form.patch(data); }
+  edit(data: any): void { this.form.patch(data); }
 
-  remove(data: any) {
+  remove(data: any): void {
     this._updateService.startTimer();
-    this._httpService.deleteById('criterion', data.id)
+    this._httpService.deleteById('proposition', data.id, { responseType: 'text' })
       .subscribe({
         next: () => {
           this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Critério excluído com sucesso.');
+          this._updateService.notify('Desafio excluído com sucesso.');
           this.toast.showToast();
         },
         error: (error: any) => {
           this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Erro ao excluir critério.');
+          this._updateService.notify('Erro ao excluir desafio.');
           this.toast.showToast();
           console.error(error);
         }
       });
   }
 
-  openDialog(): void { this._dialog.open(DialogCriterionComponent); }
+  openDialog(): void { this._dialog.open(DialogChallengeComponent); }
 }

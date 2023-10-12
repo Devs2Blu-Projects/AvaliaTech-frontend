@@ -107,9 +107,10 @@ button {
   cursor: pointer;
 }
 .btn-actions{
-  display: flex;
   justify-content: center;
-  gap: 15px;
+  button {
+    margin: 0 8px;
+  }
 }
 .bold{
   font-weight: 700;

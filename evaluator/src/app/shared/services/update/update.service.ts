@@ -1,4 +1,3 @@
-import * as bootstrap from 'bootstrap';
 import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
@@ -22,19 +21,4 @@ export class UpdateService {
   }
 
   getNotification(): string { return this.notification; }
-
-  showToast(): void {
-    const toast : HTMLElement | null = document.querySelector('#toast');
-
-    if (!toast) throw new Error('Element toast is null.');
-    else {
-      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
-
-      try {
-        toastBootstrap.show();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
 }

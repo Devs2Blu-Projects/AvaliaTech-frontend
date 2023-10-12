@@ -5,18 +5,19 @@ import { HomeComponent } from './components/admin/home/home.component';
 import { TeamComponent } from './components/admin/team/team.component';
 import { EvaluatorComponent } from './components/admin/evaluator/evaluator.component';
 import { CriterionComponent } from './components/admin/criterion/criterion.component';
-import { ProjectComponent } from './components/admin/project/project.component';
+import { ChallengeComponent } from './components/admin/challenge/challenge.component';
 import { PresentationComponent } from './components/admin/presentation/presentation.component';
 import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
-import { AuthGuard } from './shared/guards/auth.guard';
+import { AuthGuard } from './shared/services/auth/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { RankingComponent } from './components/ranking/ranking.component';
 
 const publicRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/ranking', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  // { path: 'ranking', component: RankingComponent },
+  { path: 'ranking', component: RankingComponent },
   // { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -27,7 +28,7 @@ const adminRoutes: Routes = [
       { path: 'equipes', component: TeamComponent, canActivate: [AuthGuard] },
       { path: 'avaliadores', component: EvaluatorComponent, canActivate: [AuthGuard] },
       { path: 'criterios', component: CriterionComponent, canActivate: [AuthGuard] },
-      { path: 'projetos', component: ProjectComponent, canActivate: [AuthGuard] },
+      { path: 'projetos', component: ChallengeComponent, canActivate: [AuthGuard] },
       { path: 'apresentacoes', component: PresentationComponent, canActivate: [AuthGuard] },
     ],
   },
