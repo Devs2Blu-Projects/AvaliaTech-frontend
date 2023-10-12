@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPresentationComponent } from './dialog-presentation/dialog-presentation.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 declare var bootstrap: any;
 
 @Component({
@@ -17,14 +18,15 @@ export class PresentationComponent implements OnInit {
   notification: string = '';
   isIconVisible = true;
   expandedItemId: number | null = null
+  orderNumbers: number = 1;
 
   filter = '';
   filterCols = ['id','name','username'];
 
   items: any[] = [
-    { id: 1, equipe: 'Equipe A', stack: 'Stack A' },
-    { id: 2, equipe: 'Equipe B', stack: 'Stack B' },
-    { id: 3, equipe: 'Equipe C', stack: 'Stack C' },
+    { id: 1, equipe: 'Equipe A', stack: 'Stack A', nomeequipe: 'Evaluators System' },
+    { id: 2, equipe: 'Equipe B', stack: 'Stack B', nomeequipe: 'Blablaasd' },
+    { id: 3, equipe: 'Equipe C', stack: 'Stack C', nomeequipe: 'asdadasdads' },
   ];
   avaliadores = [
     { id: 1, name: 'Raphael', isIconVisible: true },
@@ -70,5 +72,8 @@ export class PresentationComponent implements OnInit {
   }
   confirmDelete(aval:any) {
     // Implemente a lógica de exclusão aqui
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
   }
 }

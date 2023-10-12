@@ -33,6 +33,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { DialogAssessmentComponent } from './components/evaluators/dialog-assessment/dialog-assessment.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { DialogAssessmentComponent } from './components/evaluators/dialog-assess
     MatDialogModule,
     HttpClientModule,
     CdkAccordionModule,
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    DragDropModule
   ],
   providers: [
     {
