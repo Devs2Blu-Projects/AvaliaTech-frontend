@@ -44,7 +44,7 @@ export class CriterionComponent implements OnInit{
       });
   }
 
-  edit(data: object): void { this.form.patch(data); }
+  edit(data: any): void { this.form.patch(data); }
 
   remove(data: any) {
     this._updateService.startTimer();

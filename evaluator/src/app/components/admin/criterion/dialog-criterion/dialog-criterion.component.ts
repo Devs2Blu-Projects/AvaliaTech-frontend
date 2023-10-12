@@ -12,7 +12,7 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 export class DialogCriterionComponent {
   form!: FormGroup;
 
-  constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent
 
@@ -20,6 +20,7 @@ export class DialogCriterionComponent {
 
   buildForm(): void {
     this.form = this._fb.group({
+      id: [],
       name: '',
       description: ''
     });
@@ -27,7 +28,7 @@ export class DialogCriterionComponent {
 
   clearForm(): void { this.form.reset(); }
 
-  patch(data: object): void { this.form.patchValue(data); }
+  patch(data: any): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {

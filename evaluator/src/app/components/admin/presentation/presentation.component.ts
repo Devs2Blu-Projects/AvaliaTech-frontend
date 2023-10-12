@@ -1,4 +1,3 @@
-import * as bootstrap from 'bootstrap';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPresentationComponent } from './dialog-presentation/dialog-presentation.component';
@@ -17,13 +16,8 @@ export class PresentationComponent implements OnInit {
   expandedItemId: number | null = null
 
   filter = '';
-  filterCols = ['id','name','username'];
+  filterCols = ['id', 'name', 'username'];
 
-  items: any[] = [
-    { id: 1, equipe: 'Equipe A', stack: 'Stack A' },
-    { id: 2, equipe: 'Equipe B', stack: 'Stack B' },
-    { id: 3, equipe: 'Equipe C', stack: 'Stack C' },
-  ];
   avaliadores = [
     { id: 1, name: 'Raphael', isIconVisible: true },
     { id: 2, name: 'Rob', isIconVisible: true },
@@ -35,12 +29,6 @@ export class PresentationComponent implements OnInit {
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
-  ngAfterViewInit() {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
-    });
-  }
   ngOnInit(): void {
     this.getAll();
     this._updateService.update

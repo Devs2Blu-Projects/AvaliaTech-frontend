@@ -1,7 +1,9 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './../../shared/services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { UpdateService } from 'src/app/shared/services/update/update.service';
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +14,17 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   showPassword: boolean = false;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _appRouting: AppRoutingModule) { }
+  constructor(private _fb: FormBuilder, private _authService: AuthService, private _appRouting: AppRoutingModule, private _updateService: UpdateService) { }
 
-  ngOnInit(): void { this.buildForm(); }
+  @ViewChild(ToastComponent) toast!: ToastComponent;
+
+  ngOnInit(): void {
+    this.buildForm();
+    this._updateService.update
+      .subscribe({
+        next: () => { this.toast.notification = this._updateService.getNotification(); }
+      });
+  }
 
   buildForm(): void {
     this.form = this._fb.group({
@@ -32,9 +42,9 @@ export class LoginComponent implements OnInit {
             this._appRouting.refresh();
             this._appRouting.homepage();
           },
-          error: (error: any) => {
-            console.error(error);
-            alert(error.error) // TODO: Apresentar "toast" ou preencher div com o erro
+          error: () => {
+            this._updateService.notify('Usuário não autorizado.');
+            this.toast.showToast();
           }
         });
     }

@@ -1,4 +1,3 @@
-import * as bootstrap from 'bootstrap';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,13 +22,6 @@ export class TeamComponent implements OnInit {
   @ViewChild(DialogTeamComponent) form!: DialogTeamComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
-  ngAfterViewInit() {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
-    });
-  }
-
   ngOnInit(): void {
     this.getAll();
     this._updateService.update
@@ -53,7 +45,7 @@ export class TeamComponent implements OnInit {
       });
   }
 
-  edit(data: object): void { this.form.patch(data); }
+  edit(data: any): void { this.form.patch(data); }
 
   remove(data: any): void {
     this._updateService.startTimer();
@@ -74,16 +66,16 @@ export class TeamComponent implements OnInit {
   }
 
   generatePassword(data: any) {
-    this.newPassword = 'Gerando...'
-
-    this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' }).subscribe({
-      next: (response) => {
-        console.log(this.newPassword)
-        this.newPassword = response
-        console.log(this.newPassword)
-      },
-      error: (error: any) => { console.error(error); }
-    })
+    this.newPassword = 'Gerando...';
+    this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' })
+      .subscribe({
+        next: (response) => {
+          console.log(this.newPassword);
+          this.newPassword = response;
+          console.log(this.newPassword);
+        },
+        error: (error: any) => { console.error(error); }
+    });
   }
   openDialog(): void { this._dialog.open(DialogTeamComponent); }
 }

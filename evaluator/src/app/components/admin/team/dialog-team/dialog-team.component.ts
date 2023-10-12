@@ -31,7 +31,7 @@ export class DialogTeamComponent implements OnInit {
 
   clearForm(): void { this.form.reset(); }
 
-  patch(data: object): void { this.form.patchValue(data); }
+  patch(data: any): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     this._updateService.startTimer();

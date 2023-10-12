@@ -13,7 +13,7 @@ export class DialogEvaluatorComponent {
   form!: FormGroup;
   showPassword: boolean = false;
 
-  constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
@@ -31,7 +31,7 @@ export class DialogEvaluatorComponent {
 
   clearForm(): void { this.form.reset(); }
 
-  patch(data: object): void { this.form.patchValue(data); }
+  patch(data: any): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {

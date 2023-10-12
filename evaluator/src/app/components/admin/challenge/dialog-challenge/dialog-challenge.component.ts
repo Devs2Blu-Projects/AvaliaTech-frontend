@@ -13,7 +13,7 @@ export class DialogChallengeComponent implements OnInit {
   form!: FormGroup;
   criteriaList: any[] = ['criterio1', 'criterio2', 'criterio3', 'criterio4', 'criterio5'];
 
-  constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
@@ -26,12 +26,11 @@ export class DialogChallengeComponent implements OnInit {
       propositionCriteria: this._fb.array([
         this._fb.group({
           id: [],
-          weight: '',
-          propositionId: '',
-          criterionId: '',
+          weight: [],
+          propositionId: [],
+          criterionId: [],
         })
-      ]),
-      weight: []
+      ])
     });
 
     // Adicione controles para seleção e peso de cada critério dinamicamente
@@ -43,7 +42,7 @@ export class DialogChallengeComponent implements OnInit {
 
   clearForm(): void { this.form.reset(); }
 
-  patch(data: object): void { this.form.patchValue(data); }
+  patch(data: any): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {

@@ -11,12 +11,12 @@ export class ToastComponent {
   notification: string = '';
 
   showToast(): void {
-    const toast : HTMLElement | null = document.querySelector('.toast');
+    const toast : HTMLElement | null = document.querySelector('#toast');
 
     if (toast) {
       const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
 
       toastBootstrap.show();
-    } else console.error('HTML element "toast is null here.');
+    } else console.error('HTML element with property id="toast" is null here.');
   }
 }
