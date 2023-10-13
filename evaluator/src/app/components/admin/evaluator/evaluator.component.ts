@@ -46,7 +46,7 @@ export class EvaluatorComponent implements OnInit {
       });
   }
 
-  edit(data: any): void { this.form.patch(data); }
+  edit(data: any): void { this.openDialog(), { data }; }
 
   remove(data: any): void {
     this._updateService.startTimer();

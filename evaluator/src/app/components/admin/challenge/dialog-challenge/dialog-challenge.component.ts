@@ -1,6 +1,7 @@
 import { ToastComponent } from './../../../../shared/components/toast/toast.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 
@@ -12,7 +13,7 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 export class DialogChallengeComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogChallengeComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
@@ -23,6 +24,8 @@ export class DialogChallengeComponent implements OnInit {
       id: [],
       name: ''
     });
+
+    if (this.data) this.form.patchValue(this.data);
   }
 
   clearForm(): void { this.form.reset(); }
@@ -38,7 +41,7 @@ export class DialogChallengeComponent implements OnInit {
             this.toast.elapsedTime = this._updateService.stopTimer();
             this._updateService.notify('Desafio atualizado com sucesso.');
             this.toast.showToast();
-            this.clearForm();
+            this.closeDialog();
           },
           error: (error: any) => {
             this.toast.elapsedTime = this._updateService.stopTimer();
@@ -65,4 +68,6 @@ export class DialogChallengeComponent implements OnInit {
         });
     }
   }
+
+  closeDialog(): void { this._dialogRef.close(); }
 }

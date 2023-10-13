@@ -32,15 +32,15 @@
           <td> {{ item.name }} </td>
           <td> {{ item.username }} </td>
           <td>
-            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(item)" placement="bottom"> Gerar senha </button>
-            <ng-template #popTemplate>{{ newPassword }}</ng-template>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(item);" placement="bottom"> Gerar senha </button>
+            <ng-template #popTemplate> {{ newPassword }} </ng-template>
           </td>
           <td class="btn-actions">
             <button>
               <i class="fa-solid fa-pencil" (click)="edit(item);"></i>
             </button>
             <button>
-              <i class="fa-regular fa-trash-can" (click)="remove(item.id);"></i>
+              <i class="fa-regular fa-trash-can" (click)="remove(item);"></i>
             </button>
           </td>
         </tr>
