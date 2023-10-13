@@ -148,44 +148,7 @@ button {
 .fa-stop {
   color: var(--red);
 }
-.td-accordion{
-  width: 500px;
-}
-.example-accordion-item-header{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.li-evaluators{
-  width: 100%;
-  display: flex;
-  height: 1.5rem;
-  .name-evaluator{
-    width: 50%;
-    font-style: italic;
-    text-align: right;
-  }
-  .button-delete{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    .btn-confirm{
-      background-color: var(--red);
-      color: var(--white);
-      padding: 0 4px;
-      border-radius: 3px;
-    }
-    .btn-closeP{
-      background-color: var(--grey);
-      color: var(--white);
-      padding: 0 4px;
-      border-radius: 3px;
-    }
-  }
-  
-}
+
 .btn-list-evaluators{
   background-color: var(--dark-blue);
   color: var(--white);
@@ -218,6 +181,11 @@ button {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dark-blue);
+  padding: 0 76px;
 }
 
 .cdk-drag-placeholder {
