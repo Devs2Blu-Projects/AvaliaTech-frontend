@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           error: () => {
             this._updateService.notify('Usuário não autorizado.');
             this.toast.showToast();
+            this.isLoggingIn = false;
           }
         });
     }
