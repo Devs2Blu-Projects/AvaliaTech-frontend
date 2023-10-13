@@ -11,7 +11,11 @@
   gap: 10px;
 
 }
-
+.body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .img {
   width: 250px;
   margin-left: 40px;
@@ -466,7 +470,12 @@ body {
 h2 {
   font-weight: bold;
 }
-
+.main{
+  flex: 1;
+}
+.footer{
+  margin-top: auto;
+}
 
 @keyframes blob-bounce {
   0% {

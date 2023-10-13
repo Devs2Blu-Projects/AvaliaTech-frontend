@@ -38,6 +38,7 @@ import { ToastComponent } from './shared/components/toast/toast.component';
 import { NoRegistryComponent } from './shared/components/no-registry/no-registry.component';
 import { FormNewEventComponent } from './components/admin/form-new-event/form-new-event.component';
 import { ListEvaluatorsComponent } from './components/admin/presentation/list-evaluators/list-evaluators.component';
+import { FooterCreditsComponent } from './shared/components/footer-credits/footer-credits.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ListEvaluatorsComponent } from './components/admin/presentation/list-ev
     ToastComponent,
     NoRegistryComponent,
     FormNewEventComponent,
-    ListEvaluatorsComponent
+    ListEvaluatorsComponent,
+    FooterCreditsComponent
   ],
   imports: [
     BrowserModule,

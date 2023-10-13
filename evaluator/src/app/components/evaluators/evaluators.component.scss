@@ -1,5 +1,12 @@
 @import url(src/styles.scss);
-
+.body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main{
+  flex: 1;
+}
 // -------- HEADER
 .header {
   background-color: var(--dark-blue);
@@ -39,7 +46,8 @@
 }
 
 // -------- END HEADER
-.body {
+
+.content {
   padding: 30px 50px;
   font-family: var(--font);
   text-align: center;
@@ -113,4 +121,7 @@ h2 {
 
 .bold {
   font-weight: 700;
+}
+.footer{
+  margin-top: auto;
 }
