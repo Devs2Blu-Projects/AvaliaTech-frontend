@@ -21,14 +21,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .btn-add-event{
-    border: none;
-    background: none;
-    text-decoration: none;
-    color: var(--golden);
-  }
   select{
-    width: 170px;
+    width: 100%;
     border: none;
     height: 30px;
     background-color: var(--white);
@@ -38,6 +32,18 @@
     border: none;
     background-color: var(--white);
   }
+ 
+}
+select option {
+  margin-left: 10px; /* Adicione a margem à esquerda desejada */
+}
+
+.add-event{
+  background-color: var(--light-blue);
+  color: var(--golden);
+}
+.fa-plus{
+  color: var(--dark-blue);
 }
 .fa-plus:hover {
 	-webkit-animation: rotate-center 0.6s ease-in-out both;
