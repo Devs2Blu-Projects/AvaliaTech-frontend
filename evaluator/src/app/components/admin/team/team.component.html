@@ -12,7 +12,7 @@
         </div>
         <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
       </div>
-      <button class="btn-cadastrar" (click)="openDialog()"> CADASTRAR </button>
+      <button class="btn-cadastrar" (click)="openDialog();"> CADASTRAR </button>
     </div>
   </div>
   <div class="table">
@@ -27,20 +27,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let team of data | filter:filterCols:filter">
-          <td> <i class="fa-solid fa-user fa-lg"></i> </td>
-          <td> {{ team.name }} </td>
-          <td> {{ team.username }} </td>
+        <tr *ngFor="let item of data | filter:filterCols:filter">
+          <td> {{ item.id }} </td>
+          <td> {{ item.name }} </td>
+          <td> {{ item.username }} </td>
           <td>
-            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(team)" placement="bottom"> Gerar senha </button>
-            <ng-template #popTemplate>{{ newPassword }}</ng-template>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(item);" placement="bottom"> Gerar senha </button>
+            <ng-template #popTemplate> {{ newPassword }} </ng-template>
            </td>
           <td class="btn-actions">
             <button>
-              <i class="fa-solid fa-pencil" (click)="edit(team);"></i>
+              <i class="fa-solid fa-pencil" (click)="edit(item);"></i>
             </button>
             <button>
-              <i class="fa-regular fa-trash-can" (click)="remove(team);"></i>
+              <i class="fa-regular fa-trash-can" (click)="remove(item);"></i>
             </button>
           </td>
         </tr>

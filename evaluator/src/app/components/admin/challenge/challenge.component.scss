@@ -10,7 +10,8 @@ h1 {
   font-size: 1.75rem;
   font-weight: 400;
 }
-.fa-lg{
+
+.fa-lg {
   color: var(--white);
 }
 .fa-solid{
@@ -19,9 +20,11 @@ h1 {
 .fa-pencil{
   color: var(--light-blue);
 }
-.fa-trash-can{
+
+.fa-trash-can {
   color: var(--red);
 }
+
 .bold {
   font-weight: 700;
 }
@@ -121,8 +124,9 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 
-.btn-actions{
+.btn-actions {
   justify-content: center;
+
   button {
     margin: 0 8px;
   }

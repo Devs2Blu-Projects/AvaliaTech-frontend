@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
@@ -13,7 +14,7 @@ export class DialogEvaluatorComponent {
   form!: FormGroup;
   showPassword: boolean = false;
 
-  constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogEvaluatorComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
@@ -26,11 +27,11 @@ export class DialogEvaluatorComponent {
       username: '',
       role: 'user'
     });
+
+    if (this.data) this.form.patchValue(this.data);
   }
 
   clearForm(): void { this.form.reset(); }
-
-  patch(data: object): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
@@ -41,7 +42,7 @@ export class DialogEvaluatorComponent {
             this.toast.elapsedTime = this._updateService.stopTimer();
             this._updateService.notify('Avaliador atualizado com sucesso.');
             this.toast.showToast();
-            this.clearForm();
+            this.closeDialog();
           },
           error: (error: any) => {
             this.toast.elapsedTime = this._updateService.stopTimer();
@@ -69,5 +70,5 @@ export class DialogEvaluatorComponent {
     }
   }
 
-  togglePasswordVisibility() { this.showPassword = !this.showPassword; }
+  closeDialog(): void { this._dialogRef.close(); }
 }

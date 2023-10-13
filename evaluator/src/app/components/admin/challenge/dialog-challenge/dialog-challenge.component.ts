@@ -1,6 +1,7 @@
 import { ToastComponent } from './../../../../shared/components/toast/toast.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 
@@ -11,9 +12,8 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogChallengeComponent implements OnInit {
   form!: FormGroup;
-  criteriaList: any[] = ['criterio1', 'criterio2', 'criterio3', 'criterio4', 'criterio5'];
 
-  constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogChallengeComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
@@ -22,28 +22,15 @@ export class DialogChallengeComponent implements OnInit {
   buildForm(): void {
     this.form = this._fb.group({
       id: [],
-      name: '',
-      propositionCriteria: this._fb.array([
-        this._fb.group({
-          id: [],
-          weight: '',
-          propositionId: '',
-          criterionId: '',
-        })
-      ]),
-      weight: []
+      name: ''
     });
 
-    // Adicione controles para seleção e peso de cada critério dinamicamente
-    this.criteriaList.forEach((criterion, index) => {
-      this.form.addControl('criterion' + index, new FormControl(false)); // Checkbox
-      this.form.addControl('weight' + index, new FormControl('')); // Campo de entrada numérica
-    });
+    if (this.data) this.form.patchValue(this.data);
   }
 
   clearForm(): void { this.form.reset(); }
 
-  patch(data: object): void { this.form.patchValue(data); }
+  patch(data: any): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
@@ -54,7 +41,7 @@ export class DialogChallengeComponent implements OnInit {
             this.toast.elapsedTime = this._updateService.stopTimer();
             this._updateService.notify('Desafio atualizado com sucesso.');
             this.toast.showToast();
-            this.clearForm();
+            this.closeDialog();
           },
           error: (error: any) => {
             this.toast.elapsedTime = this._updateService.stopTimer();
@@ -81,4 +68,6 @@ export class DialogChallengeComponent implements OnInit {
         });
     }
   }
+
+  closeDialog(): void { this._dialogRef.close(); }
 }

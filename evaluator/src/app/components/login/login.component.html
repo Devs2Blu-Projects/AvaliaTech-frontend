@@ -1,5 +1,5 @@
 <div class="body">
-  <img src="assets/img/logo-devs2blu.png" alt="logo devs2blu">
+  <img src="assets/img/logo-devs2blu.png">
   <div class="container">
     <form [formGroup]="form" (ngSubmit)="onLogin(form.value);">
       <h1> LOGIN </h1>
@@ -20,8 +20,7 @@
             <i class="fa-solid fa-key fa-lg"></i>
           </div>
           <input [type]="showPassword ? 'text' : 'password'" class="input-login" id="password" formControlName="password">
-          <span class="toggle-password" (click)="togglePassword();"
-            [ngClass]="{ 'show-password': showPassword }">
+          <span class="toggle-password" (click)="togglePassword();" [ngClass]="{ 'show-password': showPassword }">
             <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
           </span>
         </div>
@@ -33,3 +32,4 @@
     </form>
   </div>
 </div>
+<app-toast></app-toast>

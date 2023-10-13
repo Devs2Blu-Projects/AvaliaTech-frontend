@@ -18,7 +18,6 @@ export class ChallengeComponent implements OnInit {
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
-  @ViewChild(DialogChallengeComponent) form!: DialogChallengeComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
@@ -44,7 +43,7 @@ export class ChallengeComponent implements OnInit {
       });
   }
 
-  edit(data: any): void { this.form.patch(data); }
+  edit(data: any): void { this.openDialog(), { data }; }
 
   remove(data: any): void {
     this._updateService.startTimer();
