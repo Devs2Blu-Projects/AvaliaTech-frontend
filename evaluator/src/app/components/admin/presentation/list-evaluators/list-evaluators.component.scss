@@ -1,0 +1,57 @@
+.body{
+    padding: 20px;
+    font-family: var(--font);
+}
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    font-weight: 500;
+}
+
+thead th,
+tbody td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--grey);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-actions {
+    justify-content: center;
+
+    button {
+        margin: 0 8px;
+    }
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    cursor: pointer;
+}
+.fa-solid{
+    color: var(--dark-blue);
+}
+.fa-trash-can{
+    color: var(--red);
+}
+.fa-trash-can:hover{
+    animation: shake 0.5s ease infinite;
+}
+@keyframes shake {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
+    75% { transform: rotate(3deg); }
+    100% { transform: rotate(0); }
+  }

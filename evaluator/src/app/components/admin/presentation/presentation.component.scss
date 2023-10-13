@@ -177,6 +177,16 @@ button {
   }
   
 }
+.btn-list-evaluators{
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.btn-list-evaluators:hover{
+  background-color: var(--dark-blue-hover);
+}
 .color-score{
   color: var(--light-blue);
 }
@@ -185,6 +195,9 @@ button {
 }
 .fa-circle-stop{
   color: var(--red);
+}
+.users-list{
+  color: var(--dark-blue);
 }
 .await{
   cursor: move;

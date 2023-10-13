@@ -47,7 +47,7 @@
     <table>
       <thead>
         <tr>
-          <th class="bold"> ID </th>
+          <th> <i class="fa-solid fa-users-line fa-lg users-list"></i> </th>
           <th> EQUIPE </th>
           <th> STACK </th>
           <th> AVALIAÇÕES </th>
@@ -56,7 +56,7 @@
       <tbody>
         <ng-container *ngFor="let item of items | filter:filterCols:filter; let i = index">
           <tr>
-            <td> {{item.id}} </td>
+            <td> <i class="fa-solid fa-users users-list"></i> </td>
             <td> {{item.equipe}} </td>
             <td> {{item.stack}} </td>
             <td><button class="btn-list-evaluators" (click)="openDialogEvaluators()">Ver lista de avaliadores</button></td>
