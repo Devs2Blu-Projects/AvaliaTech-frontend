@@ -11,21 +11,10 @@
         <input type="text" class="input-form" id="title" formControlName="name">
       </div>
     </div>
-    <div formArrayName="propositionCriteria">
-      <div class="input-container" *ngFor="let criterion of criteriaList; let i = index">
-        <div class="input-group input-group-checkbox">
-          <div class="checkbox">
-            <input type="checkbox" formControlName="criterionId">
-            <label> {{ criterion.toUpperCase() }} </label>
-          </div>
-          <input type="hidden" formControlName="propositionId" [value]="form.value.id">
-          <input type="number" class="input-peso" formControlName="weight" placeholder="Peso">
-        </div>
-      </div>
-    </div>
     <div class="form-actions">
       <button type="button" class="cancel" mat-dialog-close> Cancelar </button>
       <button type="submit" class="submit"> Enviar </button>
     </div>
   </form>
 </div>
+<app-toast></app-toast>

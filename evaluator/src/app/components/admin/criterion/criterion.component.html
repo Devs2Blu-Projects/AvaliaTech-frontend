@@ -26,16 +26,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let criterion of data | filter:filterCols:filter">
-          <td> <i class="fa-solid fa-magnifying-glass-chart fa-lg"></i> </td>
-          <td> {{ criterion.name }} </td>
-          <td> {{ criterion.description }} </td>
+        <tr *ngFor="let item of data | filter: filterCols: filter">
+          <td> {{ item.id }} </td>
+          <td> {{ item.name }} </td>
+          <td> {{ item.description }} </td>
           <td class="btn-actions">
             <button>
-              <i class="fa-solid fa-pencil"  (click)="edit(criterion);"></i>
+              <i class="fa-solid fa-pencil" (click)="edit(item);"></i>
             </button>
             <button>
-              <i class="fa-regular fa-trash-can" (click)="remove(criterion);"></i>
+              <i class="fa-regular fa-trash-can" (click)="remove(item);"></i>
             </button>
           </td>
         </tr>

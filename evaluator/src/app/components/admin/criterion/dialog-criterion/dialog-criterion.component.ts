@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
@@ -12,7 +13,7 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 export class DialogCriterionComponent {
   form!: FormGroup;
 
-  constructor(public _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogCriterionComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent
 
@@ -20,15 +21,18 @@ export class DialogCriterionComponent {
 
   buildForm(): void {
     this.form = this._fb.group({
+      id: [],
       name: '',
       weight: [],
       description: ''
     });
+
+    if (this.data) this.form.patchValue(this.data);
   }
 
   clearForm(): void { this.form.reset(); }
 
-  patch(data: object): void { this.form.patchValue(data); }
+  patch(data: any): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
@@ -39,7 +43,7 @@ export class DialogCriterionComponent {
             this.toast.elapsedTime = this._updateService.stopTimer();
             this._updateService.notify('Critério atualizado com sucesso.');
             this.toast.showToast();
-            this.clearForm();
+            this.closeDialog();
           },
           error: (error: any) => {
             this.toast.elapsedTime = this._updateService.stopTimer();
@@ -66,4 +70,6 @@ export class DialogCriterionComponent {
         });
     }
   }
+
+  closeDialog(): void { this._dialogRef.close(); }
 }

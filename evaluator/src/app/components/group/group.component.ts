@@ -43,6 +43,7 @@ export class GroupComponent implements OnInit {
 
   buildForm(): void {
     this.form = this._fb.group({
+      id: [],
       name: '',
       challenge: '',
       description: '',

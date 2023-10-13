@@ -20,8 +20,7 @@ export class AuthService {
   getRole(): string {
     const token = localStorage.getItem('token');
 
-    if (!token) return '';
-    else {
+    if (token) {
       const parts: string[] = token.split('.');
 
       if (parts.length === 3) {
@@ -30,6 +29,6 @@ export class AuthService {
 
         return role;
       } else return '';
-    }
+    } else return '';
   }
 }

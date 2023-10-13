@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
@@ -11,9 +12,8 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogTeamComponent implements OnInit {
   form!: FormGroup;
-  showPassword: boolean = false;
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogTeamComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
@@ -24,14 +24,13 @@ export class DialogTeamComponent implements OnInit {
       id: [],
       name: '',
       username: '',
-      password: '',
       role: 'group'
     });
+
+    if (this.data) this.form.patchValue(this.data);
   }
 
   clearForm(): void { this.form.reset(); }
-
-  patch(data: object): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     this._updateService.startTimer();
@@ -42,7 +41,7 @@ export class DialogTeamComponent implements OnInit {
             this.toast.elapsedTime = this._updateService.stopTimer();
             this._updateService.notify('Equipe atualizada com sucesso.');
             this.toast.showToast();
-            this.clearForm();
+            this.closeDialog();
           },
           error: (error: any) => {
             this.toast.elapsedTime = this._updateService.stopTimer();
@@ -70,5 +69,5 @@ export class DialogTeamComponent implements OnInit {
     }
   }
 
-  togglePassword(): void { this.showPassword = !this.showPassword; }
+  closeDialog(): void { this._dialogRef.close(); }
 }

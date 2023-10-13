@@ -27,25 +27,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let evaluator of data | filter:filterCols:filter">
-          <td> <i class="fa-solid fa-user-tie fa-lg"></i> </td>
-          <td> {{ evaluator.name }} </td>
-          <td> {{ evaluator.username }} </td>
+        <tr *ngFor="let item of data | filter: filterCols: filter">
+          <td> {{ item.id }}</td>
+          <td> {{ item.name }} </td>
+          <td> {{ item.username }} </td>
           <td>
-            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(evaluator)" placement="bottom">Gerar senha</button>
             <ng-template #popTemplate>
               {{ newPassword }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button type="button" class="btn btn-copy-text" (click)="copyToClipboard(newPassword)">
                 <i class="fa-solid fa-copy fa-sm"></i>
               </button>
             </ng-template>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(evaluator)" placement="bottom">Gerar senha</button>
           </td>
           <td class="btn-actions">
             <button>
-              <i class="fa-solid fa-pencil" (click)="edit(evaluator);"></i>
+              <i class="fa-solid fa-pencil" (click)="edit(item);"></i>
             </button>
             <button>
-              <i class="fa-regular fa-trash-can" (click)="remove(evaluator);"></i>
+              <i class="fa-regular fa-trash-can" (click)="remove(item);"></i>
             </button>
           </td>
         </tr>

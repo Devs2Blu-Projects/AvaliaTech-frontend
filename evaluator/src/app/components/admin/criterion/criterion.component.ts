@@ -18,7 +18,6 @@ export class CriterionComponent implements OnInit{
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
-  @ViewChild(DialogCriterionComponent) form!: DialogCriterionComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
@@ -44,7 +43,7 @@ export class CriterionComponent implements OnInit{
       });
   }
 
-  edit(data: object): void { this.form.patch(data); }
+  edit(data: any): void { this.openDialog(), { data }; }
 
   remove(data: any) {
     this._updateService.startTimer();
