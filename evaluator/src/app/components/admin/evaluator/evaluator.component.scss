@@ -11,6 +11,9 @@ h1 {
 .fa-lg{
   color: var(--white);
 }
+.fa-solid{
+  color: var(--dark-blue);
+}
 .fa-pencil{
   color: var(--light-blue);
 }
@@ -121,6 +124,7 @@ button {
   font-family: var(--font);
   font-size: 0.9rem;
   padding: 0 5px;
+  border-radius: 0;
 }
 .btn-generate-password:hover{
   background-color: var(--dark-blue-hover);

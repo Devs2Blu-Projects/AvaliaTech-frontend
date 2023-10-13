@@ -19,7 +19,7 @@
     <table>
       <thead>
         <tr>
-          <th class="bold"> ID </th>
+          <th> <i class="fa-solid fa-list fa-lg"></i> </th>
           <th> NOME </th>
           <th> DESCRIÇÃO </th>
           <th> AÇÕES </th>
@@ -42,5 +42,7 @@
       </tbody>
     </table>
   </div>
+  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
+
 </div>
 <app-toast></app-toast>

@@ -5,6 +5,7 @@ import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
+import { ListEvaluatorsComponent } from './list-evaluators/list-evaluators.component';
 
 @Component({
   selector: 'app-presentation',
@@ -60,6 +61,7 @@ export class PresentationComponent implements OnInit {
   }
 
   openDialog(): void { this._dialog.open(DialogPresentationComponent); }
+  openDialogEvaluators(): void { this._dialog.open(ListEvaluatorsComponent); }
 
   closePopover(aval: any) { aval.isIconVisible = true; }
 

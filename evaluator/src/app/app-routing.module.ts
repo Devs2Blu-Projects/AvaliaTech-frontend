@@ -13,6 +13,7 @@ import { AuthGuard } from './shared/services/auth/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { RankingComponent } from './components/ranking/ranking.component';
+import { FormNewEventComponent } from './components/admin/form-new-event/form-new-event.component';
 
 const publicRoutes: Routes = [
   { path: '', redirectTo: '/ranking', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const adminRoutes: Routes = [
       { path: 'criterios', component: CriterionComponent, canActivate: [AuthGuard] },
       { path: 'projetos', component: ChallengeComponent, canActivate: [AuthGuard] },
       { path: 'apresentacoes', component: PresentationComponent, canActivate: [AuthGuard] },
+      { path: 'adicionar_evento', component: FormNewEventComponent, canActivate: [AuthGuard] }
     ],
   },
 ];
