@@ -12,7 +12,6 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogEvaluatorComponent {
   form!: FormGroup;
-  showPassword: boolean = false;
 
   constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogEvaluatorComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 

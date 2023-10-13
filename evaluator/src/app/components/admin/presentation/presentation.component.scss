@@ -1,8 +1,15 @@
 @import url(src/styles.scss);
 
 .body {
-  padding: 30px;
   font-family: var(--font);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main{
+  padding: 30px;
+  flex: 1;
+  color: var(--dark-blue);
 }
 
 h1 {
@@ -13,6 +20,7 @@ h1 {
 
 .bold {
   font-weight: 700;
+  color: var(--dark-blue);
 }
 
 .line {
@@ -111,6 +119,7 @@ tbody td {
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid var(--grey);
+  color: var(--dark-blue);
 }
 
 tbody tr:last-child td {
@@ -139,43 +148,16 @@ button {
 .fa-stop {
   color: var(--red);
 }
-.td-accordion{
-  width: 500px;
+
+.btn-list-evaluators{
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
-.example-accordion-item-header{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.li-evaluators{
-  width: 100%;
-  display: flex;
-  height: 1.5rem;
-  .name-evaluator{
-    width: 50%;
-    font-style: italic;
-    text-align: right;
-  }
-  .button-delete{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    .btn-confirm{
-      background-color: var(--red);
-      color: var(--white);
-      padding: 0 4px;
-      border-radius: 3px;
-    }
-    .btn-closeP{
-      background-color: var(--grey);
-      color: var(--white);
-      padding: 0 4px;
-      border-radius: 3px;
-    }
-  }
-  
+.btn-list-evaluators:hover{
+  background-color: var(--dark-blue-hover);
 }
 .color-score{
   color: var(--light-blue);
@@ -185,6 +167,9 @@ button {
 }
 .fa-circle-stop{
   color: var(--red);
+}
+.users-list{
+  color: var(--dark-blue);
 }
 .await{
   cursor: move;
@@ -196,6 +181,11 @@ button {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dark-blue);
+  padding: 0 76px;
 }
 
 .cdk-drag-placeholder {
@@ -212,7 +202,9 @@ button {
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-
+.footer{
+  margin-top: auto;
+}
 
 @media screen and (max-width: 768px) {
   .input-icons {
