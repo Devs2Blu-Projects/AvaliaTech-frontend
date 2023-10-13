@@ -3,6 +3,7 @@
 .body {
   padding: 30px;
   font-family: var(--font);
+  color: var(--dark-blue);
 }
 
 h1 {
@@ -128,6 +129,7 @@ tbody td {
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid var(--grey);
+  color: var(--dark-blue);
 }
 
 tbody tr:last-child td {
@@ -142,6 +144,17 @@ tbody tr:last-child td {
 }
 .bold{
   font-weight: 700;
+}
+
+.btn-copy-text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 8px; 
+  background-color: white;
+  color: var(--dark-blue);
+  border: none;
+  cursor: pointer;
 }
 
 

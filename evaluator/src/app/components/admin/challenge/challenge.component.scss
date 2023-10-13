@@ -3,6 +3,7 @@
 .body {
   padding: 30px;
   font-family: var(--font);
+  color: var(--dark-blue);
 }
 
 h1 {
@@ -118,6 +119,7 @@ tbody td {
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid var(--grey);
+  color: var(--dark-blue);
 }
 
 tbody tr:last-child td {

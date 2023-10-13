@@ -1,5 +1,12 @@
 @import url(src/styles.scss);
-
+.body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.main{
+    flex: 1;
+}
 // -------- HEADER
 .header {
     background-color: var(--dark-blue);
@@ -34,7 +41,7 @@
 }
 
 // -------- END HEADER
-.body {
+.header-intro {
     padding: 30px 50px;
     padding-bottom: 15px;
     font-family: var(--font);
@@ -66,7 +73,7 @@ p {
     margin: 15px auto;
 }
 
-.main {
+.content {
     padding: 0 50px 30px 50px;
 }
 
@@ -273,7 +280,9 @@ th {
     color: var(--white);
     transition: 0.3s ease;
 }
-
+.footer{
+    margin-top: auto;
+}
 @media screen and (max-width: 700px) {
     .form-table {
         display: flex;
