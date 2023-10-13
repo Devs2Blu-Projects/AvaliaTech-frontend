@@ -32,8 +32,13 @@
           <td> {{ evaluator.name }} </td>
           <td> {{ evaluator.username }} </td>
           <td>
-            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(evaluator)" placement="bottom"> Gerar senha </button>
-            <ng-template #popTemplate>{{ newPassword }}</ng-template>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(evaluator)" placement="bottom">Gerar senha</button>
+            <ng-template #popTemplate>
+              {{ newPassword }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-copy-text" (click)="copyToClipboard(newPassword)">
+                <i class="fa-solid fa-copy fa-sm"></i>
+              </button>
+            </ng-template>
           </td>
           <td class="btn-actions">
             <button>

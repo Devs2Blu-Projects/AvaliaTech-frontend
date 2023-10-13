@@ -144,6 +144,17 @@ tbody tr:last-child td {
   font-weight: 700;
 }
 
+.btn-copy-text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 8px; 
+  background-color: white;
+  color: var(--dark-blue);
+  border: none;
+  cursor: pointer;
+}
+
 
 
 @media screen and (max-width: 768px) {

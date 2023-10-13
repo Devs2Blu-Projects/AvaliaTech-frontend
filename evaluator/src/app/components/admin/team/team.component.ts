@@ -80,10 +80,20 @@ export class TeamComponent implements OnInit {
       next: (response) => {
         console.log(this.newPassword)
         this.newPassword = response
-        console.log(this.newPassword)
       },
       error: (error: any) => { console.error(error); }
     })
+  }
+  copyToClipboard(text: string): void {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+
+    this._updateService.notify('Senha copiada com sucesso.');
+    this.toast.showToast();
   }
   openDialog(): void { this._dialog.open(DialogTeamComponent); }
 }
