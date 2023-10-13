@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent {
-  elapsedTime: number = 0;
+  elapsedTime!: number;
   notification: string = '';
 
   showToast(): void {
