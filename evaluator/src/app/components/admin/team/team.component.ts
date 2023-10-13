@@ -15,7 +15,7 @@ export class TeamComponent implements OnInit {
   newPassword: string = '';
 
   filter = '';
-  filterCols = ['id','name','username'];
+  filterCols = ['id', 'name', 'username'];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
@@ -45,7 +45,9 @@ export class TeamComponent implements OnInit {
       });
   }
 
-  edit(data: any): void { this.form.patch(data); }
+  edit(data: any): void {
+    const dialog = this._dialog.open(DialogTeamComponent, { data });
+  }
 
   remove(data: any): void {
     this._updateService.startTimer();
@@ -75,7 +77,7 @@ export class TeamComponent implements OnInit {
           console.log(this.newPassword);
         },
         error: (error: any) => { console.error(error); }
-    });
+      });
   }
   openDialog(): void { this._dialog.open(DialogTeamComponent); }
 }
