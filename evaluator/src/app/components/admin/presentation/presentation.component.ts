@@ -60,7 +60,7 @@ export class PresentationComponent implements OnInit {
       });
   }
 
-  openDialog(): void { this._dialog.open(DialogPresentationComponent); }
+  openDialog(data: any = null): void { this._dialog.open(DialogPresentationComponent, { data: data }); }
   openDialogEvaluators(): void { this._dialog.open(ListEvaluatorsComponent); }
 
   closePopover(aval: any) { aval.isIconVisible = true; }

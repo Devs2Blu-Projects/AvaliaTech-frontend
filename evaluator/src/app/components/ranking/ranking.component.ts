@@ -31,9 +31,7 @@ export class RankingComponent implements OnInit{
     canvas.style.left = '0';
     canvas.style.pointerEvents = 'none';
 
-    const removeCanvas = () => {
-      document.body.removeChild(canvas);
-    };
+    const removeCanvas = () => { document.body.removeChild(canvas); };
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
@@ -43,9 +41,7 @@ export class RankingComponent implements OnInit{
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    const myConfetti = confetti.create(canvas, {
-      resize: true,
-    });
+    const myConfetti = confetti.create(canvas, { resize: true, });
 
     myConfetti({
       particleCount: 700,

@@ -12,31 +12,28 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class EvaluatorsComponent implements OnInit {
   data: any;
+  errorMsg: string = 'Erro ao carregar apresentações.';
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
-    this.getEvaluator(this.data.id);
+    this.getPresentationsByEvaluator();
     this._updateService.update
       .subscribe({
-        next: () => {
-          this.getEvaluator(this.data.id);
+        next: (response: string) => {
+          this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
+          this.toast.showToast();
+
+          if (response !== this.errorMsg) this.getPresentationsByEvaluator();
         }
       });
   }
 
-  getEvaluator(id: number): void {
-    this._httpService.getbyId('user', id)
-      .subscribe({
-        next: (response: any) => { this.data = response; },
-        error: () => {
-          this._updateService.notify('Erro ao carregar avaliador.');
-          this.toast.showToast();
-        }
-      });
+  getPresentationsByEvaluator(): void {
+
   }
 
   openDialog(): void { this._dialog.open(DialogAssessmentComponent); }
