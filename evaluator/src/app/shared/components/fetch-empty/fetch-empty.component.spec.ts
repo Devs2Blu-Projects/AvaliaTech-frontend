@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoRegistryComponent } from './no-registry.component';
+import { NoRegistryComponent } from './fetch-empty.component';
 
 describe('NoRegistryComponent', () => {
   let component: NoRegistryComponent;

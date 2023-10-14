@@ -14,6 +14,8 @@ export class HttpService {
   getAll(route: string, options?: any): Observable<any> { return this._http.get(`${this._apiUrl}/${route}`, options); }
   getbyId(route: string, id: number): Observable<any> { return this._http.get(`${this._apiUrl}/${route}/${id}`); }
 
+
+
   putById(route: string, id: number, data: object, options?: any): Observable<any> { return this._http.put(`${this._apiUrl}/${route}/${id}`, data, options); }
 
   post(route: string, data: object, options?: any): Observable<any> { return this._http.post(`${this._apiUrl}/${route}`, data, options); }

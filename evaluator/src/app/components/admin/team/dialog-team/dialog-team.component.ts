@@ -15,8 +15,6 @@ export class DialogTeamComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogTeamComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
-  @ViewChild(ToastComponent) toast!: ToastComponent;
-
   ngOnInit(): void { this.buildForm(); }
 
   buildForm(): void {
@@ -38,15 +36,11 @@ export class DialogTeamComponent implements OnInit {
       this._httpService.putById('user', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Equipe atualizada com sucesso.');
-            this.toast.showToast();
+            this._updateService.notify('Equipe atualizada com sucesso.', true);
             this.closeDialog();
           },
           error: (error: any) => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Erro ao atualizar equipe.');
-            this.toast.showToast();
+            this._updateService.notify('Erro ao atualizar equipe.', true);
             console.error(error);
           }
         });
@@ -54,15 +48,11 @@ export class DialogTeamComponent implements OnInit {
       this._httpService.post('user', data, { responseType: 'text' })
         .subscribe({
           next: () => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Equipe adicionada com sucesso.');
-            this.toast.showToast();
+            this._updateService.notify('Equipe adicionada com sucesso.', true);
             this.clearForm();
           },
           error: (error: any) => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Erro ao adicionar equipe.');
-            this.toast.showToast();
+            this._updateService.notify('Erro ao adicionar equipe.', true);
             console.error(error);
           }
         });

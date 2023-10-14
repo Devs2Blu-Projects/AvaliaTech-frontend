@@ -12,7 +12,7 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class ChallengeComponent implements OnInit {
   data: any = [];
-
+  errorMsg: string = 'Erro ao carregar desafios.';
   filter = '';
   filterCols = ['id','name'];
 
@@ -24,9 +24,12 @@ export class ChallengeComponent implements OnInit {
     this.getAll();
     this._updateService.update
       .subscribe({
-        next: () => {
-          this.getAll();
+        next: (response: string) => {
+          this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
+          this.toast.showToast();
+
+          if (response !== this.errorMsg) this.getAll();
         }
       });
   }
@@ -36,32 +39,25 @@ export class ChallengeComponent implements OnInit {
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar desafios.');
-          this.toast.showToast();
+          this._updateService.notify(this.errorMsg);
           console.error(error);
         }
       });
   }
 
-  edit(data: any): void { this.openDialog(), { data }; }
+  edit(data: any): void { this.openDialog(data); }
 
   remove(data: any): void {
     this._updateService.startTimer();
     this._httpService.deleteById('proposition', data.id, { responseType: 'text' })
       .subscribe({
-        next: () => {
-          this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Desafio excluído com sucesso.');
-          this.toast.showToast();
-        },
+        next: () => { this._updateService.notify('Desafio excluído com sucesso.', true); },
         error: (error: any) => {
-          this.toast.elapsedTime = this._updateService.stopTimer();
           this._updateService.notify('Erro ao excluir desafio.');
-          this.toast.showToast();
           console.error(error);
         }
       });
   }
 
-  openDialog(): void { this._dialog.open(DialogChallengeComponent); }
+  openDialog(data: any = null): void { this._dialog.open(DialogChallengeComponent, { data: data }); }
 }

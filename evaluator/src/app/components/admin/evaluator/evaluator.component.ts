@@ -1,4 +1,3 @@
-import * as bootstrap from 'bootstrap';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEvaluatorComponent } from './dialog-evaluator/dialog-evaluator.component';
@@ -13,23 +12,25 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class EvaluatorComponent implements OnInit {
   data: any = [];
+  errorMsg: string = 'Erro ao carregar avaliadores.';
   newPassword: string = '';
-
   filter = '';
   filterCols = ['id', 'name', 'username'];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
-  @ViewChild(DialogEvaluatorComponent) form!: DialogEvaluatorComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
     this.getAll();
     this._updateService.update
       .subscribe({
-        next: () => {
-          this.getAll();
+        next: (response: any) => {
+          this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
+          this.toast.showToast();
+
+          if (response !== this.errorMsg) this.getAll();
         }
       });
   }
@@ -39,55 +40,53 @@ export class EvaluatorComponent implements OnInit {
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar avaliadores.');
-          this.toast.showToast();
+          this._updateService.notify(this.errorMsg);
           console.error(error);
         }
       });
   }
 
-  edit(data: any): void { this.openDialog(), { data }; }
+  edit(data: any): void { this.openDialog(data); }
 
   remove(data: any): void {
     this._updateService.startTimer();
-    this._httpService.deleteById('user', data.id)
+    this._httpService.deleteById('user', data.id, { responseType: 'text' })
       .subscribe({
-        next: () => {
-          this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Avaliador excluído com sucesso.');
-          this.toast.showToast();
-        },
+        next: () => { this._updateService.notify('Avaliador excluído com sucesso.', true); },
         error: (error: any) => {
-          this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Erro ao excluir avaliador.');
-          this.toast.showToast();
+          this._updateService.notify('Erro ao excluir avaliador.', true);
           console.error(error);
         }
       });
   }
 
   generatePassword(data: any) {
+    this._updateService.startTimer();
     this.newPassword = 'Gerando...'
-
-    this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' }).subscribe({
-      next: (response) => {
-        console.log(this.newPassword)
-        this.newPassword = response
-        console.log(this.newPassword)
-      },
-      error: (error: any) => { console.error(error); }
-    })
+    this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' })
+      .subscribe({
+        next: (response) => {
+          this.newPassword = response;
+          this._updateService.notify('Senha gerada com sucesso.', true);
+        },
+        error: (error: any) => {
+          this._updateService.notify('Erro ao gerar senha.');
+          console.error(error);
+        }
+    });
   }
+
   copyToClipboard(text: string): void {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
+    navigator.clipboard.writeText(text);
+    this._updateService.notify('Senha copiada para a área de transferência.');
 
-    this._updateService.notify('Senha copiada com sucesso.');
-    this.toast.showToast();
+    // const textArea = document.createElement('textarea');
+    // textArea.value = text;
+    // document.body.appendChild(textArea);
+    // textArea.select();
+    // document.execCommand('copy');
+    // document.body.removeChild(textArea);
   }
-  openDialog(): void { this._dialog.open(DialogEvaluatorComponent); }
+
+  openDialog(data: any = null): void { this._dialog.open(DialogEvaluatorComponent, { data: data }); }
 }

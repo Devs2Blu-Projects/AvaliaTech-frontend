@@ -12,6 +12,7 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class TeamComponent implements OnInit {
   data: any = [];
+  errorMsg: string = 'Erro ao carregar equipes.';
   newPassword: string = '';
   filter = '';
   filterCols = ['id', 'name', 'username'];
@@ -24,9 +25,12 @@ export class TeamComponent implements OnInit {
     this.getAll();
     this._updateService.update
       .subscribe({
-        next: () => {
-          this.getAll();
+        next: (response: any) => {
+          this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
+          this.toast.showToast();
+
+          if (response !== this.errorMsg) this.getAll();
         }
       });
   }
@@ -36,28 +40,21 @@ export class TeamComponent implements OnInit {
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar equipes.');
-          this.toast.showToast();
+          this._updateService.notify(this.errorMsg);
           console.error(error);
         }
       });
   }
 
-  edit(data: any): void { this.openDialog(), { data }; }
+  edit(data: any): void { this.openDialog(data); }
 
   remove(data: any): void {
     this._updateService.startTimer();
     this._httpService.deleteById('user', data.id, { responseType: 'text' })
       .subscribe({
-        next: () => {
-          this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Equipe excluída com sucesso.');
-          this.toast.showToast();
-        },
+        next: () => { this._updateService.notify('Equipe excluída com sucesso.', true); },
         error: (error: any) => {
-          this.toast.elapsedTime = this._updateService.stopTimer();
-          this._updateService.notify('Erro ao excluir equipe.');
-          this.toast.showToast();
+          this._updateService.notify('Erro ao excluir equipe.', true);
           console.error(error);
         }
       });
@@ -67,24 +64,25 @@ export class TeamComponent implements OnInit {
     this.newPassword = 'Gerando...';
     this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' })
       .subscribe({
-        next: (response) => {
-          console.log(this.newPassword);
-          this.newPassword = response;
-          console.log(this.newPassword);
-        },
-        error: (error: any) => { console.error(error); }
+        next: (response) => { this.newPassword = response; },
+        error: (error: any) => {
+          this._updateService.notify('Erro ao gerar senha.');
+          console.error(error);
+        }
       });
   }
-  copyToClipboard(text: string): void {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
 
-    this._updateService.notify('Senha copiada com sucesso.');
-    this.toast.showToast();
+  copyToClipboard(text: string): void {
+    navigator.clipboard.writeText(text);
+    this._updateService.notify('Senha copiada para a área de transferência.');
+
+    // const textArea = document.createElement('textarea');
+    // textArea.value = text;
+    // document.body.appendChild(textArea);
+    // textArea.select();
+    // document.execCommand('copy');
+    // document.body.removeChild(textArea);
   }
-  openDialog(): void { this._dialog.open(DialogTeamComponent); }
+
+  openDialog(data: any = null): void { this._dialog.open(DialogTeamComponent, { data: data }); }
 }

@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { PopoverModule } from 'ngx-bootstrap/popover';
-import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/services/auth/token.interceptor';
@@ -33,9 +33,8 @@ import { GroupComponent } from './components/group/group.component';
 import { EvaluatorsComponent } from './components/evaluators/evaluators.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { DialogAssessmentComponent } from './components/evaluators/dialog-assessment/dialog-assessment.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ToastComponent } from './shared/components/toast/toast.component';
-import { NoRegistryComponent } from './shared/components/no-registry/no-registry.component';
+import { FetchEmptyComponent } from './shared/components/fetch-empty/fetch-empty.component';
 import { FormNewEventComponent } from './components/admin/form-new-event/form-new-event.component';
 import { ListEvaluatorsComponent } from './components/admin/presentation/list-evaluators/list-evaluators.component';
 import { FooterCreditsComponent } from './shared/components/footer-credits/footer-credits.component';
@@ -62,7 +61,7 @@ import { FooterCreditsComponent } from './shared/components/footer-credits/foote
     RankingComponent,
     DialogAssessmentComponent,
     ToastComponent,
-    NoRegistryComponent,
+    FetchEmptyComponent,
     FormNewEventComponent,
     ListEvaluatorsComponent,
     FooterCreditsComponent
@@ -78,7 +77,6 @@ import { FooterCreditsComponent } from './shared/components/footer-credits/foote
     MatDialogModule,
     HttpClientModule,
     PopoverModule.forRoot(),
-    CdkAccordionModule,
     DragDropModule
   ],
   providers: [
