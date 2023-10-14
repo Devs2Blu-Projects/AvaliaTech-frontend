@@ -48,7 +48,7 @@ input:focus{
   border-color: var(--dark-blue);
 }
 .input-container{
-  padding: 0 40px;
+  padding: 10px 40px;
 }
 .input-icons{
   display: flex;
@@ -125,7 +125,7 @@ button {
   color: var(--white);
   font-family: var(--font);
   font-size: 0.9rem;
-  padding: 0 5px;
+  padding: 5px 10px;
   border-radius: 0;
 }
 .btn-generate-password:hover{

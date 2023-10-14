@@ -43,7 +43,7 @@ export class TeamComponent implements OnInit {
       });
   }
 
-  edit(data: any): void { this.openDialog(), { data }; }
+  edit(data: any): void { this.openDialog(data); }
 
   remove(data: any): void {
     this._updateService.startTimer();
@@ -86,5 +86,4 @@ export class TeamComponent implements OnInit {
     this._updateService.notify('Senha copiada com sucesso.');
     this.toast.showToast();
   }
-  openDialog(): void { this._dialog.open(DialogTeamComponent); }
-}
+openDialog(data: any = null): void { this._dialog.open(DialogTeamComponent, { data: data }); }}

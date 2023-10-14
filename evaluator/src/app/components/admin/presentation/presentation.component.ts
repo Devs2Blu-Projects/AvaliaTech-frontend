@@ -14,7 +14,6 @@ import { ListEvaluatorsComponent } from './list-evaluators/list-evaluators.compo
 })
 export class PresentationComponent implements OnInit {
   data: any = [];
-  isIconVisible = true;
   expandedItemId: number | null = null
   orderNumbers: number = 1;
 
@@ -25,12 +24,6 @@ export class PresentationComponent implements OnInit {
     { id: 1, equipe: 'Equipe A', stack: 'Stack A' },
     { id: 2, equipe: 'Equipe B', stack: 'Stack B' },
     { id: 3, equipe: 'Equipe C', stack: 'Stack C' },
-  ];
-  avaliadores = [
-    { id: 1, name: 'Raphael', isIconVisible: true },
-    { id: 2, name: 'Rob', isIconVisible: true },
-    { id: 3, name: 'Helena Luz', isIconVisible: true },
-    { id: 4, name: 'Maria Claudia', isIconVisible: true },
   ];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
@@ -63,10 +56,5 @@ export class PresentationComponent implements OnInit {
   openDialog(): void { this._dialog.open(DialogPresentationComponent); }
   openDialogEvaluators(): void { this._dialog.open(ListEvaluatorsComponent); }
 
-  closePopover(aval: any) { aval.isIconVisible = true; }
-
-  confirmDelete(aval: any) {
-    // Implemente a lógica de exclusão aqui
-  }
   drop(event: CdkDragDrop<string[]>) { moveItemInArray(this.items, event.previousIndex, event.currentIndex); }
 }
