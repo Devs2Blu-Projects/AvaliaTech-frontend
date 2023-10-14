@@ -61,19 +61,15 @@ export class EvaluatorComponent implements OnInit {
   }
 
   generatePassword(data: any) {
-    this._updateService.startTimer();
-    this.newPassword = 'Gerando...'
+    this.newPassword = 'Gerando...';
     this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' })
       .subscribe({
-        next: (response) => {
-          this.newPassword = response;
-          this._updateService.notify('Senha gerada com sucesso.', true);
-        },
+        next: (response) => { this.newPassword = response; },
         error: (error: any) => {
           this._updateService.notify('Erro ao gerar senha.');
           console.error(error);
         }
-    });
+      });
   }
 
   copyToClipboard(text: string): void {

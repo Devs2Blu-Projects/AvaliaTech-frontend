@@ -4,11 +4,12 @@
     <div class="line"></div>
   </div>
   <div class="input-container">
-    <label for="filter"> FILTRAR </label>
     <div class="input-icons">
       <div class="search-input">
-        <div class="icon"><i class="fas fa-search fa-lg" ></i></div>
-        <input type="text" class="input-filter" id="filter" [(ngModel)]="filter">
+        <div class="icon">
+          <i class="fas fa-search fa-lg" ></i>
+        </div>
+        <input type="text" class="input-filter" id="filter" [(ngModel)]="filter" placeholder="FILTRAR">
       </div>
       <button class="btn-cadastrar" (click)="openDialog();"> CADASTRAR </button>
     </div>
@@ -25,7 +26,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of data | filter: filterCols: filter">
-          <td> {{ item.id }} </td>
+          <td> <i class="fa-solid fa-magnifying-glass-chart fa-lg"></i> </td>
           <td> {{ item.name }} </td>
           <td> {{ item.description }} </td>
           <td class="btn-actions">

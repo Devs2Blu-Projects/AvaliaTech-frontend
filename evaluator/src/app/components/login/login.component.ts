@@ -49,7 +49,10 @@ export class LoginComponent implements OnInit {
             this._appRouting.homepage();
             this.isLoggingIn = false;
           },
-          error: () => { this._updateService.notify('Usuário não autorizado.'); }
+          error: () => { 
+            this._updateService.notify('Usuário não autorizado.'); 
+            this.isLoggingIn = false;
+          }
         });
     }
   }
