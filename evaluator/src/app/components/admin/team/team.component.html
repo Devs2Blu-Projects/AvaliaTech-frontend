@@ -18,7 +18,7 @@
     <table>
       <thead>
         <tr>
-          <th> <i class="fa-solid fa-users fa-lg"></i> </th>
+          <th><i class="fa-solid fa-users fa-lg"></i></th>
           <th> REPRESENTANTE </th>
           <th> USUÁRIOS </th>
           <th> SENHA </th>
@@ -31,28 +31,20 @@
           <td> {{ item.name }} </td>
           <td> {{ item.username }} </td>
           <td>
-            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(item)" placement="bottom">Gerar senha</button>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(item);" placement="bottom"> Gerar senha </button>
             <ng-template #popTemplate>
-              {{ newPassword }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-copy-text" (click)="copyToClipboard(newPassword)">
-                <i class="fa-solid fa-copy fa-sm"></i>
-              </button>
+              {{ newPassword }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-copy-text" (click)="copyToClipboard(newPassword);"><i class="fa-solid fa-copy fa-sm"></i></button>
             </ng-template>
           </td>
-          
           <td class="btn-actions">
-            <button>
-              <i class="fa-solid fa-pencil" (click)="edit(item);"></i>
-            </button>
-            <button>
-              <i class="fa-regular fa-trash-can" (click)="remove(item);"></i>
-            </button>
+            <button><i class="fa-solid fa-pencil" (click)="edit(item);"></i></button>
+            <button><i class="fa-regular fa-trash-can" (click)="remove(item);"></i></button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
-
+  <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
 </div>
 <app-toast></app-toast>

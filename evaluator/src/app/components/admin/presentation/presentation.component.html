@@ -14,58 +14,56 @@
       </div>
       <button class="btn-finish" (click)="openDialog();"> ENCERRAR AVALIAÇÕES </button>
     </div>
-  </div>
-  <h2 class="title-table"> EM ESPERA </h2>
-  <div cdkDropList (cdkDropListDropped)="drop($event)">
-    <div class="table await">
+    <h2 class="title-table"> EM ESPERA </h2>
+    <div cdkDropList (cdkDropListDropped)="drop($event);">
+      <div class="table await">
+        <table>
+          <thead>
+            <tr>
+              <th class="bold"> ORDEM </th>
+              <th> EQUIPE </th>
+              <th> STACK </th>
+              <th> PROJETO </th>
+              <th> ENCERRAR </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-box" *ngFor="let item of items | filter: filterCols: filter; index as i" cdkDrag>
+              <td> {{ orderNumbers + i }} </td>
+              <td> {{ item.equipe }} </td>
+              <td> {{ item.stack }} </td>
+              <td> {{ item.nomeequipe }} </td>
+              <td><button><i class="fa-solid fa-circle-stop fa-lg"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
+    <h2 class="title-table"> FINALIZADAS </h2>
+    <div class="table finish">
       <table>
         <thead>
           <tr>
-            <th class="bold"> ORDEM </th>
-            <th> NOME DA EQUIPE </th>
+            <th><i class="fa-solid fa-users-line fa-lg users-list"></i></th>
+            <th> EQUIPE </th>
             <th> STACK </th>
-            <th> NOME DO PROJETO </th>
+            <th> AVALIAÇÕES </th>
           </tr>
         </thead>
         <tbody>
-          <tr class="row-box" *ngFor="let item of items | filter: filterCols: filter; index as i" cdkDrag>
-            <td> {{ orderNumbers + i }} </td>
-            <td> {{ item.equipe }} </td>
-            <td> {{ item.stack }} </td>
-            <td> {{ item.nomeequipe }}</td>
-          </tr>
+          <ng-container *ngFor="let item of data | filter: filterCols: filter; let i = index">
+            <tr>
+              <td><i class="fa-solid fa-users users-list"></i></td>
+              <td> {{ item.equipe }} </td>
+              <td> {{ item.stack }} </td>
+              <td><button class="btn-list-evaluators" (click)="openDialogEvaluators();"> Exibir avaliadores </button></td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
+    <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
   </div>
-  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
-
-  <h2 class="title-table"> FINALIZADAS </h2>
-  <div class="table finish">
-    <table>
-      <thead>
-        <tr>
-          <th> <i class="fa-solid fa-users-line fa-lg users-list"></i> </th>
-          <th> EQUIPE </th>
-          <th> STACK </th>
-          <th> AVALIAÇÕES </th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let item of data | filter: filterCols: filter; let i = index">
-          <tr>
-            <td> <i class="fa-solid fa-users users-list"></i> </td>
-            <td> {{item.equipe}} </td>
-            <td> {{item.stack}} </td>
-            <td><button class="btn-list-evaluators" (click)="openDialogEvaluators()">Ver lista de avaliadores</button></td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
-  </div>
-  <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div>
-</div>
-<div class="footer">
-  <app-footer-credits></app-footer-credits>
-</div>
+  <div class="footer"><app-footer-credits></app-footer-credits></div>
 </div>

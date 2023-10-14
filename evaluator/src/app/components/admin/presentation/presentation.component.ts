@@ -53,7 +53,7 @@ export class PresentationComponent implements OnInit {
       });
   }
 
-  openDialog(): void { this._dialog.open(DialogPresentationComponent); }
+  openDialog(data: any = null): void { this._dialog.open(DialogPresentationComponent, { data: data }); }
   openDialogEvaluators(): void { this._dialog.open(ListEvaluatorsComponent); }
 
   drop(event: CdkDragDrop<string[]>) { moveItemInArray(this.items, event.previousIndex, event.currentIndex); }

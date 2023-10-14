@@ -12,8 +12,8 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
-  showPassword: boolean = false;
   isLoggingIn: boolean = false;
+  showPassword: boolean = false;
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _appRouting: AppRoutingModule, private _updateService: UpdateService) { }
 
@@ -23,7 +23,10 @@ export class LoginComponent implements OnInit {
     this.buildForm();
     this._updateService.update
       .subscribe({
-        next: () => { this.toast.notification = this._updateService.getNotification(); }
+        next: () => {
+          this.toast.notification = this._updateService.getNotification();
+          this.toast.showToast();
+        }
       });
   }
 
@@ -36,8 +39,8 @@ export class LoginComponent implements OnInit {
 
   onLogin(creds: any): void {
     this.isLoggingIn = true;
-    if (this.form.valid) {
 
+    if (this.form.valid) {
       this._authService.login(creds.username, creds.password)
         .subscribe({
           next: (response) => {
@@ -46,11 +49,8 @@ export class LoginComponent implements OnInit {
             this._appRouting.homepage();
             this.isLoggingIn = false;
           },
-          error: () => {
-            this._updateService.notify('Usuário não autorizado.');
-            this.toast.showToast();
+          error: () => { this._updateService.notify('Usuário não autorizado.'); }
             this.isLoggingIn = false;
-          }
         });
     }
   }

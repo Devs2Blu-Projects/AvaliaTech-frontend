@@ -11,6 +11,7 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class GroupComponent implements OnInit {
   data: any;
+  errorMsg: string = 'Erro ao carregar equipe.';
   form!: FormGroup;
 
   challengeList: string[] = ['desafio1', 'desafio2', 'desafio3'];
@@ -30,13 +31,15 @@ export class GroupComponent implements OnInit {
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
-    this.buildForm();
     this.getGroup(this.data.id);
     this._updateService.update
       .subscribe({
-        next: () => {
-          this.getGroup(this.data.id);
+        next: (response: string) => {
+          this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
+          this.toast.showToast();
+
+          if (response !== this.errorMsg) this.getGroup(this.data.id);
         }
       });
   }
@@ -45,10 +48,10 @@ export class GroupComponent implements OnInit {
     this.form = this._fb.group({
       id: [],
       name: '',
-      challenge: '',
-      description: '',
       language: '',
-      title: ''
+      challenge: '',
+      title: '',
+      description: ''
     });
   }
 
@@ -56,41 +59,33 @@ export class GroupComponent implements OnInit {
     this._httpService.getbyId('group', id)
       .subscribe({
         next: (response: any) => { this.data = response; },
-        error: () => {
+        error: (error: any) => {
           this._updateService.notify('Erro ao carregar equipe.');
-          this.toast.showToast();
+          console.error(error);
         }
       });
   }
+
+  edit(data: any) { this.form.patchValue(data); }
 
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
       this._updateService.startTimer();
       this._httpService.putById('group', data.id, data)
         .subscribe({
-          next: () => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Equipe atualizada com sucesso.');
-            this.toast.showToast();
-          },
-          error: () => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
+          next: () => { this._updateService.notify('Equipe atualizada com sucesso.', true); },
+          error: (error: any) => {
             this._updateService.notify('Erro ao atualizar equipe.');
-            this.toast.showToast();
+            console.error(error);
           }
         });
     } else {
       this._httpService.post('group', data)
         .subscribe({
-          next: () => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Equipe adicionada com sucesso.');
-            this.toast.showToast();
-          },
-          error: () => {
-            this.toast.elapsedTime = this._updateService.stopTimer();
-            this._updateService.notify('Erro ao adicionar equipe.');
-            this.toast.showToast();
+          next: () => { this._updateService.notify('Equipe cadastrada com sucesso.', true); },
+          error: (error: any) => {
+            this._updateService.notify('Erro ao cadastrar equipe.');
+            console.error(error);
           }
         });
     }

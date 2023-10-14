@@ -7,8 +7,8 @@
     <div class="header-intro">
       <h1> EQUIPE </h1>
       <div class="line"></div>
-      <p class="intro"> Está é a sua página de equipe<span style="font-weight: 500;"> +DEVS HACK WEEK </span> </p>
-      <p> Aqui você cadastra e acompanha o estado atual do seu projeto </p>
+      <p class="intro"> Está é a sua página de equipe <span style="font-weight: 500;"> +DEVS HACK WEEK </span></p>
+      <p> Aqui você pode cadastrar e acompanhar o estado atual do seu projeto </p>
     </div>
     <div class="content">
       <div class="line"></div>
@@ -21,32 +21,23 @@
               <div class="input-container">
                 <label for="members"> MEMBROS DA EQUIPE </label>
                 <div class="input-group">
-                  <div class="icon">
-                    <i class="fa-solid fa-people-group fa-lg"></i>
-                  </div>
-                  <input type="text" class="input-form" id="members"
-                    placeholder="Ex.: Pedro Santana, Maria Ferreira, Guilherme Silva, ..." formControlName="name">
+                  <div class="icon"><i class="fa-solid fa-people-group fa-lg"></i></div>
+                  <input type="text" class="input-form" id="members" placeholder="Ex. Oscar Schmidt, Tiago Splitter, ... " formControlName="name">
                 </div>
               </div>
               <div class="input-container">
                 <label for="challenge"> DESAFIO </label>
                 <div class="input-group">
-                  <div class="icon">
-                    <i class="fa-regular fa-file-code fa-lg"></i>
-                  </div>
+                  <div class="icon"><i class="fa-regular fa-file-code fa-lg"></i></div>
                   <select name="desafio" formControlName="challenge">
-                    <option *ngFor="let challenge of challengeList" [value]="challenge">{{challenge.toUpperCase()}}
-                    </option>
+                    <option *ngFor="let challenge of challengeList" [value]="challenge">{{ challenge.toUpperCase() }}</option>
                   </select>
                 </div>
               </div>
-
               <div class="input-container">
                 <label for="challenge"> STACK </label>
                 <div class="input-group">
-                  <div class="icon">
-                    <i class="fa-solid fa-code fa-lg"></i>
-                  </div>
+                  <div class="icon"><i class="fa-solid fa-code fa-lg"></i></div>
                   <select name="language" formControlName="language">
                     <option value="c#"> C# </option>
                     <option value="java"> Java </option>
@@ -56,27 +47,18 @@
               <div class="input-container">
                 <label for="name-project"> NOME DO PROJETO </label>
                 <div class="input-group">
-                  <div class="icon">
-                    <i class="fa-regular fa-pen-to-square fa-lg"></i>
-                  </div>
-                  <input type="text" class="input-form" id="name-project" placeholder="Ex. Evaluation System"
-                    formControlName="title">
+                  <div class="icon"><i class="fa-regular fa-pen-to-square fa-lg"></i></div>
+                  <input type="text" class="input-form" id="name-project" placeholder="Ex. Evaluation System" formControlName="title">
                 </div>
               </div>
               <div class="input-container ">
                 <label for="description"> DESCRIÇÃO </label>
                 <div class="input-group">
-                  <div class="icon icon-textarea">
-                    <i class="fa-regular fa-pen-to-square fa-lg"></i>
-                  </div>
-                  <textarea class="input-form"
-                    placeholder="Ex.: Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quas explicabo corporis soluta harum dolor minima beatae unde accusantium natus!&#10;&#10;Repositório: https://github.com/"
-                    name="description" id="description" cols="30" rows="5" formControlName="description"></textarea>
+                  <div class="icon icon-textarea"><i class="fa-regular fa-pen-to-square fa-lg"></i></div>
+                  <textarea class="input-form" placeholder="Ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quas explicabo corporis soluta harum dolor minima beatae unde accusantium natus!&#10;&#10;Repositório: https://github.com/" name="description" id="description" cols="30" rows="5" formControlName="description"></textarea>
                 </div>
               </div>
-              <div class="form-actions">
-                <button type="submit" class="submit"> {{ type }} </button>
-              </div>
+              <div class="form-actions"><button type="submit" class="submit"> {{ type }} </button></div>
             </form>
           </div>
         </div>
@@ -87,9 +69,9 @@
             <table>
               <thead>
                 <tr>
-                  <th> Nome do Critério </th>
+                  <th> CRITÉRIO </th>
                   <th class="bar-progress"> &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; </th>
-                  <th> Nota </th>
+                  <th> NOTA </th>
                 </tr>
               </thead>
               <tbody>
@@ -101,17 +83,15 @@
                       <div class="ball" [style.left.%]="(criterion.grade / 10) * 100"></div>
                     </div>
                   </td>
-                  <td>{{ criterion.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}}</td>
+                  <td> {{ criterion.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </td>
                 </tr>
               </tbody>
             </table>
-            <h1 class="final-score">NOTA FINAL: <span class="bold">17,50</span></h1>
+            <h1 class="final-score"> NOTA FINAL: <span class="bold"> 17,50 </span></h1>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer">
-    <app-footer-credits></app-footer-credits>
-  </div>
+  <div class="footer"><app-footer-credits></app-footer-credits></div>
 </div>
