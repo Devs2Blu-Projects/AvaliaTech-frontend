@@ -11,8 +11,9 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogCriterionComponent {
   form!: FormGroup;
+  notifications: string[] = ['Erro ao atualizar critério.', 'Erro ao adicionar critério.'];
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogCriterionComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogCriterionComponent>, @Inject(MAT_DIALOG_DATA) private _data: any) { }
 
   ngOnInit(): void { this.buildForm(); }
 
@@ -23,7 +24,7 @@ export class DialogCriterionComponent {
         weight: [],
         description: ''
       });
-      if (this.data) this.form.patchValue(this.data);
+      if (this._data) this.form.patchValue(this._data);
   }
 
   clearForm(): void { this.form.reset(); }
@@ -40,7 +41,7 @@ export class DialogCriterionComponent {
             this.closeDialog();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao atualizar critério.');
+            this._updateService.notify(this.notifications[0]);
             console.error(error);
           }
         });
@@ -52,7 +53,7 @@ export class DialogCriterionComponent {
             this.clearForm();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao adicionar critério.');
+            this._updateService.notify(this.notifications[1]);
             console.error(error);
           }
         });

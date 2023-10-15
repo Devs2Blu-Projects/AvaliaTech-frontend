@@ -1,39 +1,44 @@
 import { HttpService } from '../../../shared/services/http/http.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogTeamComponent } from './dialog-team/dialog-team.component';
 import { UpdateService } from '../../../shared/services/update/update.service';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent implements OnInit, OnDestroy {
   data: any = [];
-  notifications: string[] = ['Erro ao carregar equipes.', 'Erro ao gerar senha.', 'Senha copiada para a área de transferência.'];
+  updateRef!: Subscription;
+  notifications: string[] = ['Erro ao carregar equipes.', 'Erro ao excluir equipe.', 'Erro ao gerar senha.', 'Senha copiada para a área de transferência.'];
   newPassword: string = '';
   filter = '';
   filterCols = ['id', 'name', 'username'];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
+  @ViewChild(DialogTeamComponent) dialog?: DialogTeamComponent;
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
     this.getAll();
-    this._updateService.update
+    this.updateRef = this._updateService.update
       .subscribe({
         next: (response: any) => {
           this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (this.notifications.every(notification => notification !== response)) this.getAll();
+          if (this.notifications.every(notification => notification !== response) || this.dialog?.notifications.every(notification => notification !== response)) this.getAll();
         }
       });
   }
+
+  ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   getAll(): void {
     this._httpService.getAll('user/role/group')
@@ -54,7 +59,7 @@ export class TeamComponent implements OnInit {
       .subscribe({
         next: () => { this._updateService.notify('Equipe excluída com sucesso.', true); },
         error: (error: any) => {
-          this._updateService.notify('Erro ao excluir equipe.', true);
+          this._updateService.notify(this.notifications[1]);
           console.error(error);
         }
       });
@@ -66,7 +71,7 @@ export class TeamComponent implements OnInit {
       .subscribe({
         next: (response) => { this.newPassword = response; },
         error: (error: any) => {
-          this._updateService.notify(this.notifications[1]);
+          this._updateService.notify(this.notifications[2]);
           console.error(error);
         }
       });
@@ -74,7 +79,7 @@ export class TeamComponent implements OnInit {
 
   copyToClipboard(text: string): void {
     navigator.clipboard.writeText(text);
-    this._updateService.notify(this.notifications[2]);
+    this._updateService.notify(this.notifications[3]);
   }
 
   openDialog(data: any = null): void { this._dialog.open(DialogTeamComponent, { data: data }); }

@@ -1,23 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
+import { LogoutService } from 'src/app/shared/services/logout/logout.service';
 
 @Component({
   selector: 'app-group',
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.scss']
 })
-export class GroupComponent implements OnInit {
-  data: any;
-  errorMsg: string = 'Erro ao carregar equipe.';
+export class GroupComponent implements OnInit, OnDestroy {
   form!: FormGroup;
+  data: any;
+  updateRef!: Subscription;
+  notifications: string[] = ['Erro ao carregar equipe.', 'Erro ao atualizar equipe.', 'Erro ao cadastrar equipe.'];
 
   challengeList: string[] = ['desafio1', 'desafio2', 'desafio3'];
   challenge: string = '';
-  type: string = 'Enviar';
+  type: string = 'ENVIAR';
 
   criteria = [
     { name: 'Critério 1', grade: 7.5 },
@@ -27,70 +30,73 @@ export class GroupComponent implements OnInit {
     { name: 'Critério 5', grade: 9.8 },
   ];
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _authService: AuthService) {
-    this.buildForm();
-  }
+  constructor(private _fb: FormBuilder, private _authService: AuthService, private _httpService: HttpService, private _updateService: UpdateService, private _logoutService: LogoutService) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
-    this.getGroup();
-    this._updateService.update
+    this.buildForm();
+    this.getProject();
+    this.updateRef = this._updateService.update
       .subscribe({
         next: (response: string) => {
           this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (response !== this.errorMsg) this.getGroup();
+          if (this.notifications.every(notification => notification !== response)) this.getProject();
         }
       });
   }
 
+  ngOnDestroy(): void { this.updateRef.unsubscribe(); }
+
   buildForm(): void {
     this.form = this._fb.group({
       id: [],
-      name: '',
+      team: '',
       language: '',
-      challenge: '',
-      title: '',
-      description: ''
+      proposition: '',
+      projectName: '',
+      projectDescription: ''
     });
   }
 
-  getGroup(): void {
-    this._httpService.getbyId('group/user', this._authService.getUserId())
+  getProject(): void {
+    this._httpService.getById('group/user', this._authService.getUserId(), { responseType: 'json' })
       .subscribe({
-        next: (response: any) => { this.data = response; },
+        next: (response: any) => { this.edit(this.form, response); console.log(this.form.value)},
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar equipe.');
+          this._updateService.notify(this.notifications[0]);
           console.error(error);
         }
       });
   }
 
-  edit(data: any): void { this.form.patchValue(data); }
+  edit(form: FormGroup, response: any): void {
+    form.patchValue({
+      id: response.id,
+      team: response.team,
+      language: response.language,
+      proposition: response.proposition,
+      projectName: response.projectName,
+      projectDescription: response.projectDescription
+    });
+  }
 
   onSubmit(data: any): void {
-    this._updateService.startTimer();
-    if (this.form.valid) if (data.id) {
-      this._httpService.putById('group', data.id, data)
-        .subscribe({
-          next: () => { this._updateService.notify('Equipe atualizada com sucesso.', true); },
-          error: (error: any) => {
-            this._updateService.notify('Erro ao atualizar equipe.');
-            console.error(error);
-          }
-        });
-    } else {
-      this._httpService.post('group', data)
-        .subscribe({
-          next: () => { this._updateService.notify('Equipe cadastrada com sucesso.', true); },
-          error: (error: any) => {
-            this._updateService.notify('Erro ao cadastrar equipe.');
-            console.error(error);
-          }
-        });
-    }
+    this._httpService.putById('group', data.id, data, { responseType: 'text' })
+      .subscribe({
+        next: () => {
+          this._updateService.notify('Equipe cadastrada com sucesso.', true);
+          this.type = 'EDITAR';
+        },
+        error: (error: any) => {
+          this._updateService.notify(this.notifications[1]);
+          console.error(error);
+        }
+      });
   }
+
+  logout(): void { this._logoutService.logout(); }
 }

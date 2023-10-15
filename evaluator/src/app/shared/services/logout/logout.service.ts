@@ -10,8 +10,9 @@ export class LogoutService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this._router.navigate(['/login']);
-    // this._updateService.notify('Sessão encerrada com sucesso.');
-    // TODO: notificar o usuário, através do toast se o log out teve sucesso.
+    this._router.navigate(['/login'])
+      .then(() => {
+        setTimeout(() => { this._updateService.notify('Sessão encerrada com sucesso.') }, 1000);
+      });
   }
 }

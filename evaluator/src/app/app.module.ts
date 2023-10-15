@@ -13,7 +13,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/services/auth/token.interceptor';
 
-import { FilterPipe } from './shared/pipes/filter.pipe';
+import { FilterPipe } from './shared/pipes/filter/filter.pipe';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';

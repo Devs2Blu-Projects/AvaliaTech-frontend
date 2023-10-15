@@ -11,8 +11,9 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogTeamComponent implements OnInit {
   form!: FormGroup;
+  notifications: string[] = ['Erro ao atualizar equipe.', 'Erro ao adicionar equipe.'];
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogTeamComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogTeamComponent>, @Inject(MAT_DIALOG_DATA) private _data: any) { }
 
   ngOnInit(): void { this.buildForm(); }
 
@@ -23,7 +24,7 @@ export class DialogTeamComponent implements OnInit {
       username: '',
       role: ''
     });
-    if (this.data) this.form.patchValue(this.data);
+    if (this._data) this.form.patchValue(this._data);
   }
 
   clearForm(): void { this.form.reset(); }
@@ -39,7 +40,7 @@ export class DialogTeamComponent implements OnInit {
             this.closeDialog();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao atualizar equipe.');
+            this._updateService.notify(this.notifications[0]);
             console.error(error);
           }
         });
@@ -51,7 +52,7 @@ export class DialogTeamComponent implements OnInit {
             this.clearForm();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao adicionar equipe.');
+            this._updateService.notify(this.notifications[1]);
             console.error(error);
           }
         });
