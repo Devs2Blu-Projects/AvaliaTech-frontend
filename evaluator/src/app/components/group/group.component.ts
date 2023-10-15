@@ -66,11 +66,11 @@ export class GroupComponent implements OnInit {
       });
   }
 
-  edit(data: any) { this.form.patchValue(data); }
+  edit(data: any): void { this.form.patchValue(data); }
 
-  onSubmit(data: any) {
+  onSubmit(data: any): void {
+    this._updateService.startTimer();
     if (this.form.valid) if (data.id) {
-      this._updateService.startTimer();
       this._httpService.putById('group', data.id, data)
         .subscribe({
           next: () => { this._updateService.notify('Equipe atualizada com sucesso.', true); },

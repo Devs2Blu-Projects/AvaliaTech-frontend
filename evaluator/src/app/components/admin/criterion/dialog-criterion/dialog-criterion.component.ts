@@ -17,15 +17,13 @@ export class DialogCriterionComponent {
   ngOnInit(): void { this.buildForm(); }
 
   buildForm(): void {
-    if (this.data) this.form.patchValue(this.data);
-    else {
       this.form = this._fb.group({
-        id: [],
+        id: 0,
         name: '',
         weight: [],
         description: ''
       });
-    }
+      if (this.data) this.form.patchValue(this.data);
   }
 
   clearForm(): void { this.form.reset(); }
@@ -35,7 +33,7 @@ export class DialogCriterionComponent {
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
       this._updateService.startTimer();
-      this._httpService.putById('criterion', data.id, data)
+      this._httpService.putById('criterion', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this._updateService.notify('Critério atualizado com sucesso.', true);
@@ -47,7 +45,7 @@ export class DialogCriterionComponent {
           }
         });
     } else {
-      this._httpService.post('criterion', data)
+      this._httpService.post('criterion', data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this._updateService.notify('Critério adicionado com sucesso.', true);

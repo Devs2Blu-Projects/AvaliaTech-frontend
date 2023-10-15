@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
 
   onLogin(creds: any): void {
     this.isLoggingIn = true;
-
     if (this.form.valid) {
       this._authService.login(creds.username, creds.password)
         .subscribe({
@@ -49,8 +48,8 @@ export class LoginComponent implements OnInit {
             this._appRouting.homepage();
             this.isLoggingIn = false;
           },
-          error: () => { 
-            this._updateService.notify('Usuário não autorizado.'); 
+          error: () => {
+            this._updateService.notify('Usuário não autorizado.');
             this.isLoggingIn = false;
           }
         });
