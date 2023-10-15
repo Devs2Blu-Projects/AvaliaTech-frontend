@@ -8,29 +8,8 @@
   flex: 1;
 }
 // -------- HEADER
-.header {
-  background-color: var(--dark-blue);
-  height: 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-
-}
 .fa-lg{
   color: var(--light-blue);
-}
-.img {
-  width: 250px;
-  margin-left: 40px;
-
-  img {
-    width: 100%;
-    height: auto;
-    -webkit-filter: drop-shadow(0px 0px 10px rgba(0 0 0 / 90%));
-    filter: drop-shadow(0px 0px 10px rgba(0 0 0 / 90%));
-
-  }
 }
 
 .btn-exit {

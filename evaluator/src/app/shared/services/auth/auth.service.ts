@@ -31,4 +31,19 @@ export class AuthService {
       } else return '';
     } else return '';
   }
+
+  getUserId(): number {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const parts: string[] = token.split('.');
+
+      if (parts.length === 3) {
+        const payload: any = JSON.parse(atob(parts[1]));
+        const id: number = Number.parseInt(payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+
+        return id;
+      } else return 0;
+    } else return 0;
+  }
 }

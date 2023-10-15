@@ -12,7 +12,7 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
 })
 export class EvaluatorComponent implements OnInit {
   data: any = [];
-  errorMsg: string = 'Erro ao carregar avaliadores.';
+  notifications: string[] = ['Erro ao carregar equipes.', 'Erro ao gerar senha.', 'Senha copiada para a área de transferência.'];
   newPassword: string = '';
   filter = '';
   filterCols = ['id', 'name', 'username'];
@@ -30,7 +30,7 @@ export class EvaluatorComponent implements OnInit {
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (response !== this.errorMsg) this.getAll();
+          if (this.notifications.every(notification => notification !== response)) this.getAll();
         }
       });
   }
@@ -40,7 +40,7 @@ export class EvaluatorComponent implements OnInit {
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
-          this._updateService.notify(this.errorMsg);
+          this._updateService.notify(this.notifications[0]);
           console.error(error);
         }
       });
@@ -61,12 +61,12 @@ export class EvaluatorComponent implements OnInit {
   }
 
   generatePassword(data: any) {
-    this.newPassword = 'Gerando...';
+    this.newPassword = 'Gerando nova senha...';
     this._httpService.getAll(`user/${data.id}/redefine`, { responseType: 'text' })
       .subscribe({
         next: (response) => { this.newPassword = response; },
         error: (error: any) => {
-          this._updateService.notify('Erro ao gerar senha.');
+          this._updateService.notify(this.notifications[1]);
           console.error(error);
         }
       });
@@ -74,14 +74,7 @@ export class EvaluatorComponent implements OnInit {
 
   copyToClipboard(text: string): void {
     navigator.clipboard.writeText(text);
-    this._updateService.notify('Senha copiada para a área de transferência.');
-
-    // const textArea = document.createElement('textarea');
-    // textArea.value = text;
-    // document.body.appendChild(textArea);
-    // textArea.select();
-    // document.execCommand('copy');
-    // document.body.removeChild(textArea);
+    this._updateService.notify(this.notifications[2]);
   }
 
   openDialog(data: any = null): void { this._dialog.open(DialogEvaluatorComponent, { data: data }); }

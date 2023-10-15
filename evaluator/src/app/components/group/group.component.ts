@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 
@@ -26,12 +27,14 @@ export class GroupComponent implements OnInit {
     { name: 'Critério 5', grade: 9.8 },
   ];
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _authService: AuthService) {
+    this.buildForm();
+  }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
-    this.getGroup(this.data.id);
+    this.getGroup();
     this._updateService.update
       .subscribe({
         next: (response: string) => {
@@ -39,7 +42,7 @@ export class GroupComponent implements OnInit {
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (response !== this.errorMsg) this.getGroup(this.data.id);
+          if (response !== this.errorMsg) this.getGroup();
         }
       });
   }
@@ -55,8 +58,8 @@ export class GroupComponent implements OnInit {
     });
   }
 
-  getGroup(id: number): void {
-    this._httpService.getbyId('group', id)
+  getGroup(): void {
+    this._httpService.getbyId('group/user', this._authService.getUserId())
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
@@ -66,11 +69,11 @@ export class GroupComponent implements OnInit {
       });
   }
 
-  edit(data: any) { this.form.patchValue(data); }
+  edit(data: any): void { this.form.patchValue(data); }
 
-  onSubmit(data: any) {
+  onSubmit(data: any): void {
+    this._updateService.startTimer();
     if (this.form.valid) if (data.id) {
-      this._updateService.startTimer();
       this._httpService.putById('group', data.id, data)
         .subscribe({
           next: () => { this._updateService.notify('Equipe atualizada com sucesso.', true); },

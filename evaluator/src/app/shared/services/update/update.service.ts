@@ -18,9 +18,9 @@ export class UpdateService {
     this.update.emit(notification);
   }
 
-  startTimer(): void { this.startTime = performance.now(); }
-  stopTimer(): void { this.elapsedTime = performance.now() - this.startTime; }
+  startTimer(): void { this.startTime = parseInt(performance.now().toFixed(0)); }
+  stopTimer(): void { this.elapsedTime = parseInt(performance.now().toFixed(0)) - this.startTime; }
 
-  getNotification(): string { return this.notification; }
   getElapsedTime(): number | undefined { return this.elapsedTime; }
+  getNotification(): string { return this.notification; }
 }
