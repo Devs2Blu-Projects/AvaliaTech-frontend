@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 import { LogoutService } from 'src/app/shared/services/logout/logout.service';

@@ -1,86 +1,24 @@
 <div class="body">
-  <div class="main">
-
-  
-  <div class="header">
-    <div class="img">
-      <img src="assets/img/logo-devs2blu.png" alt="logo devs2blu">
-    </div>
+<div class="main">
+  <app-header>
     <button class="button-login" [routerLink]="['/login']"><i class="fa-solid fa-arrow-right-to-bracket"></i> LOGIN </button>
-  </div>
-  <!-- <div class="body-loading">
-    <h1>Realizando votação</h1>
-    <h2>Evento ainda não finalizado</h2>
-    <div class="loader">
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-  </div>
-</div> -->
-  <div class="ranking-container">
+  </app-header>
+
+  <app-loading *ngIf="this.data.length == 0"></app-loading>
+
+  <div class="ranking-container" *ngIf="this.data.length > 0">
     <div class="podium" (click)="reveal();">
       <!-- Primeiro lugar (Dourado) -->
-      <div class="card gold">
-        <div class="bg">
-          <h1>1º Lugar</h1>
-          <i class="fas fa-medal fa-2xl"></i>
-          <h2 *ngIf="revealed1"> {{ data[0].projectName.toUpperCase() }} </h2>
-          <p *ngIf="revealed1"><span class="bold"> STACK: </span> {{ data[0].stack }} </p>
-        </div>
-        <div class="blob"></div>
-      </div>
+      <app-card cardTitle="1º Lugar" cardColor="gold" [revealed]="revealed1" [data]="data[0]"></app-card>
       <!-- Segundo lugar (Prata) -->
-      <div class="card silver">
-        <div class="bg">
-          <h1>2º Lugar</h1>
-          <i class="fas fa-medal fa-2xl"></i>
-          <h2 *ngIf="revealed2">{{ data[1].projectName }}</h2>
-          <p *ngIf="revealed2"><span class="bold"> STACK: </span> {{ data[1].stack }} </p>
-        </div>
-        <div class="blob"></div>
-      </div>
+      <app-card cardTitle="2º Lugar" cardColor="silver" [revealed]="revealed2" [data]="data[1]"></app-card>
       <!-- Terceiro lugar (Bronze) -->
-      <div class="card bronze">
-        <div class="bg">
-          <h1>3º Lugar</h1>
-          <i class="fas fa-medal fa-2xl"></i>
-          <h2 *ngIf="revealed3"> {{ data[2].projectName }} </h2>
-          <p *ngIf="revealed3"><span class="bold"> STACK: </span> {{ data[2].stack }} </p>
-        </div>
-        <div class="blob"></div>
-      </div>
+      <app-card cardTitle="3º Lugar" cardColor="bronze" [revealed]="revealed3" [data]="data[2]"></app-card>
     </div>
     <!-- TODOS GRUPOS -->
     <div class="other-groups" *ngIf="revealed1">
       <h1> RANKING COMPLETO </h1>
-      <div class="group" *ngFor="let item of data; let i = index"
-        [ngClass]="{'gold-list': i === 0, 'silver-list': i === 1, 'bronze-list': i === 2}">
-        <div class="icon-left">
-          <div class="icon" *ngIf="i < 3">
-            <i class="fa-solid fa-ranking-star fa-xl"></i>
-          </div>
-          <div class="line-y" *ngIf="i < 3"></div>
-          <div class="position"> {{i + 1}} </div>
-          <div class="line-y"></div>
-        </div>
-        <div class="right">
-          <div class="description">
-            <h2> {{ item.projectName }} </h2>
-            <p><span class="bold"> STACK: </span> {{ item.stack }} </p>
-            <p><span class="bold"> Membros: </span> {{ item.teamMembers }} </p>
-          </div>
-          <div class="note">
-            <div class="line-y"></div>
-            <h2> Nota Final: <span class="bold"> {{ item.rating.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </span></h2>
-          </div>
-        </div>
-      </div>
+      <app-position-line *ngFor="let item of data; let i = index" [index]="i" [data]="item"></app-position-line>
     </div>
   </div>
 </div>

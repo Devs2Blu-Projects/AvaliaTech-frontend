@@ -7,7 +7,7 @@
     <div class="header-intro">
       <h1> EQUIPE </h1>
       <div class="line"></div>
-      <p class="intro"> Está é a sua página de equipe <span style="font-weight: 500;"> +DEVS HACK WEEK </span></p>
+      <p class="intro"> Esta é a sua página de equipe <span style="font-weight: 500;"> +DEVS HACK WEEK </span></p>
       <p> Aqui você pode cadastrar e acompanhar o estado atual do seu projeto </p>
     </div>
     <div class="content">
@@ -66,28 +66,7 @@
           <div class="dialog-form">
             <h2> Notas </h2>
             <div class="line"></div>
-            <table>
-              <thead>
-                <tr>
-                  <th> CRITÉRIO </th>
-                  <th class="bar-progress"> &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; </th>
-                  <th> NOTA </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let criterion of criteria">
-                  <td> {{ criterion.name }} </td>
-                  <td>
-                    <div class="progress-bar">
-                      <div class="progress" [style.width.%]="(criterion.grade / 10) * 100"></div>
-                      <div class="ball" [style.left.%]="(criterion.grade / 10) * 100"></div>
-                    </div>
-                  </td>
-                  <td> {{ criterion.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </td>
-                </tr>
-              </tbody>
-            </table>
-            <h1 class="final-score"> NOTA FINAL: <span class="bold"> 17,50 </span></h1>
+            <app-criteria-table [data]="criteria"></app-criteria-table>
           </div>
         </div>
       </div>
