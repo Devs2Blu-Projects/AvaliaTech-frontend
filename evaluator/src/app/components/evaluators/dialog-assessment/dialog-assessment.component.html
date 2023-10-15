@@ -1,8 +1,8 @@
 <div class="dialog-form">
-  <h2> NOME DO PROJETO DA EQUIPE </h2>
-  <h3><span class="bold"> Stack: </span> C# </h3>
+  <h2> {{ data.projectName }} </h2>
+  <h3><span class="bold"> Stack: </span> {{data.language}} </h3>
   <div class="line"></div>
-  <form class="formGroup">
+  <form class="formGroup" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <table>
       <thead>
         <tr>
@@ -12,11 +12,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let criterion of listCriteria">
-          <td> {{criterion.nome}} </td>
-          <td class="td-weight"> {{criterion.peso}} </td>
+        <tr *ngFor="let item of listCriteria; index as i">
+          <td> {{item.name}} </td>
+          <td class="td-weight"> {{item.weight}} </td>
           <td>
-            <input type="number" class="input-form" placeholder="Ex.: 0 - 5" min="0" max="5" [(ngModel)]="criterion.nota" name="nota" [ngClass]="{'invalid-note': checkInvalidNote(criterion)}">
+            <input type="number" class="input-form" placeholder="Ex.: 0 - 5" min="0" max="5" [formControlName]="i" [ngClass]="{'invalid-note': checkInvalidNote(item)}">
           </td>
         </tr>
       </tbody>
