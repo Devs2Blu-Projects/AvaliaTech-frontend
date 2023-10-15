@@ -17,23 +17,22 @@ export class DialogEvaluatorComponent {
   ngOnInit(): void { this.buildForm(); }
 
   buildForm(): void {
+    this.form = this._fb.group({
+      id: [],
+      name: '',
+      username: '',
+      role: ''
+    });
     if (this.data) this.form.patchValue(this.data);
-    else {
-      this.form = this._fb.group({
-        id: [],
-        name: '',
-        username: '',
-        role: 'user'
-      });
-    }
   }
 
   clearForm(): void { this.form.reset(); }
 
   onSubmit(data: any) {
+    data.role = 'user';
+    this._updateService.startTimer();
     if (this.form.valid) if (data.id) {
-      this._updateService.startTimer();
-      this._httpService.putById('user', data.id, data.value)
+      this._httpService.putById('user', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this._updateService.notify('Avaliador atualizado com sucesso.', true);
@@ -45,7 +44,7 @@ export class DialogEvaluatorComponent {
           }
         });
     } else {
-      this._httpService.post('user', data.value)
+      this._httpService.post('user', data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this._updateService.notify('Avaliador adicionado com sucesso.', true);
