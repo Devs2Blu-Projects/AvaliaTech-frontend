@@ -17,7 +17,7 @@ export class AuthService {
     return this._http.post(`${this._apiUrl}/login`, creds, { responseType: 'text' });
   }
 
-  getRole(): string {
+  getUserRole(): string {
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -30,5 +30,20 @@ export class AuthService {
         return role;
       } else return '';
     } else return '';
+  }
+
+  getUserId(): number {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const parts: string[] = token.split('.');
+
+      if (parts.length === 3) {
+        const payload: any = JSON.parse(atob(parts[1]));
+        const id: number = parseInt(payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+
+        return id;
+      } else return 0;
+    } else return 0;
   }
 }

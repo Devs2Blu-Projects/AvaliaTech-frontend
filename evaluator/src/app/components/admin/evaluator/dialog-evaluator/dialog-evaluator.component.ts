@@ -11,6 +11,7 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogEvaluatorComponent {
   form!: FormGroup;
+  notifications: string[] = ['Erro ao atualizar avaliador.', 'Erro ao adicionar avaliador.'];
 
   constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogEvaluatorComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
@@ -39,7 +40,7 @@ export class DialogEvaluatorComponent {
             this.closeDialog();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao atualizar avaliador.');
+            this._updateService.notify(this.notifications[0]);
             console.error(error);
           }
         });
@@ -51,7 +52,7 @@ export class DialogEvaluatorComponent {
             this.clearForm();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao adicionar avaliador.');
+            this._updateService.notify(this.notifications[1]);
             console.error(error);
           }
         });
