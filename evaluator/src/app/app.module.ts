@@ -43,6 +43,7 @@ import { CardComponent } from './components/ranking/card/card.component';
 import { LoadingComponent } from './components/ranking/loading/loading.component';
 import { PositionLineComponent } from './components/ranking/position-line/position-line.component';
 import { ProgressComponent } from './components/group/progress/progress.component';
+import { CriteriaTableComponent } from './components/group/criteria-table/criteria-table.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ProgressComponent } from './components/group/progress/progress.componen
     CardComponent,
     LoadingComponent,
     PositionLineComponent,
-    ProgressComponent
+    ProgressComponent,
+    CriteriaTableComponent
   ],
   imports: [
     BrowserModule,

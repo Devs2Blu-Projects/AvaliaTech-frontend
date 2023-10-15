@@ -190,36 +190,6 @@ p {
     }
 }
 
-//TABELA DE NOTAS
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid var(--grey);
-    font-family: var(--font);
-    text-align: center;
-}
-
-th {
-    background-color: var(--white);
-}
-
-.bar-progress{
-    width: 50%;
-}
-.final-score{
-    text-align: right;
-    padding-top: 20px;
-    font-family: var(--font);
-    color: var(--dark-blue);
-}
-//FIM DA TABELA 
 .bold {
     font-weight: 700;
 }

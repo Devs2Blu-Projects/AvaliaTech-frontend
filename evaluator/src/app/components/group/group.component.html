@@ -65,25 +65,7 @@
           <div class="dialog-form">
             <h2> Notas </h2>
             <div class="line"></div>
-            <table>
-              <thead>
-                <tr>
-                  <th> CRITÉRIO </th>
-                  <th class="bar-progress"> &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace; </th>
-                  <th> NOTA </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let criterion of criteria">
-                  <td> {{ criterion.name }} </td>
-                  <td>
-                    <app-progress [percent]="(criterion.grade / 10)"></app-progress>
-                  </td>
-                  <td> {{ criterion.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </td>
-                </tr>
-              </tbody>
-            </table>
-            <h1 class="final-score"> NOTA FINAL: <span class="bold"> 17,50 </span></h1>
+            <app-criteria-table [data]="criteria"></app-criteria-table>
           </div>
         </div>
       </div>
