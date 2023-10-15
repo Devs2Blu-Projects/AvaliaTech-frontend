@@ -42,6 +42,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { CardComponent } from './components/ranking/card/card.component';
 import { LoadingComponent } from './components/ranking/loading/loading.component';
 import { PositionLineComponent } from './components/ranking/position-line/position-line.component';
+import { ProgressComponent } from './components/group/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { PositionLineComponent } from './components/ranking/position-line/positi
     HeaderComponent,
     CardComponent,
     LoadingComponent,
-    PositionLineComponent
+    PositionLineComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,

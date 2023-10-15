@@ -77,10 +77,7 @@
                 <tr *ngFor="let criterion of criteria">
                   <td> {{ criterion.name }} </td>
                   <td>
-                    <div class="progress-bar">
-                      <div class="progress" [style.width.%]="(criterion.grade / 10) * 100"></div>
-                      <div class="ball" [style.left.%]="(criterion.grade / 10) * 100"></div>
-                    </div>
+                    <app-progress [percent]="(criterion.grade / 10)"></app-progress>
                   </td>
                   <td> {{ criterion.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </td>
                 </tr>

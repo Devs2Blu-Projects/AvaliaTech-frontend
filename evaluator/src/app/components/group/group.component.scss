@@ -210,29 +210,6 @@ th {
     background-color: var(--white);
 }
 
-.progress-bar {
-    position: relative;
-    width: 100%;
-    height: 20px;
-    background: linear-gradient(to right, red, yellow, green);
-}
-
-.progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: transparent;
-}
-
-.ball {
-    position: absolute;
-    top: 50%;
-    width: 8px;
-    height: 20px;
-    background-color: var(--dark-blue);
-    transform: translateX(-50%) translateY(-50%);
-}
 .bar-progress{
     width: 50%;
 }
