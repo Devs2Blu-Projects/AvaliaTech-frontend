@@ -18,7 +18,7 @@
   <button class="button-menu" [routerLink]="['/admin/projetos']"> Desafios </button>
   <h1 class="gerenciamento"> GERENCIAMENTO </h1>
   <button class="button-menu" [routerLink]="['/admin/apresentacoes']"> Apresentações </button>
-  <button class="btn-exit"> SAIR </button>
+  <button class="btn-exit" (click)="logout();"> SAIR </button>
 </div>
 <div class="rotas content">
   <router-outlet></router-outlet>

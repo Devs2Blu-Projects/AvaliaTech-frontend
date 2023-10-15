@@ -17,13 +17,11 @@ export class DialogChallengeComponent implements OnInit {
   ngOnInit(): void { this.buildForm(); }
 
   buildForm(): void {
+    this.form = this._fb.group({
+      id: [],
+      name: ''
+    });
     if (this.data) this.form.patchValue(this.data);
-    else {
-      this.form = this._fb.group({
-        id: [],
-        name: ''
-      });
-    }
   }
 
   clearForm(): void { this.form.reset(); }
