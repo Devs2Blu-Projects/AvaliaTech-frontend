@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { HttpService } from 'src/app/shared/services/http/http.service';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 import { LogoutService } from 'src/app/shared/services/logout/logout.service';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-group',
