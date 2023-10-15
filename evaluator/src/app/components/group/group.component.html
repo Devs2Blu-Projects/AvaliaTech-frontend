@@ -1,8 +1,9 @@
 <div class="body">
   <div class="main">
-    <app-header>
-      <button class="btn-exit"> SAIR </button>
-    </app-header>
+    <div class="header">
+      <div class="img"><img src="assets/img/logo-devs2blu.png" alt="logo devs2blu"></div>
+      <button class="btn-exit" (click)="logout();"> SAIR </button>
+    </div>
     <div class="header-intro">
       <h1> EQUIPE </h1>
       <div class="line"></div>
@@ -16,19 +17,19 @@
           <div class="dialog-form">
             <h2> Formulário de Equipe </h2>
             <div class="line"></div>
-            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value);">
               <div class="input-container">
                 <label for="members"> MEMBROS DA EQUIPE </label>
                 <div class="input-group">
                   <div class="icon"><i class="fa-solid fa-people-group fa-lg"></i></div>
-                  <input type="text" class="input-form" id="members" placeholder="Ex. Oscar Schmidt, Tiago Splitter, ..." formControlName="name">
+                  <input type="text" class="input-form" id="members" placeholder="Ex. Oscar Schmidt, Tiago Splitter, ..." formControlName="team">
                 </div>
               </div>
               <div class="input-container">
                 <label for="challenge"> DESAFIO </label>
                 <div class="input-group">
                   <div class="icon"><i class="fa-regular fa-file-code fa-lg"></i></div>
-                  <select name="desafio" formControlName="challenge">
+                  <select name="desafio" formControlName="proposition">
                     <option *ngFor="let challenge of challengeList" [value]="challenge">{{ challenge.toUpperCase() }}</option>
                   </select>
                 </div>
@@ -47,14 +48,14 @@
                 <label for="name-project"> NOME DO PROJETO </label>
                 <div class="input-group">
                   <div class="icon"><i class="fa-regular fa-pen-to-square fa-lg"></i></div>
-                  <input type="text" class="input-form" id="name-project" placeholder="Ex. Evaluation System" formControlName="title">
+                  <input type="text" class="input-form" id="name-project" placeholder="Ex. Evaluation System" formControlName="projectName">
                 </div>
               </div>
               <div class="input-container ">
                 <label for="description"> DESCRIÇÃO </label>
                 <div class="input-group">
                   <div class="icon icon-textarea"><i class="fa-regular fa-pen-to-square fa-lg"></i></div>
-                  <textarea class="input-form" placeholder="Ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quas explicabo corporis soluta harum dolor minima beatae unde accusantium natus!&#10;&#10;Repositório: https://github.com/" name="description" id="description" cols="30" rows="5" formControlName="description"></textarea>
+                  <textarea class="input-form" placeholder="Ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quas explicabo corporis soluta harum dolor minima beatae unde accusantium natus!&#10;&#10;Repositório: https://github.com/" name="description" id="description" cols="30" rows="5" formControlName="projectDescription"></textarea>
                 </div>
               </div>
               <div class="form-actions"><button type="submit" class="submit"> {{ type }} </button></div>

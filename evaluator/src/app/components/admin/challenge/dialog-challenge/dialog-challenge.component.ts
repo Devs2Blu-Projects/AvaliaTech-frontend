@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpService } from 'src/app/shared/services/http/http.service';
@@ -11,8 +11,9 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogChallengeComponent implements OnInit {
   form!: FormGroup;
+  notifications: string[] = ['Erro ao atualizar desafio.', 'Erro ao adicionar desafio.']
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogChallengeComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogChallengeComponent>, @Inject(MAT_DIALOG_DATA) private _data: any) { }
 
   ngOnInit(): void { this.buildForm(); }
 
@@ -21,7 +22,7 @@ export class DialogChallengeComponent implements OnInit {
       id: [],
       name: ''
     });
-    if (this.data) this.form.patchValue(this.data);
+    if (this._data) this.form.patchValue(this._data);
   }
 
   clearForm(): void { this.form.reset(); }
@@ -36,7 +37,7 @@ export class DialogChallengeComponent implements OnInit {
             this.closeDialog();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao atualizar desafio.');
+            this._updateService.notify(this.notifications[0]);
             console.error(error);
           }
         });
@@ -48,7 +49,7 @@ export class DialogChallengeComponent implements OnInit {
             this.clearForm();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao adicionar desafio.');
+            this._updateService.notify(this.notifications[1]);
             console.error(error);
           }
         });

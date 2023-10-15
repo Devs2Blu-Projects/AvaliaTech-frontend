@@ -55,14 +55,14 @@ export class AppRoutingModule {
     this.refresh()
   }
 
-  refresh() {
-    const role: string = this._authService.getRole();
+  refresh(): void {
+    const role: string = this._authService.getUserRole();
     const routes: Routes = this.getUserRoutes(role);
 
     this._router.resetConfig(routes);
   }
 
-  homepage() {
+  homepage(): void {
     this._router.navigate([this._router.config[0]?.path])
   }
 
