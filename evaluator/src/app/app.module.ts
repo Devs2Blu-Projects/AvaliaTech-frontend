@@ -38,6 +38,10 @@ import { FetchEmptyComponent } from './shared/components/fetch-empty/fetch-empty
 import { FormNewEventComponent } from './components/admin/form-new-event/form-new-event.component';
 import { ListEvaluatorsComponent } from './components/admin/presentation/list-evaluators/list-evaluators.component';
 import { FooterCreditsComponent } from './shared/components/footer-credits/footer-credits.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { CardComponent } from './components/ranking/card/card.component';
+import { LoadingComponent } from './components/ranking/loading/loading.component';
+import { PositionLineComponent } from './components/ranking/position-line/position-line.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +68,11 @@ import { FooterCreditsComponent } from './shared/components/footer-credits/foote
     FetchEmptyComponent,
     FormNewEventComponent,
     ListEvaluatorsComponent,
-    FooterCreditsComponent
+    FooterCreditsComponent,
+    HeaderComponent,
+    CardComponent,
+    LoadingComponent,
+    PositionLineComponent
   ],
   imports: [
     BrowserModule,

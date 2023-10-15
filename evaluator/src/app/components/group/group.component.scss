@@ -8,26 +8,6 @@
     flex: 1;
 }
 // -------- HEADER
-.header {
-    background-color: var(--dark-blue);
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-
-}
-
-.img {
-    width: 250px;
-    margin-left: 40px;
-
-    img {
-        width: 100%;
-        height: auto;
-    }
-}
-
 .btn-exit {
     font-family: var(--font);
     border: none;

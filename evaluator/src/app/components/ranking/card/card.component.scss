@@ -1,0 +1,140 @@
+@import url(src/styles.scss);
+
+.card {
+  position: relative;
+  width: 220px;
+  height: 275px;
+  border-width: 0;
+  border-radius: 14px;
+  z-index: 1111;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: var(--shadow);
+  font-family: var(--font);
+  color: var(--white);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: 0.5s ease-in-out;
+  z-index: 0;
+  cursor: pointer;
+
+  h1 {
+    padding: 20px 20px 35px;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding: 30px 10px 15px;
+  }
+
+  p {
+    padding: 5px;
+  }
+
+}
+.card:hover{
+  transform: scale(1.2);
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.bg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 210px;
+  height: 265px;
+  z-index: 2;
+  //background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(24px);
+  border-radius: 10px;
+  overflow: hidden;
+  outline: 2px solid white;
+  transition: 1s ease;
+}
+
+.gold {
+  .bg {
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+      radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  }
+
+  .blob {
+    background-color: goldenrod;
+  }
+
+  .fa-medal {
+    color: gold;
+  }
+}
+
+.silver {
+  .bg {
+    background: radial-gradient(ellipse farthest-corner at right bottom, #C0C0C0 0%, #A9A9A9 8%, #808080b6 30%, #696969a9 40%, transparent 80%),
+      radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #EAEAEA 8%, #B0B0B0 25%, #707070 62.5%, #707070 100%);
+  }
+
+  .blob {
+    background-color: silver;
+  }
+
+  .fa-medal {
+    color: silver;
+  }
+}
+
+.bronze {
+  .bg {
+    background: radial-gradient(ellipse farthest-corner at right bottom, #D6A16B 0%, #B57F4B 8%, #865a2e 30%, #7d5431 40%, transparent 80%),
+      radial-gradient(ellipse farthest-corner at left top, #e9ccae 0%, #D6A16B 8%, #B57F4B 25%, #583311e3 62.5%, #583311e3 100%);
+  }
+
+  .blob {
+    background-color: #cd7f32;
+  }
+
+  .fa-medal {
+    color: #cd7f32;
+  }
+}
+.blob {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  opacity: 1;
+  filter: blur(12px);
+  animation: blob-bounce 5s infinite ease;
+}
+
+@keyframes blob-bounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+}
