@@ -58,7 +58,7 @@ export class DialogAssessmentComponent implements OnInit{
   }
 
   getPresentation(): void {
-    this._httpService.getAll('group/rate/' + this._authService.getUserId())
+    this._httpService.getById('group/rate/', this._authService.getUserId())
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
