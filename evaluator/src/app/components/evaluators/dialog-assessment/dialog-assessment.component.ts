@@ -42,15 +42,23 @@ export class DialogAssessmentComponent implements OnInit{
       userId: this._authService.getUserId(),
       grades: this._fb.array([]),
     });
-    this.listCriteria.forEach(() => {
-      (this.form.get('grades') as FormArray).push(new FormControl(0));
-    });
   }
 
    
   getCriteria(): void{
     this._httpService.getAll('criterion/event').subscribe({
-      next: (response: any) =>{ this.listCriteria = response;},
+      next: (response: any) =>{
+        response.forEach((criterion: any) => {
+          const grades = this.form.get('grades') as FormArray;
+
+          grades.push(this._fb.group({
+            criterionId: criterion.id,
+            grade: [],
+          }));
+        });
+
+        this.listCriteria = response;
+      },
       error:( error: any) =>{
         console.error(error);
       }

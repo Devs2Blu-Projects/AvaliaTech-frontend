@@ -127,10 +127,14 @@ export class FormNewEventComponent {
 
   currentStatus(item:any){
     const dateNow = new Date();
-    const startDate = new Date(item.startDate);
-    const endDate = new Date(item.endDate);
+    let startDate = new Date(item.startDate);
+    startDate.setUTCHours(0, 0, 0, 0);
+    let endDate = new Date(item.endDate);
+    endDate.setUTCHours(23, 59, 59, 999);
 
-    if (dateNow < startDate) {
+    if (item.isClosed) {
+      return 'Finalizado';
+    } else if (dateNow < startDate) {
       return 'A realizar';
     } else if (dateNow >= startDate && dateNow <= endDate) {
       return 'Em andamento';
