@@ -1,7 +1,16 @@
 <div class="content">
-    <h1> Deseja realmente encerrar as avaliações? </h1>
-    <div class="btn-actions">
-        <button mat-dialog-close class="btn-cancel">CANCELAR</button>
-        <button>ENCERRAR</button>
+    <div *ngIf="action === 'close'">
+        <h1> Deseja realmente encerrar as avaliações? </h1>
+        <div class="btn-actions">
+            <button mat-dialog-close class="btn-cancel">CANCELAR</button>
+            <button (click)="closeEvent(event)">ENCERRAR</button>
+        </div>
+    </div>
+    <div *ngIf="action === 'publish'">
+        <h1> Deseja realmente publicar os resultados? </h1>
+        <div class="btn-actions">
+            <button mat-dialog-close class="btn-cancel">CANCELAR</button>
+            <button (click)="publishEvent(event)">PUBLICAR</button>
+        </div>
     </div>
 </div>
