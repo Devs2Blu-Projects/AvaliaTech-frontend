@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { HttpService } from 'src/app/shared/services/http/http.service';
@@ -9,34 +10,36 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
   templateUrl: './form-new-event.component.html',
   styleUrls: ['./form-new-event.component.scss']
 })
-export class FormNewEventComponent {
-
+export class FormNewEventComponent implements OnInit, OnDestroy {
   form!: FormGroup;
-
-  errorMsg: string = 'Erro ao carregar eventos.';
   data: any = [];
+  updateRef!: Subscription;
+  notifications: string[] = ['Erro ao carregar eventos.', 'Erro ao atualizar evento.', 'Erro ao adicionar evento.'];
   filter = '';
-  filterCols = [ 'name'];
-  type:string = 'CADASTRAR'
+  filterCols = ['name'];
+  buttonText: string = 'CADASTRAR';
 
   constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
+    this.buildForm();
     this.getAll();
-    this._updateService.update
+    this.updateRef = this._updateService.update
       .subscribe({
         next: (response: any) => {
           this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (response !== this.errorMsg) this.getAll();
+          if (this.notifications.every(notification => notification !== response)) this.getAll();
         }
       });
-      this.buildForm();
   }
+
+  ngOnDestroy(): void { this.updateRef.unsubscribe(); }
+
   buildForm(): void {
     this.form = this._fb.group({
       id: [],
@@ -49,25 +52,38 @@ export class FormNewEventComponent {
 
     if (this.data) this.form.patchValue(this.data);
   }
-  clearForm(): void { 
-    this.form.reset(); 
-    this.type = 'CADASTRAR'
+
+  getAll(): void {
+    this._httpService.getAll('event', { reponseType: 'json' })
+      .subscribe({
+        next: (response: any) => { this.data = response; },
+        error: (error: any) => {
+          this._updateService.notify(this.notifications[0]);
+          console.error(error);
+        }
+      });
+  }
+
+  clearForm(): void {
+    this.form.reset();
+    this.buttonText = 'CADASTRAR'
     this.form.get('isClosed')?.disable();
     this.form.get('isPublic')?.disable();
   }
 
   onSubmit(data: any) {
     this._updateService.startTimer();
+
     if (this.form.valid) if (data.id) {
       this._httpService.putById('event', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this._updateService.notify('Evento atualizado com sucesso.', true);
-            this.type = 'CADASTRAR'
+            this.buttonText = 'CADASTRAR'
             this.clearForm();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao atualizar evento.', true);
+            this._updateService.notify(this.notifications[1]);
             console.error(error);
           }
         });
@@ -79,36 +95,27 @@ export class FormNewEventComponent {
             this.clearForm();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao adicionar evento.', true);
+            this._updateService.notify(this.notifications[2]);
             console.error(error);
           }
         });
     }
   }
 
-  getAll(): void {
-    this._httpService.getAll('event')
-      .subscribe({
-        next: (response: any) => { this.data = response; },
-        error: (error: any) => {
-          this._updateService.notify(this.errorMsg);
-          console.error(error);
-        }
-      });
-  }
+
 
   edit(data: any): void {
-    this.type = 'EDITAR'
-    this.form.patchValue(data)
+    this.buttonText = 'EDITAR';
+    this.form.patchValue(data);
+
     const startDateControl = this.form.get('startDate');
     const endDateControl = this.form.get('endDate');
-
     const startDateString = new Date(data.startDate).toISOString().split('T')[0];
     const endDateString = new Date(data.endDate).toISOString().split('T')[0];
 
     startDateControl?.setValue(startDateString);
     endDateControl?.setValue(endDateString);
-    
+
     this.form.get('isClosed')?.enable();
     this.form.get('isPublic')?.enable();
   }
@@ -125,7 +132,7 @@ export class FormNewEventComponent {
       });
   }
 
-  currentStatus(item:any){
+  currentStatus(item: any) {
     const dateNow = new Date();
     let startDate = new Date(item.startDate);
     startDate.setUTCHours(0, 0, 0, 0);
