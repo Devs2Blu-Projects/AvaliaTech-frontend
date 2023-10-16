@@ -38,7 +38,7 @@ export class EvaluatorsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
-  getPresentationsByEvaluator(): void {
+  getPresentations(): void {
     this._httpService.getAll('group/rate', this._authService.getUserId())
       .subscribe({
         next: (response: any) => { this.data = response; },
