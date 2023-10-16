@@ -1,14 +1,13 @@
 <div class="sidebar">
   <div class="img">
-    <button class="button-home" [routerLink]="['/admin']"><img src="assets/img/logo-devs2blu.png" alt="logo devs2blu"></button>
+    <button class="button-home" [routerLink]="['/admin']"><img src="assets/img/logo-devs2blu.png"></button>
   </div>
     <div class="select-add">
       <select name="events" id="events">
-        <option value="" disabled selected hidden>Selecione um evento</option>
-        <option value=""> 2023.1 </option>
-        <option value=""> 2022.2 </option>
+        <option value="" disabled selected hidden> Selecione um evento </option>
+        <option *ngFor="let item of data" [value]="item.name"> {{ item.name }} </option>
       </select>
-      <button [routerLink]="['/admin/adicionar_evento']" title="Adicionar/Gerenciar evento"><i class="fa-solid fa-plus"></i></button>
+      <button [routerLink]="['/admin/adicionar_evento']" title="Adicionar/Gerenciar Evento"><i class="fa-solid fa-plus"></i></button>
     </div>
   <h1 class="cadastro"> ACESSOS </h1>
   <button class="button-menu" [routerLink]="['/admin/equipes']"> Equipes </button>
@@ -23,3 +22,4 @@
 <div class="rotas content">
   <router-outlet></router-outlet>
 </div>
+<app-toast></app-toast>
