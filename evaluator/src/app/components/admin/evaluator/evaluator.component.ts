@@ -41,7 +41,7 @@ export class EvaluatorComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   getAll(): void {
-    this._httpService.getAll('user/role/user')
+    this._httpService.getAll('user/role/user', { responseType: 'json' })
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {

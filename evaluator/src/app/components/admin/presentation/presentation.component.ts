@@ -42,7 +42,7 @@ export class PresentationComponent implements OnInit {
   }
 
   getAll(): void {
-    this._httpService.getAll('group')
+    this._httpService.getAll('group', { responseType: 'json' })
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {

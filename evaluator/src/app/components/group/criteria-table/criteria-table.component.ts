@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./criteria-table.component.scss']
 })
 export class CriteriaTableComponent {
-  @Input() data: any[] = []
+  @Input() data: any = [];
 }

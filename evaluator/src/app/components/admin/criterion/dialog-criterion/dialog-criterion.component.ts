@@ -32,8 +32,8 @@ export class DialogCriterionComponent {
   patch(data: any): void { this.form.patchValue(data); }
 
   onSubmit(data: any) {
+    this._updateService.startTimer();
     if (this.form.valid) if (data.id) {
-      this._updateService.startTimer();
       this._httpService.putById('criterion', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
