@@ -51,9 +51,9 @@ export class FormNewEventComponent {
   }
   clearForm(): void { 
     this.form.reset(); 
-    // this.type = 'CADASTRAR'
-    // this.form.get('isClosed')?.disable();
-    // this.form.get('isPublic')?.disable();
+    this.type = 'CADASTRAR'
+    this.form.get('isClosed')?.disable();
+    this.form.get('isPublic')?.disable();
   }
 
   onSubmit(data: any) {
@@ -100,6 +100,15 @@ export class FormNewEventComponent {
   edit(data: any): void {
     this.type = 'EDITAR'
     this.form.patchValue(data)
+    const startDateControl = this.form.get('startDate');
+    const endDateControl = this.form.get('endDate');
+
+    const startDateString = new Date(data.startDate).toISOString().split('T')[0];
+    const endDateString = new Date(data.endDate).toISOString().split('T')[0];
+
+    startDateControl?.setValue(startDateString);
+    endDateControl?.setValue(endDateString);
+    
     this.form.get('isClosed')?.enable();
     this.form.get('isPublic')?.enable();
   }
