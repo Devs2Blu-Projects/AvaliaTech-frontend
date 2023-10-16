@@ -40,7 +40,7 @@ export class CriterionComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   getAll(): void {
-    this._httpService.getAll('criterion', { responseType: 'json'})
+    this._httpService.getAll('criterion/event', { responseType: 'json'})
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
