@@ -68,19 +68,18 @@ export class DialogAssessmentComponent implements OnInit{
 
   onSubmit(data: any) {
     this._updateService.startTimer();
-    console.log(data)
-      this._httpService.post('rating', data, { responseType: 'text' })
-        .subscribe({
-          next: () => {
-            this._updateService.notify('Nota adicionada com sucesso.', true);
-            this.closeDialog()
-            
-          },
-          error: (error: any) => {
-            // this._updateService.notify(this.notifications[1]);
-            console.error(error);
-          }
-        });
+    this._httpService.post('rating', data, { responseType: 'text' })
+      .subscribe({
+        next: () => {
+          this._updateService.notify('Nota adicionada com sucesso.', true);
+          this.closeDialog()
+          
+        },
+        error: (error: any) => {
+          // this._updateService.notify(this.notifications[1]);
+          console.error(error);
+        }
+      });
   }
   checkInvalidNote(criterion:any): boolean {
     return criterion.nota < 0 || criterion.nota > 5;
