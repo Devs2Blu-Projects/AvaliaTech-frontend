@@ -72,8 +72,6 @@ export class PresentationComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           group.ratings = response;
-          console.log(response)
-          console.log(this.data)
         },
         error: (error: any) => {
           this._updateService.notify('Erro ao carregar apresentações.');
@@ -84,7 +82,7 @@ export class PresentationComponent implements OnInit {
   }
 
   saveOrder(): void {
-    this._httpService.put('group/updateOrder', this.data)
+    this._httpService.put('group/updateOrder', this.data, { responseType: 'text' })
       .subscribe({
         next: (response: any) => {
           this._updateService.notify('Ordem salva com sucesso.');
