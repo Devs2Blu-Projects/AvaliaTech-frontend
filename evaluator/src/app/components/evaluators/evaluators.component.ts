@@ -49,7 +49,12 @@ export class EvaluatorsComponent implements OnInit, OnDestroy {
       });
   }
 
-  openDialog(): void { this._dialog.open(DialogAssessmentComponent); }
+  openDialog(data: any): void { 
+    this._dialog.open(DialogAssessmentComponent, {
+      data: data
+    });
+  }
+  
 
   logout(): void { this._logoutService.logout(); }
 }

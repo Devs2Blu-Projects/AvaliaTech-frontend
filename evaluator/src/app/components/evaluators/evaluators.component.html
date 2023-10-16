@@ -25,9 +25,9 @@
             <tr *ngFor="let item of data">
               <td> <i class="fa-solid fa-user-group fa-lg"></i> </td>
               <td> {{item.projectName}} </td>
-              <td> {{item.language}} </td>
+              <td> {{item.language.charAt(0).toUpperCase() + item.language.slice(1)}} </td>
               <td class="btn-actions">
-                <button (click)="openDialog();"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                <button (click)="openDialog(item);"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
               </td>
             </tr>
           </tbody>
@@ -38,3 +38,4 @@
   </div>
   <div class="footer"><app-footer-credits></app-footer-credits></div>
 </div>
+<app-toast></app-toast>
