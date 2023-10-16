@@ -30,12 +30,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="row-box" *ngFor="let group of day.groups | filter: filterCols: filter; index as idxGroups"
-                cdkDrag [cdkDragDisabled]="filter.length > 0 || event?.isClosed" cdkDragPreviewContainer="parent" cdkDragLockAxis="y">
+              <tr class="row-box" *ngFor="let group of day.groups | filter: filterCols: filter; index as idxGroups" cdkDrag [cdkDragDisabled]="filter.length > 0 || event?.isClosed" cdkDragPreviewContainer="parent" cdkDragLockAxis="y">
                 <td><i [ngClass]="{ 'drag-handle-disabled': filter.length > 0 || event?.isClosed}" class="fa-solid fa-up-down-left-right await" cdkDragHandle></i></td>
                 <td> {{ day.groups.indexOf(group) + 1 }} </td>
                 <td> {{ group.projectName }} </td>
-                <td>{{ group.language.charAt(0).toUpperCase() + group.language.slice(1) }}</td>
+                <td> {{ group.language.charAt(0).toUpperCase() + group.language.slice(1) }} </td>
                 <td>
                   <span class="avaliators-count"> Total de avaliações: {{ group.ratings ? group.rating.length : 0 }} </span>
                   <button class="btn-list-evaluators" (click)="openDialogEvaluators(group.ratings);"> Exibir avaliadores </button>
