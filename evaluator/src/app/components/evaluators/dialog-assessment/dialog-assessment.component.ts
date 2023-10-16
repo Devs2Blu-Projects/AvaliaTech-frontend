@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -13,17 +14,17 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogAssessmentComponent implements OnInit{
 
-  data:any = []
   listCriteria: any = []
   updateRef!: Subscription;
   errorMsg: string = 'Erro ao carregar apresentação.';
   form!: FormGroup;
   
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _authService:AuthService){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _authService:AuthService, private _dialogRef: MatDialogRef<DialogAssessmentComponent>){}
   @ViewChild(ToastComponent) toast!: ToastComponent;
   
   ngOnInit(): void {
-    this.getPresentation();
+    this.getCriteria();
+    this.buildForm();
     this.updateRef = this._updateService.update
       .subscribe({
         next: (response: string) => {
@@ -31,7 +32,6 @@ export class DialogAssessmentComponent implements OnInit{
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (response !== this.errorMsg) this.getPresentation();
         }
       });
   }
@@ -42,48 +42,48 @@ export class DialogAssessmentComponent implements OnInit{
       userId: this._authService.getUserId(),
       grades: this._fb.array([]),
     });
-    this.listCriteria.forEach(() => {
-      (this.form.get('grades') as FormArray).push(new FormControl(0));
-    });
   }
 
    
   getCriteria(): void{
     this._httpService.getAll('criterion/event').subscribe({
-      next: (response: any) =>{ this.listCriteria = response;},
+      next: (response: any) =>{
+        response.forEach((criterion: any) => {
+          const grades = this.form.get('grades') as FormArray;
+
+          grades.push(this._fb.group({
+            criterionId: criterion.id,
+            grade: [],
+          }));
+        });
+
+        this.listCriteria = response;
+      },
       error:( error: any) =>{
         console.error(error);
       }
     })
   }
 
-  getPresentation(): void {
-    this._httpService.getById('group/rate/', this._authService.getUserId())
-      .subscribe({
-        next: (response: any) => { this.data = response; },
-        error: (error: any) => {
-          this._updateService.notify(this.errorMsg);
-          console.error(error);
-        }
-      });
-  }
 
   onSubmit(data: any) {
     this._updateService.startTimer();
-    
-      this._httpService.post('rating', data, { responseType: 'text' })
-        .subscribe({
-          next: () => {
-            this._updateService.notify('Nota adicionada com sucesso.', true);
-          },
-          error: (error: any) => {
-            // this._updateService.notify(this.notifications[1]);
-            console.error(error);
-          }
-        });
+    this._httpService.post('rating', data, { responseType: 'text' })
+      .subscribe({
+        next: () => {
+          this._updateService.notify('Nota adicionada com sucesso.', true);
+          this.closeDialog()
+          
+        },
+        error: (error: any) => {
+          // this._updateService.notify(this.notifications[1]);
+          console.error(error);
+        }
+      });
   }
   checkInvalidNote(criterion:any): boolean {
     return criterion.nota < 0 || criterion.nota > 5;
   }
   
+  closeDialog(): void { this._dialogRef.close(); }
 }
