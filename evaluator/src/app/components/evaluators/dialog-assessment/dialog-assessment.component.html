@@ -1,6 +1,6 @@
 <div class="dialog-form">
   <h2> {{ data.projectName }} </h2>
-  <h3><span class="bold"> Stack: </span> {{data.language}} </h3>
+  <h3><span class="bold"> Stack: </span> {{data.language.charAt(0).toUpperCase() + data.language.slice(1)}} </h3>
   <div class="line"></div>
   <form class="formGroup" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <table>
@@ -27,3 +27,4 @@
     </div>
   </form>
 </div>
+<app-toast></app-toast>
