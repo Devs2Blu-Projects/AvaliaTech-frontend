@@ -15,7 +15,6 @@
         <button class="btn-save" (click)="saveOrder();"> SALVAR </button>
         <button class="btn-finish" (click)="openDialog();"> ENCERRAR AVALIAÇÕES </button>
       </div>
-      <!-- <h2 class="title-table"> EM ESPERA </h2> -->
       <div cdkDropListGroup>
         <div class="table-container" cdkDropList [cdkDropListData]="day" (cdkDropListDropped)="drop($event)" *ngFor="let day of data; index as idxDay">
           <h3 class="day-date bold">{{ day.date | date:'dd/MM/yyyy' }}</h3>
@@ -26,7 +25,6 @@
                 <th class="bold"> ORDEM </th>
                 <th> PROJETO </th>
                 <th> STACK </th>
-                <!-- <th> EQUIPE </th> -->
                 <th> AVALIAÇÕES </th>
               </tr>
             </thead>
@@ -37,43 +35,16 @@
                 <td> {{ day.groups.indexOf(group) + 1 }} </td>
                 <td> {{ group.projectName }} </td>
                 <td>{{ group.language.charAt(0).toUpperCase() + group.language.slice(1) }}</td>
-                <!-- <td> {{ group.team }} </td> -->
                 <td>
                   <span class="avaliators-count">Total de avaliações: {{group.ratings ? group.rating.length : 0}}</span>
                   <button class="btn-list-evaluators" (click)="openDialogEvaluators(group.ratings);"> Exibir avaliadores </button>
                 </td>
-                <!-- <div *cdkDragPlaceholder class="cdk-drag-placeholder"></div> -->
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
-      <!-- <h2 class="title-table"> FINALIZADAS </h2>
-      <div class="table finish">
-        <table>
-          <thead>
-            <tr>
-              <th><i class="fa-solid fa-users-line fa-lg users-list"></i></th>
-              <th> EQUIPE </th>
-              <th> STACK </th>
-              <th> AVALIAÇÕES </th>
-            </tr>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let item of data | filter: filterCols: filter; let i = index">
-              <tr>
-                <td><i class="fa-solid fa-users users-list"></i></td>
-                <td> {{ item.equipe }} </td>
-                <td> {{ item.stack }} </td>
-                <td><button class="btn-list-evaluators" (click)="openDialogEvaluators();"> Exibir avaliadores </button>
-                </td>
-              </tr>
-            </ng-container>
-          </tbody>
-        </table>
-      </div> -->
-      <!-- <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div> -->
     </div>
   </div>
   <div class="footer"><app-footer-credits></app-footer-credits></div>

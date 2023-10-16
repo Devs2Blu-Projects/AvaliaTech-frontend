@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPresentationComponent } from './dialog-presentation/dialog-presentation.component';
 import { HttpService } from '../../../shared/services/http/http.service';
@@ -7,6 +7,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { ListEvaluatorsComponent } from './list-evaluators/list-evaluators.component';
 import { GroupDTO, GroupsByDateDTO, RatingGetDTO } from '../../../shared/interfaces';
+import { Subscription } from 'rxjs';
 
 type day = GroupsByDateDTO & {
   groups: {
@@ -19,19 +20,14 @@ type day = GroupsByDateDTO & {
   templateUrl: './presentation.component.html',
   styleUrls: ['./presentation.component.scss']
 })
-export class PresentationComponent implements OnInit {
+export class PresentationComponent implements OnInit, OnDestroy {
   data: day[] = [];
   expandedItemId: number | null = null;
   orderNumbers: number = 1;
+  updateRef!: Subscription;
 
   filter = '';
   filterCols = ['language', 'projectName'];
-
-  items: any[] = [
-    { id: 1, equipe: 'Equipe A', stack: 'Stack A' },
-    { id: 2, equipe: 'Equipe B', stack: 'Stack B' },
-    { id: 3, equipe: 'Equipe C', stack: 'Stack C' },
-  ];
 
   constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog) { }
 
@@ -39,23 +35,26 @@ export class PresentationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
-    this._updateService.update
+    this.updateRef = this._updateService.update
       .subscribe({
-        next: () => {
-          this.getAll()
+        next: (response: any) => {
+          this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
+          this.toast.showToast();
         }
       });
   }
 
+  ngOnDestroy(): void { this.updateRef.unsubscribe(); }
+
   getAll(): void {
     this._httpService.getAll('group/groupsByDate')
       .subscribe({
-        next: (response: any) => { 
-          this.data = response; 
+        next: (response: any) => {
+          this.data = response;
           this.data.forEach((day: day) => {
             day.groups.forEach((group) => {
-              this.getGroupAvaliations(group as GroupDTO & {ratings: RatingGetDTO[]});
+              this.getGroupAvaliations(group as GroupDTO & { ratings: RatingGetDTO[] });
             });
           });
         },
@@ -67,7 +66,7 @@ export class PresentationComponent implements OnInit {
       });
   }
 
-  getGroupAvaliations(group: GroupDTO & {ratings: RatingGetDTO[]}): void {
+  getGroupAvaliations(group: GroupDTO & { ratings: RatingGetDTO[] }): void {
     this._httpService.getById('rating/group', group.id)
       .subscribe({
         next: (response: any) => {
@@ -97,7 +96,7 @@ export class PresentationComponent implements OnInit {
   }
 
   openDialog(data: any = null): void { this._dialog.open(DialogPresentationComponent, { data: data }); }
-  openDialogEvaluators(data: GroupDTO & {ratings: RatingGetDTO[]}): void { this._dialog.open(ListEvaluatorsComponent, { data }); }
+  openDialogEvaluators(data: GroupDTO & { ratings: RatingGetDTO[] }): void { this._dialog.open(ListEvaluatorsComponent, { data }); }
 
   drop(event: CdkDragDrop<day>) {
     if (event.previousContainer === event.container)
