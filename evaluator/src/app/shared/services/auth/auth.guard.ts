@@ -9,7 +9,7 @@ export class AuthGuard {
   constructor(private _authService: AuthService, private _router: Router) { }
 
   canActivate(): boolean | UrlTree {
-    const role = this._authService.getRole();
+    const role = this._authService.getUserRole();
 
     if (role === 'admin' || role === 'group' || role === 'user') return true;
     else {

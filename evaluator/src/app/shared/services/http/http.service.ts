@@ -12,9 +12,8 @@ export class HttpService {
   constructor(private _http: HttpClient) { }
 
   getAll(route: string, options?: any): Observable<any> { return this._http.get(`${this._apiUrl}/${route}`, options); }
-  getbyId(route: string, id: number): Observable<any> { return this._http.get(`${this._apiUrl}/${route}/${id}`); }
-
-
+  getById(route: string, id: number, options?: any): Observable<any> { return this._http.get(`${this._apiUrl}/${route}/${id}`, options); }
+  
   put(route: string, data: object, options?: any): Observable<any> { return this._http.put(`${this._apiUrl}/${route}`, data, options); }
   putById(route: string, id: number, data: object, options?: any): Observable<any> { return this._http.put(`${this._apiUrl}/${route}/${id}`, data, options); }
 

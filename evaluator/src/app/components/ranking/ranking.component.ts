@@ -1,5 +1,6 @@
 import * as confetti from 'canvas-confetti';
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/shared/services/http/http.service';
 
 @Component({
   selector: 'app-ranking',
@@ -7,16 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit{
-  data!: any[];
+  data: any[] = [];
   revealed1: boolean = false;
   revealed2: boolean = false;
   revealed3: boolean = false;
   currentRevealed: number = 3;
 
-  constructor() { }
+  constructor(private _httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.getAll();
+  }
 
+  getAll(): void {
+    this._httpService.getAll('group/ranking')
+      .subscribe({
+        next: (response: any) => {
+          this.data = response;
+        },
+        error: console.error
+      });
   }
 
   rainConfetti(): void {

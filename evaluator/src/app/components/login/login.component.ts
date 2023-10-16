@@ -1,17 +1,19 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './../../shared/services/auth/auth.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { UpdateService } from 'src/app/shared/services/update/update.service';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   form!: FormGroup;
+  updateRef!: Subscription;
   isLoggingIn: boolean = false;
   showPassword: boolean = false;
 
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this._updateService.update
+    this.updateRef = this._updateService.update
       .subscribe({
         next: () => {
           this.toast.notification = this._updateService.getNotification();
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit {
         }
       });
   }
+
+  ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   buildForm(): void {
     this.form = this._fb.group({
@@ -39,7 +43,6 @@ export class LoginComponent implements OnInit {
 
   onLogin(creds: any): void {
     this.isLoggingIn = true;
-
     if (this.form.valid) {
       this._authService.login(creds.username, creds.password)
         .subscribe({
@@ -49,8 +52,8 @@ export class LoginComponent implements OnInit {
             this._appRouting.homepage();
             this.isLoggingIn = false;
           },
-          error: () => { 
-            this._updateService.notify('Usuário não autorizado.'); 
+          error: () => {
+            this._updateService.notify('Usuário não autorizado.');
             this.isLoggingIn = false;
           }
         });

@@ -8,26 +8,6 @@
     flex: 1;
 }
 // -------- HEADER
-.header {
-    background-color: var(--dark-blue);
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-
-}
-
-.img {
-    width: 250px;
-    margin-left: 40px;
-
-    img {
-        width: 100%;
-        height: auto;
-    }
-}
-
 .btn-exit {
     font-family: var(--font);
     border: none;
@@ -210,59 +190,6 @@ p {
     }
 }
 
-//TABELA DE NOTAS
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid var(--grey);
-    font-family: var(--font);
-    text-align: center;
-}
-
-th {
-    background-color: var(--white);
-}
-
-.progress-bar {
-    position: relative;
-    width: 100%;
-    height: 20px;
-    background: linear-gradient(to right, red, yellow, green);
-}
-
-.progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: transparent;
-}
-
-.ball {
-    position: absolute;
-    top: 50%;
-    width: 8px;
-    height: 20px;
-    background-color: var(--dark-blue);
-    transform: translateX(-50%) translateY(-50%);
-}
-.bar-progress{
-    width: 50%;
-}
-.final-score{
-    text-align: right;
-    padding-top: 20px;
-    font-family: var(--font);
-    color: var(--dark-blue);
-}
-//FIM DA TABELA 
 .bold {
     font-weight: 700;
 }

@@ -1,0 +1,109 @@
+@import url(src/styles.scss);
+
+.bold,
+h2 {
+  font-weight: bold;
+}
+
+.group {
+  display: flex;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+
+  .icon-left {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+  }
+
+  i {
+    margin-right: 10px;
+  }
+
+  .position {
+    padding: 10px;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .line-y {
+    width: 1px;
+    height: 80%;
+    background-color: var(--grey);
+  }
+}
+
+.gold-list,
+.silver-list,
+.bronze-list {
+  color: var(--white);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.274);
+
+  .icon-left .line-y {
+    background-color: var(--white);
+  }
+}
+
+.gold-list {
+  background: linear-gradient(to top left, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+    linear-gradient(to bottom right, #fff7dd 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+}
+
+.silver-list {
+  background: linear-gradient(to top left, #C0C0C0 0%, #A9A9A9 8%, #808080b6 30%, #696969a9 40%, transparent 80%),
+    linear-gradient(to bottom right, #e6e6e6 0%, #EAEAEA 8%, #B0B0B0 25%, #707070 62.5%, #707070 100%);
+}
+
+.bronze-list {
+  background: linear-gradient(to top left, #D6A16B 0%, #B57F4B 8%, #865a2e 30%, #7d5431 40%, transparent 80%),
+    linear-gradient(to bottom right, #e9ccae 0%, #D6A16B 8%, #B57F4B 25%, rgba(88, 51, 17, 0.89) 62.5%, rgba(88, 51, 17, 0.89) 100%);
+}
+
+.right{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  .description{
+    width: 70%;
+  }
+  .note{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    width: 30%;
+    max-width: 30%;
+    padding-right: 15px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  h1 {
+    font-size: 1.2rem; /* Reduza o tamanho da fonte para telas menores */
+  }
+  
+  .group {
+    display: flex;
+    flex-direction: column; /* Altere para layout de coluna em telas menores */
+  }
+
+  .icon-left {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    margin-bottom: 10px; /* Adicione margem inferior para separar os grupos na lista */
+  }
+
+  .position {
+    padding: 10px;
+    font-size: 1.2rem; /* Reduza o tamanho da fonte para telas menores */
+  }
+
+  .line-y {
+    width: 100%;
+    height: 1px; /* Altere para uma linha horizontal */
+    margin: 10px 0; /* Adicione margens para espaçamento entre os elementos */
+  }
+}

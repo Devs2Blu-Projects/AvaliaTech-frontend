@@ -13,7 +13,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/services/auth/token.interceptor';
 
-import { FilterPipe } from './shared/pipes/filter.pipe';
+import { FilterPipe } from './shared/pipes/filter/filter.pipe';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -38,6 +38,12 @@ import { FetchEmptyComponent } from './shared/components/fetch-empty/fetch-empty
 import { FormNewEventComponent } from './components/admin/form-new-event/form-new-event.component';
 import { ListEvaluatorsComponent } from './components/admin/presentation/list-evaluators/list-evaluators.component';
 import { FooterCreditsComponent } from './shared/components/footer-credits/footer-credits.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { CardComponent } from './components/ranking/card/card.component';
+import { LoadingComponent } from './components/ranking/loading/loading.component';
+import { PositionLineComponent } from './components/ranking/position-line/position-line.component';
+import { ProgressComponent } from './components/group/progress/progress.component';
+import { CriteriaTableComponent } from './components/group/criteria-table/criteria-table.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +70,13 @@ import { FooterCreditsComponent } from './shared/components/footer-credits/foote
     FetchEmptyComponent,
     FormNewEventComponent,
     ListEvaluatorsComponent,
-    FooterCreditsComponent
+    FooterCreditsComponent,
+    HeaderComponent,
+    CardComponent,
+    LoadingComponent,
+    PositionLineComponent,
+    ProgressComponent,
+    CriteriaTableComponent
   ],
   imports: [
     BrowserModule,

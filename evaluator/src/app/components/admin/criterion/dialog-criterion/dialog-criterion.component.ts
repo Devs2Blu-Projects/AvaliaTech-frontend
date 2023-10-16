@@ -11,21 +11,20 @@ import { UpdateService } from 'src/app/shared/services/update/update.service';
 })
 export class DialogCriterionComponent {
   form!: FormGroup;
+  notifications: string[] = ['Erro ao atualizar critério.', 'Erro ao adicionar critério.'];
 
-  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogCriterionComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
+  constructor(private _fb: FormBuilder, private _httpService: HttpService, private _updateService: UpdateService, private _dialogRef: MatDialogRef<DialogCriterionComponent>, @Inject(MAT_DIALOG_DATA) private _data: any) { }
 
   ngOnInit(): void { this.buildForm(); }
 
   buildForm(): void {
-    if (this.data) this.form.patchValue(this.data);
-    else {
       this.form = this._fb.group({
-        id: [],
+        id: 0,
         name: '',
         weight: [],
         description: ''
       });
-    }
+      if (this._data) this.form.patchValue(this._data);
   }
 
   clearForm(): void { this.form.reset(); }
@@ -35,26 +34,26 @@ export class DialogCriterionComponent {
   onSubmit(data: any) {
     if (this.form.valid) if (data.id) {
       this._updateService.startTimer();
-      this._httpService.putById('criterion', data.id, data)
+      this._httpService.putById('criterion', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this._updateService.notify('Critério atualizado com sucesso.', true);
             this.closeDialog();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao atualizar critério.');
+            this._updateService.notify(this.notifications[0]);
             console.error(error);
           }
         });
     } else {
-      this._httpService.post('criterion', data)
+      this._httpService.post('criterion', data, { responseType: 'text' })
         .subscribe({
           next: () => {
             this._updateService.notify('Critério adicionado com sucesso.', true);
             this.clearForm();
           },
           error: (error: any) => {
-            this._updateService.notify('Erro ao adicionar critério.');
+            this._updateService.notify(this.notifications[1]);
             console.error(error);
           }
         });
