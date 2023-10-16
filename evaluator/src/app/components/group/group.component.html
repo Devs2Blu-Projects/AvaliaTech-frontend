@@ -29,16 +29,16 @@
                   <label for="challenge"> DESAFIO </label>
                   <div class="input-group">
                     <div class="icon"><i class="fa-regular fa-file-code fa-lg"></i></div>
-                    <select class="select-form" name="desafio" formControlName="proposition">
+                    <select class="select-form" id="challenge" name="desafio" formControlName="proposition">
                       <option *ngFor="let item of challenges" [value]="item.name"> {{ item.name }} </option>
                     </select>
                   </div>
                 </div>
                 <div class="input-container">
-                  <label for="challenge"> STACK </label>
+                  <label for="language"> STACK </label>
                   <div class="input-group">
                     <div class="icon"><i class="fa-solid fa-code fa-lg"></i></div>
-                    <select class="select-form" name="language" formControlName="language">
+                    <select class="select-form" id="language" name="language" formControlName="language">
                       <option value="c#"> C# </option>
                       <option value="java"> Java </option>
                     </select>
