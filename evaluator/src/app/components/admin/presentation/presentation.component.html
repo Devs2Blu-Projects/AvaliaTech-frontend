@@ -18,7 +18,7 @@
       <!-- <h2 class="title-table"> EM ESPERA </h2> -->
       <div cdkDropListGroup>
         <div class="table-container" cdkDropList [cdkDropListData]="day" (cdkDropListDropped)="drop($event)" *ngFor="let day of data; index as idxDay">
-          <h3 class="day-date bold">{{ day.date }}</h3>
+          <h3 class="day-date bold">{{ day.date | date:'dd/MM/yyyy' }}</h3>
           <table>
             <thead>
               <tr>
@@ -36,11 +36,11 @@
                 <td><i [ngClass]="{ 'drag-handle-disabled': filter.length > 0 }" class="fa-solid fa-up-down-left-right await" cdkDragHandle></i></td>
                 <td> {{ day.groups.indexOf(group) + 1 }} </td>
                 <td> {{ group.projectName }} </td>
-                <td> {{ group.language }} </td>
+                <td>{{ group.language.charAt(0).toUpperCase() + group.language.slice(1) }}</td>
                 <!-- <td> {{ group.team }} </td> -->
                 <td>
+                  <span class="avaliators-count">Total de avaliações: {{group.ratings ? group.rating.length : 0}}</span>
                   <button class="btn-list-evaluators" (click)="openDialogEvaluators(group.ratings);"> Exibir avaliadores </button>
-                  <span class="avaliators-count">{{group.ratings ? group.rating.length : 0}}</span>
                 </td>
                 <!-- <div *cdkDragPlaceholder class="cdk-drag-placeholder"></div> -->
               </tr>
@@ -78,3 +78,4 @@
   </div>
   <div class="footer"><app-footer-credits></app-footer-credits></div>
 </div>
+<app-toast></app-toast>
