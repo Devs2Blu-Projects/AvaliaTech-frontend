@@ -41,7 +41,7 @@ export class TeamComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   getAll(): void {
-    this._httpService.getAll('user/role/group')
+    this._httpService.getAll('user/role/group', { responseType: 'json' })
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {

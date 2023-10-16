@@ -21,11 +21,9 @@ export class RankingComponent implements OnInit{
   }
 
   getAll(): void {
-    this._httpService.getAll('group/ranking')
+    this._httpService.getAll('group/ranking', { responseType: 'json' })
       .subscribe({
-        next: (response: any) => {
-          this.data = response;
-        },
+        next: (response: any) => { this.data = response; },
         error: console.error
       });
   }
@@ -52,7 +50,7 @@ export class RankingComponent implements OnInit{
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    const myConfetti = confetti.create(canvas, { resize: true, });
+    const myConfetti = confetti.create(canvas, { resize: true });
 
     myConfetti({
       particleCount: 700,

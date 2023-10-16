@@ -23,7 +23,7 @@ export class EvaluatorsComponent implements OnInit, OnDestroy {
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
-    this.getPresentationsByEvaluator();
+    this.getPresentations();
     this.updateRef = this._updateService.update
       .subscribe({
         next: (response: string) => {
@@ -31,7 +31,7 @@ export class EvaluatorsComponent implements OnInit, OnDestroy {
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (response !== this.errorMsg) this.getPresentationsByEvaluator();
+          if (response !== this.errorMsg) this.getPresentations();
         }
       });
   }
