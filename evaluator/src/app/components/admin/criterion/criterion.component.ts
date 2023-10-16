@@ -40,7 +40,7 @@ export class CriterionComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   getAll(): void {
-    this._httpService.getAll('criterion')
+    this._httpService.getAll('criterion', { responseType: 'json'})
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
@@ -54,7 +54,7 @@ export class CriterionComponent implements OnInit, OnDestroy {
 
   remove(data: any) {
     this._updateService.startTimer();
-    this._httpService.deleteById('criterion', data.id)
+    this._httpService.deleteById('criterion', data.id, { responseType: 'text' })
       .subscribe({
         next: () => { this._updateService.notify('Critério excluído com sucesso.', true); },
         error: (error: any) => {

@@ -1,6 +1,10 @@
 @import url(src/styles.scss);
 
-
+.body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 // -------- HEADER
 .button-login {
   font-family: var(--font);

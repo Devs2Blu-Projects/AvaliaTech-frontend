@@ -28,7 +28,7 @@
         <tr *ngFor="let item of data | filter: filterCols: filter">
           <td> <i class="fa-solid fa-award fa-lg"></i> </td>
           <td> {{ item.name }} </td>
-          <td> {{ item.propositionCriteria.length }} </td>
+          <td> {{ data.lenght }} </td>
           <td class="btn-actions">
             <button><i class="fa-solid fa-pencil" (click)="edit(item);"></i></button>
             <button><i class="fa-regular fa-trash-can" (click)="remove(item);"></i></button>
