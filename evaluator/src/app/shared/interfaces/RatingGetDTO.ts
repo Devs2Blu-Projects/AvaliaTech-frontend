@@ -1,7 +1,7 @@
 import { GroupDTO, UserDTO } from "."
 
 export interface RatingGetDTO {
-  Grade: number
-  Group: GroupDTO | null
-  User: UserDTO | null
+  grade: number
+  group: GroupDTO | null
+  user: UserDTO | null
 }
