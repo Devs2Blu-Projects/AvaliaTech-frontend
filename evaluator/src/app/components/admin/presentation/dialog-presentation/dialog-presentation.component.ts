@@ -20,7 +20,7 @@ export class DialogPresentationComponent implements OnInit {
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
-    console.log(this._data)
+
   }
 
   closeEvent(event: EventModel) {

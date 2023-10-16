@@ -9,9 +9,9 @@
   <tbody *ngIf="data">
     <tr *ngFor="let rating of data.groupRatings">
       <td> {{ rating.criterion.name }} </td>
-      <td><app-progress [percent]="(rating.grade / 10)"></app-progress></td>
-      <td> {{ rating.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </td>
+      <td><app-progress [percent]="(rating.grade / 5)"></app-progress></td>
+      <td> {{ (rating.grade * rating.criterion.weight).toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} ({{ (rating.grade * 100 / 5).toLocaleString('pt-BR', { maximumFractionDigits: 2}) }}%) </td>
     </tr>
   </tbody>
 </table>
-<h1 class="final-score" *ngIf="data"> NOTA FINAL: <span class="bold"> {{ data.finalGrade.toLocaleString('pt-BR', { minimumFractionDigits: 1}) }} </span></h1>
+<h1 class="final-score" *ngIf="data"> NOTA FINAL: <span class="bold"> {{ data.finalGrade.toLocaleString('pt-BR', { minimumFractionDigits: 1}) }} </span> ({{ (data.finalGrade * 100 / maxWeight).toLocaleString('pt-BR', { maximumFractionDigits: 2}) }}%)</h1>
