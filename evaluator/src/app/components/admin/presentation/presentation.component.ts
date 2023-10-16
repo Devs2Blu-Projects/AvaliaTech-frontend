@@ -51,13 +51,36 @@ export class PresentationComponent implements OnInit {
   getAll(): void {
     this._httpService.getAll('group/groupsByDate')
       .subscribe({
-        next: (response: any) => { this.data = response; },
+        next: (response: any) => { 
+          this.data = response; 
+          this.data.forEach((day: day) => {
+            day.groups.forEach((group) => {
+              this.getGroupAvaliations(group as GroupDTO & {ratings: RatingGetDTO[]});
+            });
+          });
+        },
         error: (error: any) => {
           this._updateService.notify('Erro ao carregar apresentações.');
           this.toast.showToast();
           console.error(error);
         }
       });
+  }
+
+  getGroupAvaliations(group: GroupDTO & {ratings: RatingGetDTO[]}): void {
+    this._httpService.getById('rating/group', group.id)
+      .subscribe({
+        next: (response: any) => {
+          group.ratings = response;
+          console.log(response)
+          console.log(this.data)
+        },
+        error: (error: any) => {
+          this._updateService.notify('Erro ao carregar apresentações.');
+          this.toast.showToast();
+          console.error(error);
+        }
+      })
   }
 
   saveOrder(): void {
@@ -76,7 +99,7 @@ export class PresentationComponent implements OnInit {
   }
 
   openDialog(data: any = null): void { this._dialog.open(DialogPresentationComponent, { data: data }); }
-  openDialogEvaluators(): void { this._dialog.open(ListEvaluatorsComponent); }
+  openDialogEvaluators(data: GroupDTO & {ratings: RatingGetDTO[]}): void { this._dialog.open(ListEvaluatorsComponent, { data }); }
 
   drop(event: CdkDragDrop<day>) {
     if (event.previousContainer === event.container)

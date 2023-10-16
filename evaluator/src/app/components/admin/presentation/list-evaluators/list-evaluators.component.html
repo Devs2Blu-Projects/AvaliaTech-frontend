@@ -10,15 +10,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let rating of data">
           <td><i class="fa-solid fa-user-tie fa-lg"></i></td>
-          <td> João Silva </td>
-          <td> 19,50 </td>
+          <td> {{ rating.user.name }} </td>
+          <td> {{ rating.grade }} </td>
           <td class="btn-actions">
             <button title="Excluir avaliação"><i class="fa-regular fa-trash-can fa-lg"></i></button>
           </td>
         </tr>
       </tbody>
     </table>
+    <span *ngIf="!data">Nenhuma avaliação foi feita para este grupo</span>
   </div>
 </div>

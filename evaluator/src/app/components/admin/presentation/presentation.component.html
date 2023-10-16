@@ -38,7 +38,10 @@
                 <td> {{ group.projectName }} </td>
                 <td> {{ group.language }} </td>
                 <!-- <td> {{ group.team }} </td> -->
-                <td><button class="btn-list-evaluators" (click)="openDialogEvaluators();"> Exibir avaliadores </button></td>
+                <td>
+                  <button class="btn-list-evaluators" (click)="openDialogEvaluators(group.ratings);"> Exibir avaliadores </button>
+                  <span class="avaliators-count">{{group.ratings ? group.rating.length : 0}}</span>
+                </td>
                 <!-- <div *cdkDragPlaceholder class="cdk-drag-placeholder"></div> -->
               </tr>
             </tbody>
