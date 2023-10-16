@@ -12,33 +12,41 @@
           </div>
           <input type="text" class="input-filter" id="filter" [(ngModel)]="filter" placeholder="FILTRAR">
         </div>
+        <button class="btn-save" (click)="saveOrder();"> SALVAR </button>
         <button class="btn-finish" (click)="openDialog();"> ENCERRAR AVALIAÇÕES </button>
       </div>
-      <h2 class="title-table"> EM ESPERA </h2>
-      <div cdkDropList (cdkDropListDropped)="drop($event);">
-        <div class="table await">
+      <!-- <h2 class="title-table"> EM ESPERA </h2> -->
+      <div cdkDropListGroup>
+        <div class="table-container" cdkDropList [cdkDropListData]="day" (cdkDropListDropped)="drop($event)" *ngFor="let day of data; index as idxDay">
+          <h3 class="day-date bold">{{ day.date }}</h3>
           <table>
             <thead>
               <tr>
+                <th></th>
                 <th class="bold"> ORDEM </th>
-                <th> EQUIPE </th>
-                <th> STACK </th>
                 <th> PROJETO </th>
+                <th> STACK </th>
+                <!-- <th> EQUIPE </th> -->
+                <th> AVALIAÇÕES </th>
               </tr>
             </thead>
             <tbody>
-              <tr class="row-box" *ngFor="let item of items | filter: filterCols: filter; index as i" cdkDrag>
-                <td> {{ orderNumbers + i }} </td>
-                <td> {{ item.equipe }} </td>
-                <td> {{ item.stack }} </td>
-                <td> {{ item.nomeequipe }} </td>
+              <tr class="row-box" *ngFor="let group of day.groups | filter: filterCols: filter; index as idxGroups"
+                cdkDrag [cdkDragDisabled]="filter.length > 0" cdkDragPreviewContainer="parent" cdkDragLockAxis="y">
+                <td><i [ngClass]="{ 'drag-handle-disabled': filter.length > 0 }" class="fa-solid fa-up-down-left-right await" cdkDragHandle></i></td>
+                <td> {{ day.groups.indexOf(group) + 1 }} </td>
+                <td> {{ group.projectName }} </td>
+                <td> {{ group.language }} </td>
+                <!-- <td> {{ group.team }} </td> -->
+                <td><button class="btn-list-evaluators" (click)="openDialogEvaluators();"> Exibir avaliadores </button></td>
+                <!-- <div *cdkDragPlaceholder class="cdk-drag-placeholder"></div> -->
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
-      <h2 class="title-table"> FINALIZADAS </h2>
+      <!-- <h2 class="title-table"> FINALIZADAS </h2>
       <div class="table finish">
         <table>
           <thead>
@@ -61,8 +69,8 @@
             </ng-container>
           </tbody>
         </table>
-      </div>
-      <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
+      </div> -->
+      <!-- <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div> -->
     </div>
   </div>
   <div class="footer"><app-footer-credits></app-footer-credits></div>

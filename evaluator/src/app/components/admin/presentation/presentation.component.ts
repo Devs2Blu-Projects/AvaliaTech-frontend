@@ -3,9 +3,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPresentationComponent } from './dialog-presentation/dialog-presentation.component';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { UpdateService } from '../../../shared/services/update/update.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { ListEvaluatorsComponent } from './list-evaluators/list-evaluators.component';
+import { GroupDTO, GroupsByDateDTO, RatingGetDTO } from '../../../shared/interfaces';
+
+type day = GroupsByDateDTO & {
+  groups: {
+    ratings: RatingGetDTO[];
+  }[]
+};
 
 @Component({
   selector: 'app-presentation',
@@ -13,12 +20,12 @@ import { ListEvaluatorsComponent } from './list-evaluators/list-evaluators.compo
   styleUrls: ['./presentation.component.scss']
 })
 export class PresentationComponent implements OnInit {
-  data: any = [];
-  expandedItemId: number | null = null
+  data: day[] = [];
+  expandedItemId: number | null = null;
   orderNumbers: number = 1;
 
   filter = '';
-  filterCols = ['id', 'name', 'username'];
+  filterCols = ['language', 'projectName'];
 
   items: any[] = [
     { id: 1, equipe: 'Equipe A', stack: 'Stack A' },
@@ -42,7 +49,7 @@ export class PresentationComponent implements OnInit {
   }
 
   getAll(): void {
-    this._httpService.getAll('group')
+    this._httpService.getAll('group/groupsByDate')
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {
@@ -53,8 +60,27 @@ export class PresentationComponent implements OnInit {
       });
   }
 
+  saveOrder(): void {
+    this._httpService.put('group/updateOrder', this.data)
+      .subscribe({
+        next: (response: any) => {
+          this._updateService.notify('Ordem salva com sucesso.');
+          this.toast.showToast();
+        },
+        error: (error: any) => {
+          this._updateService.notify('Erro ao salvar ordem.');
+          this.toast.showToast();
+          console.error(error);
+        }
+      });
+  }
+
   openDialog(data: any = null): void { this._dialog.open(DialogPresentationComponent, { data: data }); }
   openDialogEvaluators(): void { this._dialog.open(ListEvaluatorsComponent); }
 
-  drop(event: CdkDragDrop<string[]>) { moveItemInArray(this.items, event.previousIndex, event.currentIndex); }
+  drop(event: CdkDragDrop<day>) {
+    if (event.previousContainer === event.container)
+      moveItemInArray(event.container.data.groups, event.previousIndex, event.currentIndex);
+    else transferArrayItem(event.previousContainer.data.groups, event.container.data.groups, event.previousIndex, event.currentIndex);
+  }
 }
