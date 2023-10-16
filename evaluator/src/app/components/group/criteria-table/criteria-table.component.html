@@ -9,7 +9,7 @@
   <tbody *ngIf="data">
     <tr *ngFor="let rating of data.groupRatings">
       <td> {{ rating.criterion.name }} </td>
-      <td><app-progress [percent]="(rating.grade / 10)"></app-progress></td>
+      <td><app-progress [percent]="(rating.grade / 5)"></app-progress></td>
       <td> {{ rating.grade.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </td>
     </tr>
   </tbody>
