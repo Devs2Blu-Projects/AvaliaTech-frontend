@@ -6,7 +6,7 @@ import { UpdateService } from '../../../shared/services/update/update.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { ListEvaluatorsComponent } from './list-evaluators/list-evaluators.component';
-import { GroupDTO, GroupsByDateDTO, RatingGetDTO } from '../../../shared/interfaces';
+import { EventModel, GroupDTO, GroupsByDateDTO, RatingGetDTO } from '../../../shared/interfaces';
 import { Subscription } from 'rxjs';
 
 type day = GroupsByDateDTO & {
@@ -24,6 +24,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   data: day[] = [];
   expandedItemId: number | null = null;
   orderNumbers: number = 1;
+  event: EventModel | null = null;
   updateRef!: Subscription;
 
   filter = '';
@@ -43,6 +44,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
           this.toast.showToast();
         }
       });
+    this.getActiveEvent();
   }
 
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
@@ -80,6 +82,18 @@ export class PresentationComponent implements OnInit, OnDestroy {
       })
   }
 
+  getActiveEvent(){
+    this._httpService.getAll('global/currentEvent')
+      .subscribe({
+        next: (response: any) => { this.event = response },
+        error: (error: any) => {
+          this._updateService.notify('Erro ao carregar apresentações.');
+          this.toast.showToast();
+          console.error(error);
+        }
+      })
+  }
+
   saveOrder(): void {
     this._httpService.put('group/updateOrder', this.data, { responseType: 'text' })
       .subscribe({
@@ -95,7 +109,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
       });
   }
 
-  openDialog(data: any = null): void { this._dialog.open(DialogPresentationComponent, { data: data }); }
+  openDialog(data: any = null): void { this._dialog.open(DialogPresentationComponent, { data }); }
   openDialogEvaluators(data: GroupDTO & { ratings: RatingGetDTO[] }): void { this._dialog.open(ListEvaluatorsComponent, { data }); }
 
   drop(event: CdkDragDrop<day>) {

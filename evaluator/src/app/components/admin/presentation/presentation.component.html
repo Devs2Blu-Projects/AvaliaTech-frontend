@@ -12,8 +12,9 @@
           </div>
           <input type="text" class="input-filter" id="filter" [(ngModel)]="filter" placeholder="FILTRAR">
         </div>
-        <button class="btn-save" (click)="saveOrder();"> SALVAR </button>
-        <button class="btn-finish" (click)="openDialog();"> ENCERRAR AVALIAÇÕES </button>
+        <button *ngIf="event?.isClosed === false" class="btn-action btn-save" (click)="saveOrder();"> SALVAR ORDEM </button>
+        <button *ngIf="event?.isClosed === false" class="btn-action btn-finish" (click)="openDialog({action: 'close', event});"> ENCERRAR EVENTO </button>
+        <button *ngIf="event?.isPublic === false && event?.isClosed === true" class="btn-action btn-publish" (click)="openDialog({action: 'publish', event});"> PUBLICAR RESULTADOS </button>
       </div>
       <div cdkDropListGroup>
         <div class="table-container" cdkDropList [cdkDropListData]="day" (cdkDropListDropped)="drop($event)" *ngFor="let day of data; index as idxDay">
@@ -30,8 +31,8 @@
             </thead>
             <tbody>
               <tr class="row-box" *ngFor="let group of day.groups | filter: filterCols: filter; index as idxGroups"
-                cdkDrag [cdkDragDisabled]="filter.length > 0" cdkDragPreviewContainer="parent" cdkDragLockAxis="y">
-                <td><i [ngClass]="{ 'drag-handle-disabled': filter.length > 0 }" class="fa-solid fa-up-down-left-right await" cdkDragHandle></i></td>
+                cdkDrag [cdkDragDisabled]="filter.length > 0 || event?.isClosed" cdkDragPreviewContainer="parent" cdkDragLockAxis="y">
+                <td><i [ngClass]="{ 'drag-handle-disabled': filter.length > 0 || event?.isClosed}" class="fa-solid fa-up-down-left-right await" cdkDragHandle></i></td>
                 <td> {{ day.groups.indexOf(group) + 1 }} </td>
                 <td> {{ group.projectName }} </td>
                 <td>{{ group.language.charAt(0).toUpperCase() + group.language.slice(1) }}</td>
