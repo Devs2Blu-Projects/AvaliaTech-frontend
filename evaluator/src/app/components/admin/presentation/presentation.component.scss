@@ -85,6 +85,17 @@ input:focus {
   font-weight: 500;
 }
 
+.btn-save {
+  border: none;
+  text-decoration: none;
+  width: 250px;
+  height: 50px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  transition: 0.3s ease;
+  font-weight: 500;
+}
+
 .btn-sortear:hover {
   background-color: var(--dark-blue-hover);
 }
@@ -206,13 +217,52 @@ button {
   margin-top: auto;
 }
 
+.day-date{
+  text-align: center;
+  font-size: 1rem;
+}
+
+.table-container{
+  margin: 30px 0;
+}
+
+.row-box{
+  background-color: var(--white);
+}
+
+.drag-handle-disabled {
+  color: var(--white);
+  cursor: inherit;
+}
+
+.cdk-drag-placeholder {
+  height: 60px;
+  // background-color: grey;
+  // opacity: 0.5;
+  // width: 100%;
+}
+
+.fa-up-down-left-right{
+  font-size: 1.5em;
+}
+
+.avaliators-count{
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+
 @media screen and (max-width: 768px) {
   .input-icons {
     display: flex;
     flex-wrap: wrap;
+    gap: 15px;
   }
 
   .btn-finish {
+    width: 100%;
+  }
+
+  .btn-save {
     width: 100%;
   }
 
