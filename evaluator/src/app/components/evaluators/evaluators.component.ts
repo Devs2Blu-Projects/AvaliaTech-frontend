@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAssessmentComponent } from './dialog-assessment/dialog-assessment.component';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { LogoutService } from 'src/app/shared/services/logout/logout.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-evaluators',
@@ -13,16 +14,16 @@ import { LogoutService } from 'src/app/shared/services/logout/logout.service';
   styleUrls: ['./evaluators.component.scss']
 })
 export class EvaluatorsComponent implements OnInit, OnDestroy {
-  data: any;
+  data: any = [];
   updateRef!: Subscription;
   errorMsg: string = 'Erro ao carregar apresentações.';
 
-  constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog, private _logoutService: LogoutService) { }
+  constructor(private _httpService: HttpService, private _updateService: UpdateService, private _dialog: MatDialog, private _logoutService: LogoutService, private _authService:AuthService) { }
 
   @ViewChild(ToastComponent) toast!: ToastComponent;
 
   ngOnInit(): void {
-    this.getPresentationsByEvaluator();
+    this.getPresentations();
     this.updateRef = this._updateService.update
       .subscribe({
         next: (response: string) => {
@@ -30,15 +31,22 @@ export class EvaluatorsComponent implements OnInit, OnDestroy {
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
 
-          if (response !== this.errorMsg) this.getPresentationsByEvaluator();
+          if (response !== this.errorMsg) this.getPresentations();
         }
       });
   }
 
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
-  getPresentationsByEvaluator(): void {
-    // TODO
+  getPresentations(): void {
+    this._httpService.getById('group/rate', this._authService.getUserId())
+      .subscribe({
+        next: (response: any) => { this.data = response; },
+        error: (error: any) => {
+          this._updateService.notify(this.errorMsg);
+          console.error(error);
+        }
+      });
   }
 
   openDialog(): void { this._dialog.open(DialogAssessmentComponent); }

@@ -28,8 +28,8 @@ export class DialogChallengeComponent implements OnInit {
   clearForm(): void { this.form.reset(); }
 
   onSubmit(data: any) {
+    this._updateService.startTimer();
     if (this.form.valid) if (data.id) {
-      this._updateService.startTimer();
       this._httpService.putById('proposition', data.id, data, { responseType: 'text' })
         .subscribe({
           next: () => {

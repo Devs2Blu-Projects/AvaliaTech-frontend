@@ -40,7 +40,7 @@ export class ChallengeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   getAll(): void {
-    this._httpService.getAll('proposition')
+    this._httpService.getAll('proposition', {responseType: 'json'} )
       .subscribe({
         next: (response: any) => { this.data = response; },
         error: (error: any) => {

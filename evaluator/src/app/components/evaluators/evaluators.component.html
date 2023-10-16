@@ -10,29 +10,29 @@
       <div class="line"></div>
       <p class="intro"> Esta é a sua página de avaliador <span style="font-weight: 500;"> +DEVS HACK WEEK </span></p>
       <p> Aqui você pode acompanhar o estado atual das suas avaliações </p>
-      <!-- <div *ngIf="data.length == 0"><app-no-registry></app-no-registry></div> -->
       <div class="table">
         <h2> ABERTAS </h2>
         <table>
           <thead>
             <tr>
-              <th class="bold"> ID </th>
+              <th> <i class="fa-solid fa-users fa-lg"></i> </th>
               <th> EQUIPE </th>
               <th> STACK </th>
               <th> AVALIAR </th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> 1 </td>
-              <td> Equipe A </td>
-              <td> Stack A </td>
+            <tr *ngFor="let item of data">
+              <td> <i class="fa-solid fa-user-group fa-lg"></i> </td>
+              <td> {{item.projectName}} </td>
+              <td> {{item.language}} </td>
               <td class="btn-actions">
                 <button (click)="openDialog();"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
               </td>
             </tr>
           </tbody>
         </table>
+        <div *ngIf="data.length == 0"><app-fetch-empty></app-fetch-empty></div>
       </div>
     </div>
   </div>
