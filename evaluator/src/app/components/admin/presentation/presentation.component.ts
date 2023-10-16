@@ -22,10 +22,11 @@ type day = GroupsByDateDTO & {
 })
 export class PresentationComponent implements OnInit, OnDestroy {
   data: day[] = [];
+  updateRef!: Subscription;
+  notifications: string[] = ['Erro ao carregar apresentações.', 'Erro ao salvar ordem.'];
   expandedItemId: number | null = null;
   orderNumbers: number = 1;
   event: EventModel | null = null;
-  updateRef!: Subscription;
 
   filter = '';
   filterCols = ['language', 'projectName'];
@@ -42,6 +43,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
           this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
+
+          if (this.notifications.every(notification => notification !== response)) this.getAll();
         }
       });
     this.getActiveEvent();
@@ -50,7 +53,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void { this.updateRef.unsubscribe(); }
 
   getAll(): void {
-    this._httpService.getAll('group/groupsByDate')
+    this._httpService.getAll('group/groupsByDate', { responseType: 'json'})
       .subscribe({
         next: (response: any) => {
           this.data = response;
@@ -61,21 +64,21 @@ export class PresentationComponent implements OnInit, OnDestroy {
           });
         },
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar apresentações.');
+          this._updateService.notify(this.notifications[0]);
           this.toast.showToast();
           console.error(error);
         }
       });
   }
 
-  getGroupAvaliations(group: GroupDTO & { ratings: RatingGetDTO[] }): void {
-    this._httpService.getById('rating/group', group.id)
+  getGroupAvaliations(group: GroupDTO & {ratings: RatingGetDTO[]}): void {
+    this._httpService.getById('rating/group', group.id, { responseType: 'json'})
       .subscribe({
         next: (response: any) => {
           group.ratings = response;
         },
         error: (error: any) => {
-          this._updateService.notify('Erro ao carregar apresentações.');
+          this._updateService.notify(this.notifications[0]);
           this.toast.showToast();
           console.error(error);
         }
@@ -95,15 +98,12 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   saveOrder(): void {
+    this._updateService.startTimer();
     this._httpService.put('group/updateOrder', this.data, { responseType: 'text' })
       .subscribe({
-        next: (response: any) => {
-          this._updateService.notify('Ordem salva com sucesso.');
-          this.toast.showToast();
-        },
+        next: () => { this._updateService.notify('Ordem salva com sucesso.', true); },
         error: (error: any) => {
-          this._updateService.notify('Erro ao salvar ordem.');
-          this.toast.showToast();
+          this._updateService.notify(this.notifications[1]);
           console.error(error);
         }
       });
@@ -113,8 +113,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   openDialogEvaluators(data: GroupDTO & { ratings: RatingGetDTO[] }): void { this._dialog.open(ListEvaluatorsComponent, { data }); }
 
   drop(event: CdkDragDrop<day>) {
-    if (event.previousContainer === event.container)
-      moveItemInArray(event.container.data.groups, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) moveItemInArray(event.container.data.groups, event.previousIndex, event.currentIndex);
     else transferArrayItem(event.previousContainer.data.groups, event.container.data.groups, event.previousIndex, event.currentIndex);
   }
 }
