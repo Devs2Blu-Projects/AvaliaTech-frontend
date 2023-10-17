@@ -29,8 +29,8 @@
                   <label for="challenge"> DESAFIO </label>
                   <div class="input-group">
                     <div class="icon"><i class="fa-regular fa-file-code fa-lg"></i></div>
-                    <select class="select-form" id="challenge" name="desafio" formControlName="proposition">
-                      <option *ngFor="let item of challenges" [value]="item.name"> {{ item.name }} </option>
+                    <select class="select-form" id="challenge" name="desafio" formControlName="propositionId">
+                      <option *ngFor="let item of challenges" [value]="item.id"> {{ item.name }} </option>
                     </select>
                   </div>
                 </div>
