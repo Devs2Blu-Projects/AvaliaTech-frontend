@@ -19,16 +19,14 @@ export class ListEvaluatorsComponent {
    @ViewChild(ToastComponent) toast!: ToastComponent;
 
    deleteRating(id: number){
-    this._httpService.deleteById(`rating/evaluator`, id)
+    this._httpService.deleteById(`rating/evaluator`, id, {responseType: 'text'})
       .subscribe({
         next: () => {
           this.data = this.data.filter((rating) => rating.id !== id);
           this._updateService.notify('Avaliador removido com sucesso!');
-          this.toast.showToast();
         },
         error: (error: any) => {
           this._updateService.notify('Erro ao carregar apresentações.');
-          this.toast.showToast();
           console.error(error);
         }
       });
