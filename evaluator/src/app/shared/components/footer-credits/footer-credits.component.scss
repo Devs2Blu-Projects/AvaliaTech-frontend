@@ -78,3 +78,15 @@ p {
 .unifique {
   width: 90px;
 }
+@media screen and (max-width: 480px) {
+  .body {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 125px;
+  }
+
+  .logos {
+    flex-wrap: wrap; /* Permita que os logotipos sejam exibidos em várias linhas */
+  }
+}
