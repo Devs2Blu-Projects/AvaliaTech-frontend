@@ -15,7 +15,7 @@
           <td> {{ rating.user.name }} </td>
           <td> {{ rating.grade }} </td>
           <td class="btn-actions">
-            <button title="Excluir avaliação"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+            <button (click)="deleteRating(rating.id)" title="Excluir avaliação"><i class="fa-regular fa-trash-can fa-lg"></i></button>
           </td>
         </tr>
       </tbody>
