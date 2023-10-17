@@ -10,12 +10,12 @@
   <div class="right">
     <div class="description">
       <h2> {{ data?.projectName }} </h2>
-      <p><span class="bold"> STACK: </span> {{ data?.stack }} </p>
-      <p><span class="bold"> Membros: </span> {{ data?.teamMembers }} </p>
+      <p><span class="bold"> STACK: </span> {{ data?.language }} </p>
+      <p><span class="bold"> Membros: </span> {{ data?.team }} </p>
     </div>
     <div class="note">
       <div class="line-y"></div>
-      <h2> Nota Final: <span class="bold"> {{ data?.rating?.toLocaleString('pt-BR', { minimumFractionDigits: 1 }) }} </span></h2>
+      <h2> Nota Final: <span class="bold"> {{ data?.finalGrade.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 3 }) }} </span></h2>
     </div>
   </div>
 </div>

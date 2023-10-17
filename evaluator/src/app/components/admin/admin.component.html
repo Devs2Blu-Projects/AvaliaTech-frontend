@@ -1,25 +1,33 @@
 <div class="sidebar">
   <div class="img">
-    <button class="button-home" [routerLink]="['/admin']"><img src="assets/img/logo-devs2blu.png" alt="logo devs2blu"></button>
+    <button class="button-home" [routerLink]="['/admin']"><img src="assets/img/logo-devs2blu.png"></button>
   </div>
     <div class="select-add">
-      <select name="events" id="events">
-        <option value="" disabled selected hidden>Selecione um evento</option>
-        <option value=""> 2023.1 </option>
-        <option value=""> 2022.2 </option>
+      <select [(ngModel)]="selectedData" (ngModelChange)="putSelectedEvent($event);" name="events" id="events">
+        <option value="" disabled selected hidden> Selecione um evento </option>
+        <option *ngFor="let item of data" [value]="item.id" > {{ item.name }} </option>
       </select>
-      <button [routerLink]="['/admin/adicionar_evento']" title="Adicionar/Gerenciar evento"><i class="fa-solid fa-plus"></i></button>
+      <button [routerLink]="['/admin/adicionar_evento']" title="Adicionar/Gerenciar Evento"><i class="fa-solid fa-plus"></i></button>
     </div>
-  <h1 class="cadastro"> ACESSOS </h1>
-  <button class="button-menu" [routerLink]="['/admin/equipes']"> Equipes </button>
-  <button class="button-menu" [routerLink]="['/admin/avaliadores']"> Avaliadores </button>
-  <h1 class="cadastro"> CADASTROS </h1>
-  <button class="button-menu" [routerLink]="['/admin/criterios']"> Critérios </button>
-  <button class="button-menu" [routerLink]="['/admin/projetos']"> Desafios </button>
-  <h1 class="gerenciamento"> GERENCIAMENTO </h1>
-  <button class="button-menu" [routerLink]="['/admin/apresentacoes']"> Apresentações </button>
-  <button class="btn-exit" (click)="logout();"> SAIR </button>
+    <div class="menu">
+      <div class="menu-section">
+        <h2 class="title"> ACESSOS </h2>
+        <button class="button-menu" [routerLink]="['/admin/equipes']"> Equipes </button>
+        <button class="button-menu" [routerLink]="['/admin/avaliadores']"> Avaliadores </button>
+      </div>
+      <div class="menu-section">
+        <h2 class="title"> CADASTROS </h2>
+        <button class="button-menu" [routerLink]="['/admin/criterios']"> Critérios </button>
+        <button class="button-menu" [routerLink]="['/admin/projetos']"> Desafios </button>
+      </div>
+      <div class="menu-section">
+        <h2 class="title"> GERENCIAMENTO </h2>
+        <button class="button-menu" [routerLink]="['/admin/apresentacoes']"> Apresentações </button>
+        <button class="btn-exit" (click)="logout();"> SAIR </button>
+      </div>
+    </div>
 </div>
 <div class="rotas content">
   <router-outlet></router-outlet>
 </div>
+<app-toast></app-toast>

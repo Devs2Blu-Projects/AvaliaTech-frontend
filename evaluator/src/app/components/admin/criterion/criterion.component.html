@@ -21,6 +21,7 @@
           <th> <i class="fa-solid fa-list fa-lg"></i> </th>
           <th> NOME </th>
           <th> DESCRIÇÃO </th>
+          <th> PESO </th>
           <th> AÇÕES </th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@
           <td> <i class="fa-solid fa-magnifying-glass-chart fa-lg"></i> </td>
           <td> {{ item.name }} </td>
           <td> {{ item.description }} </td>
+          <td> {{ item.weight }} </td>
           <td class="btn-actions">
             <button><i class="fa-solid fa-pencil" (click)="edit(item);"></i></button>
             <button><i class="fa-regular fa-trash-can" (click)="remove(item);"></i></button>
@@ -37,6 +39,6 @@
       </tbody>
     </table>
   </div>
-  <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
+  <div *ngIf="!data || data.length === 0"><app-fetch-empty></app-fetch-empty></div>
 </div>
 <app-toast></app-toast>

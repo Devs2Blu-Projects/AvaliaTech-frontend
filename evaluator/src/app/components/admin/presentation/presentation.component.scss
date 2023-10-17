@@ -74,18 +74,8 @@ input:focus {
   align-items: center;
 }
 
-.btn-finish {
-  border: none;
-  text-decoration: none;
-  width: 250px;
-  height: 50px;
-  background-color: var(--red);
-  color: var(--white);
-  transition: 0.3s ease;
-  font-weight: 500;
-}
-
-.btn-save {
+.btn-action {
+  padding: 0 5px;
   border: none;
   text-decoration: none;
   width: 250px;
@@ -94,6 +84,18 @@ input:focus {
   color: var(--white);
   transition: 0.3s ease;
   font-weight: 500;
+}
+
+.btn-save {
+  background-color: var(--dark-blue);
+}
+
+.btn-finish {
+  background-color: var(--red);
+}
+
+.btn-publish {
+  background-color: var(--golden);
 }
 
 .btn-sortear:hover {

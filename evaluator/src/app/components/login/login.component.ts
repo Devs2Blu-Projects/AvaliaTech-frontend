@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   buildForm(): void {
     this.form = this._fb.group({
-      username: '',
+      username: new URLSearchParams(window.location.search).get('username') ?? '',
       password: ''
     });
   }

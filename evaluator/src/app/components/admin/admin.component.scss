@@ -2,7 +2,7 @@
 
 .img {
   width: 250px;
-  height: 120px;
+  min-height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,25 +12,29 @@
     height: auto;
   }
 }
-.select-add{
+
+.select-add {
   width: 200px;
   font-family: var(--font);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 7px;
-  select{
+
+  select {
     width: 100%;
     border: none;
     height: 30px;
     background-color: var(--white);
     color: var(--dark-blue);
   }
-  #events option{
+
+  #events option {
     border: none;
     background-color: var(--white);
   }
-  button{
+
+  button {
     background: none;
     text-decoration: none;
     border: none;
@@ -38,25 +42,28 @@
   }
 }
 
-.add-event{
+.add-event {
   background-color: var(--light-blue);
   color: var(--golden);
 }
-.fa-plus{
+
+.fa-plus {
   color: var(--golden);
 }
+
 .fa-plus:hover {
-	-webkit-animation: rotate-center 0.6s ease-in-out both;
-	        animation: rotate-center 0.6s ease-in-out both;
+  -webkit-animation: rotate-center 0.6s ease-in-out both;
+  animation: rotate-center 0.6s ease-in-out both;
 }
-.cadastro,
-.gerenciamento {
+
+.title {
   text-align: center;
-  color: #f8f8f8;
+  color: var(--white);
   padding-top: 15px;
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: var(--font);
+  font-weight: 500;
 }
 
 .sidebar {
@@ -67,6 +74,7 @@
   position: fixed;
   height: 100%;
   overflow: auto;
+  overflow-x: hidden;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -79,7 +87,7 @@
   background: none;
 }
 
-.sidebar .button-menu,
+.sidebar .menu .button-menu,
 .btn-exit {
   background-color: var(--golden);
   border: none;
@@ -101,10 +109,21 @@
 
 .sidebar .btn-exit {
   background-color: var(--red);
-  margin-top: 40px;
 }
-.sidebar .btn-exit:hover{
+
+.sidebar .btn-exit:hover {
   background-color: var(--red-hover);
+}
+
+.menu {
+  margin: auto 0;
+}
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 div.content {
@@ -152,23 +171,27 @@ div.content {
     float: none;
   }
 }
- @-webkit-keyframes rotate-center {
+
+@-webkit-keyframes rotate-center {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
+
 @keyframes rotate-center {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }

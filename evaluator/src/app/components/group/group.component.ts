@@ -48,7 +48,7 @@ export class GroupComponent implements OnInit, OnDestroy {
         id: [],
         team: '',
         language: '',
-        proposition: '',
+        propositionId: [],
         projectName: '',
         projectDescription: ''
       })
