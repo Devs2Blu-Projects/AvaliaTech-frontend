@@ -58,16 +58,26 @@
 
 <hr>
 
+<div align='center'>
+  <p><a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Exo+2&size=25&pause=15000&color=FFCD00&center=true&vCenter=true&random=false&width=435&lines=Diagrama de Acesso" alt="Typing SVG" /></a></p>
+   <table>
+        <tr align='center'>
+            <td><small>Feito com draw.io<small></td>
+        </tr>
+        <tr>
+            <td><img src="https://media.discordapp.net/attachments/1158520051331240078/1163850809319100556/Frontend.png?ex=65411388&is=652e9e88&hm=7235d786530fdf94459fc9919d954584574224ff79c2c363e07e3ade07a42b2f&="  height="500"></td>
+        </tr>
+    </table>
 
 
 <div align='center'>
-<p ><a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Exo+2&size=25&pause=15000&color=639CC8&center=true&vCenter=true&random=false&width=435&lines=Paginas" alt="Typing SVG" /></a></p>
+<p ><a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Exo+2&size=25&pause=15000&color=639CC8&center=true&vCenter=true&random=false&width=435&lines=Páginas" alt="Typing SVG" /></a></p>
 <small>Clique para aumentar as imagens</small>
 
 ### Pública
 <div style='display: inline_block' align='center'>
   <table>
-        <tr>
+        <tr align='center'>
             <td>Ranking esperando a avaliação</td>
             <td>Ranking com a avaliação terminada</td>
             <td>Login</td>
@@ -84,7 +94,7 @@
 ### Administrador
 <div style='display: inline_block' align='center'>
   <table>
-        <tr>
+        <tr align='center'>
             <td>Inicial</td>
             <td>Cadastro de um novo evento</td>
             <td>Cadastro de uma nova equipe</td>
@@ -96,10 +106,10 @@
         </tr>
     </table>
   <table>
-        <tr>
-            <td>Vizualição das equipes</td>
+        <tr align='center'>
+            <td>Visualização das equipes</td>
             <td>Cadastro de um novo avaliador</td>
-            <td>Vizualização dos avaliadores</td>
+            <td>Visualização dos avaliadores</td>
         </tr>
         <tr>
             <td><img src="https://cdn.discordapp.com/attachments/1158517607251582996/1163498844529623141/image.png?ex=653fcbbd&is=652d56bd&hm=3f231a3a6767ce26da6714f9a45ea1a060607f5e14e811277ed062ea6ed17cea&"  height="150"></td>
@@ -108,9 +118,9 @@
         </tr>
     </table>
   <table>
-        <tr>
+        <tr align='center'>
             <td>Gerenciamento de apresentações</td>
-            <td>Vizualização de avaliações</td>
+            <td>Visualização de avaliações</td>
         </tr>
         <tr>
             <td><img src="https://cdn.discordapp.com/attachments/1158517607251582996/1163551705959506000/image.png?ex=653ffcf8&is=652d87f8&hm=8a0b208c5c7885b84e20561f19e38ccf25960f8e535b5df44697a2c1e7e3fb14&"  height="150"></td>
@@ -125,8 +135,8 @@
 
 <div style='display: inline_block' align='center'>
   <table>
-        <tr>
-            <td>Edição da equipe e vizualização das notas</td>
+        <tr align='center'>
+            <td>Edição da equipe e visualização das notas</td>
         </tr>
         <tr>
             <td><img src="https://cdn.discordapp.com/attachments/1158517607251582996/1163551706748035202/image.png?ex=653ffcf8&is=652d87f8&hm=64802cdbe2f46e817b4f70e29ffff8b536f2f626036c8f9fe54aa771841aaa28&"  height="150"></td>
@@ -140,8 +150,8 @@
 
 <div style='display: inline_block' align='center'>
   <table>
-        <tr>
-            <td>Vizualiação das avaliação</td>
+        <tr align='center'>
+            <td>Visualização das avaliações</td>
             <td>Realizar as avaliações</td>
         </tr>
         <tr>
