@@ -1,0 +1,9 @@
+<div class="card {{ cardColor }}">
+  <div class="bg">
+    <h1>{{ cardTitle }}</h1>
+    <i class="fas fa-medal fa-2xl"></i>
+    <h2 *ngIf="revealed"> {{ data ? data.projectName.toUpperCase() : '' }} </h2>
+    <p *ngIf="revealed"><span class="bold"> STACK: </span> {{ data ? data.language : '' }} </p>
+  </div>
+  <div class="blob"></div>
+</div>

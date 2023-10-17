@@ -1,0 +1,50 @@
+<div class="body">
+  <div class="header">
+    <h1> AVALIADORES </h1>
+    <div class="line"></div>
+  </div>
+  <div class="input-container">
+    <div class="input-icons">
+      <div class="search-input">
+        <div class="icon">
+          <i class="fas fa-search fa-lg"></i>
+        </div>
+        <input type="text" class="input-filter" id="filter" [(ngModel)]="filter" placeholder="FILTRAR">
+      </div>
+      <button class="btn-cadastrar" (click)="openDialog();"> CADASTRAR </button>
+    </div>
+  </div>
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th><i class="fa-solid fa-users fa-lg"></i></th>
+          <th> NOME </th>
+          <th> USUÁRIO </th>
+          <th> SENHA </th>
+          <th> AÇÕES </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data | filter: filterCols: filter">
+          <td> <i class="fa-solid fa-user-tie fa-lg"></i> </td>
+          <td> {{ item.name }} </td>
+          <td> {{ item.username }} </td>
+          <td>
+            <ng-template #popTemplate>
+              {{ newPassword }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-copy-text" (click)="copyToClipboard(newPassword);"><i class="fa-solid fa-copy fa-sm"></i></button>
+            </ng-template>
+            <button type="button" class="btn btn-generate-password" [popover]="popTemplate" [outsideClick]="true" (onShown)="generatePassword(item);" placement="bottom"> Gerar senha </button>
+          </td>
+          <td class="btn-actions">
+            <button><i class="fa-solid fa-pencil" (click)="edit(item);"></i></button>
+            <button><i class="fa-regular fa-trash-can" (click)="remove(item);"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="data.length === 0"><app-fetch-empty></app-fetch-empty></div>
+</div>
+<app-toast></app-toast>

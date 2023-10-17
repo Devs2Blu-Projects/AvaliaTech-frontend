@@ -1,0 +1,93 @@
+<div class="body">
+  <div class="register">
+    <div class="header">
+      <h1> {{ buttonText }} EVENTO </h1>
+      <div class="line"></div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value);">
+      <div class="input-container">
+        <label for="name"> NOME DO EVENTO </label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fas fa-users-between-lines fa-lg"></i>
+          </div>
+          <input type="text" class="input-form" id="name" placeholder="Ex. +Devs2Blu 2024" formControlName="name">
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="startDate"> DATA DE INÍCIO </label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fas fa-calendar-days fa-lg"></i>
+          </div>
+          <input type="date" class="input-form" id="startDate" formControlName="startDate">
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="endDate"> DATA DE ENCERRAMENTO </label>
+        <div class="input-group">
+          <div class="icon">
+            <i class="fas fa-calendar-days fa-lg"></i>
+          </div>
+          <input type="date" class="input-form" id="endDate" formControlName="endDate">
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="input-group input-group-checkbox">
+          <div class="checkbox">
+            <input type="checkbox" formControlName="isClosed">
+            <label> AVALIAÇÃO ENCERRADA </label>
+            <input type="checkbox" formControlName="isPublic">
+            <label> RESULTADO DISPONÍVEL </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="cancel" (click)="clearForm();"> Cancelar </button>
+        <button type="submit" class="submit"> {{ buttonText }} </button>
+      </div>
+    </form>
+  </div>
+  <div class="list-events">
+    <div class="header">
+      <h1> LISTA DE EVENTOS </h1>
+      <div class="line"></div>
+    </div>
+    <div class="input-container">
+      <div class="input-icons">
+        <div class="search-input">
+          <div class="icon">
+            <i class="fas fa-search fa-lg"></i>
+          </div>
+          <input type="text" class="input-filter" id="filter" [(ngModel)]="filter" placeholder="FILTRAR">
+        </div>
+      </div>
+    </div>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th> NOME </th>
+            <th> DATA DE INÍCIO </th>
+            <th> DATA DE ENCERRAMENTO </th>
+            <th> STATUS </th>
+            <th> AÇÕES </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data | filter: filterCols: filter">
+            <td> {{ item.name }} </td>
+            <td> {{ item.startDate | date:'dd/MM/yyyy' }} </td>
+            <td> {{ item.endDate | date:'dd/MM/yyyy' }} </td>
+            <td> {{ currentStatus(item) }} </td>
+            <td class="btn-actions">
+              <button><i class="fa-solid fa-pencil" (click)="edit(item);"></i></button>
+              <button><i class="fa-regular fa-trash-can" (click)="remove(item);"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-toast></app-toast>

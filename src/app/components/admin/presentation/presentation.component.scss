@@ -1,0 +1,295 @@
+@import url(src/styles.scss);
+
+.body {
+  font-family: var(--font);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main{
+  padding: 30px;
+  flex: 1;
+  color: var(--dark-blue);
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+  color: var(--dark-blue);
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--grey);
+  margin: 15px auto;
+}
+
+label {
+  width: 100%;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 20px;
+  color: var(--dark-blue);
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--grey);
+  padding: 10px;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--dark-blue);
+}
+
+.input-container {
+  padding: 10px 40px;
+}
+
+.input-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.search-input {
+  display: flex;
+  width: 100%;
+}
+
+.icon {
+  background-color: var(--dark-blue);
+  min-width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-action {
+  padding: 0 5px;
+  border: none;
+  text-decoration: none;
+  width: 250px;
+  height: 50px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  transition: 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-save {
+  background-color: var(--dark-blue);
+}
+
+.btn-finish {
+  background-color: var(--red);
+}
+
+.btn-publish {
+  background-color: var(--golden);
+}
+
+.btn-sortear:hover {
+  background-color: var(--dark-blue-hover);
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.title-table {
+  text-align: center;
+  color: var(--dark-blue);
+  font-size: 1.6rem;
+  padding: 30px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+th {
+  font-weight: 500;
+}
+
+thead th,
+tbody td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--grey);
+  color: var(--dark-blue);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-actions {
+  justify-content: center;
+  button {
+    margin: 0 8px;
+  }
+}
+.fa-lg{
+  color: var(--white);
+}
+.fa-play {
+  color: var(--green)
+}
+
+.fa-stop {
+  color: var(--red);
+}
+
+.btn-list-evaluators{
+  width: 200px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.btn-list-evaluators:hover{
+  background-color: var(--dark-blue-hover);
+}
+.color-score{
+  color: var(--light-blue);
+}
+.fa-trash-can{
+  color: var(--red);
+}
+.fa-circle-stop{
+  color: var(--red);
+}
+.users-list{
+  color: var(--dark-blue);
+}
+.await{
+  cursor: move;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dark-blue);
+  padding: 0 76px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.footer{
+  margin-top: auto;
+}
+
+.day-date{
+  text-align: center;
+  font-size: 1rem;
+}
+
+.table-container{
+  margin: 30px 0;
+}
+
+.row-box{
+  background-color: var(--white);
+}
+
+.drag-handle-disabled {
+  color: var(--white);
+  cursor: inherit;
+}
+
+.cdk-drag-placeholder {
+  height: 60px;
+  // background-color: grey;
+  // opacity: 0.5;
+  // width: 100%;
+}
+
+.fa-up-down-left-right{
+  font-size: 1.5em;
+}
+
+.avaliators-count{
+  font-size: 0.8rem;
+  margin: 0 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .input-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .btn-finish {
+    width: 100%;
+  }
+
+  .btn-save {
+    width: 100%;
+  }
+
+  table {
+    max-width: 100vw;
+    font-size: 0.8rem;
+  }
+
+  .body {
+    padding: 30px 0;
+  }
+}
+@media screen and (max-width: 400px){
+
+  .li-evaluators{
+    height: auto;
+  }
+  .button-delete{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .name-evaluator{
+    display: flex;
+    align-items: center;
+  }
+}

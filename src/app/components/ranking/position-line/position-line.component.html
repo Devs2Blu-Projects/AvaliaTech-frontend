@@ -1,0 +1,21 @@
+<div class="group" [ngClass]="{'gold-list': index === 0, 'silver-list': index === 1, 'bronze-list': index === 2}">
+  <div class="icon-left">
+    <div class="icon" *ngIf="index < 3">
+      <i class="fa-solid fa-ranking-star fa-xl"></i>
+    </div>
+    <div class="line-y" *ngIf="index < 3"></div>
+    <div class="position"> {{index + 1}} </div>
+    <div class="line-y"></div>
+  </div>
+  <div class="right">
+    <div class="description">
+      <h2> {{ data?.projectName }} </h2>
+      <p><span class="bold"> STACK: </span> {{ data?.language }} </p>
+      <p><span class="bold"> Membros: </span> {{ data?.team }} </p>
+    </div>
+    <div class="note">
+      <div class="line-y"></div>
+      <h2> Nota Final: <span class="bold"> {{ data?.finalGrade.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 3 }) }} </span></h2>
+    </div>
+  </div>
+</div>

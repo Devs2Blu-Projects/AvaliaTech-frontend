@@ -1,0 +1,109 @@
+@import url(src/styles.scss);
+.body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main{
+  flex: 1;
+}
+// -------- HEADER
+.fa-pen-to-square{
+  color: var(--light-blue);
+}
+.fa-lg{
+  color: var(--dark-blue);
+}
+
+.btn-exit {
+  font-family: var(--font);
+  border: none;
+  width: 200px;
+  height: 30px;
+  margin-right: 40px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1rem;
+  background-color: var(--red);
+}
+
+// -------- END HEADER
+
+.content {
+  padding: 30px 50px;
+  font-family: var(--font);
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  padding: 10px 0;
+}
+
+p {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  padding: 2px;
+}
+
+.intro {
+  padding-top: 15px;
+  margin: 0;
+  text-align: center;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--grey);
+  margin: 15px auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+th {
+  font-weight: 500;
+}
+
+thead th,
+tbody td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--grey);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.btn-actions {
+  justify-content: center;
+  button {
+    margin: 0 8px;
+  }
+}
+
+h2 {
+  font-size: 1.45rem;
+  padding: 50px 0 15px;
+}
+
+.bold {
+  font-weight: 700;
+}
+.footer{
+  margin-top: auto;
+}

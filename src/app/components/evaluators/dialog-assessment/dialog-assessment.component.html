@@ -1,0 +1,30 @@
+<div class="dialog-form">
+  <h2> {{ data.projectName }} </h2>
+  <h3><span class="bold"> Stack: </span> {{data.language.charAt(0).toUpperCase() + data.language.slice(1)}} </h3>
+  <div class="line"></div>
+  <form class="formGroup" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <table>
+      <thead>
+        <tr>
+          <th class="bold criterion"> CRITÉRIOS </th>
+          <th class="bold weight"> PESO </th>
+          <th class="bold note"> NOTA <span class="max-score"> máx. 5 </span></th>
+        </tr>
+      </thead>
+      <tbody formArrayName="grades">
+        <tr *ngFor="let item of listCriteria; index as i" [formGroupName]="i">
+          <td> {{item.name}} </td>
+          <td class="td-weight"> {{item.weight}} </td>
+          <td>
+            <input type="number" class="input-form" placeholder="Ex.: 0 - 5" min="0" max="5" formControlName="grade" [ngClass]="{'invalid-note': checkInvalidNote(item)}">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="form-actions">
+      <button type="button" class="cancel" mat-dialog-close> Cancelar </button>
+      <button type="submit" class="submit"> ENVIAR </button>
+    </div>
+  </form>
+</div>
+<app-toast></app-toast>

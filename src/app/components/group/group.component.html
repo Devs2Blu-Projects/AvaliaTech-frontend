@@ -1,0 +1,78 @@
+<div class="body">
+  <div class="main">
+    <app-header>
+      <button class="btn-exit" (click)="logout();"> SAIR </button>
+    </app-header>
+    <div class="header-intro">
+      <h1> EQUIPE </h1>
+      <div class="line"></div>
+      <p class="intro"> Esta é a sua página de equipe <span style="font-weight: 500;"> +DEVS HACK WEEK </span></p>
+      <p> Aqui você pode cadastrar e acompanhar o estado atual do seu projeto </p>
+    </div>
+    <div class="content">
+      <div class="line"></div>
+      <div class="form-table">
+        <div class="right-side">
+          <div class="dialog-form">
+            <h2> Formulário de Equipe </h2>
+            <div class="line"></div>
+            <form [formGroup]="form">
+              <div formGroupName="fields">
+                <div class="input-container">
+                  <label for="members"> MEMBROS DA EQUIPE </label>
+                  <div class="input-group">
+                    <div class="icon"><i class="fa-solid fa-people-group fa-lg"></i></div>
+                    <input type="text" class="input-form" id="members" placeholder="Ex. Oscar Schmidt, Tiago Splitter, ..." formControlName="team">
+                  </div>
+                </div>
+                <div class="input-container">
+                  <label for="challenge"> DESAFIO </label>
+                  <div class="input-group">
+                    <div class="icon"><i class="fa-regular fa-file-code fa-lg"></i></div>
+                    <select class="select-form" id="challenge" name="desafio" formControlName="propositionId">
+                      <option *ngFor="let item of challenges" [value]="item.id"> {{ item.name }} </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-container">
+                  <label for="language"> STACK </label>
+                  <div class="input-group">
+                    <div class="icon"><i class="fa-solid fa-code fa-lg"></i></div>
+                    <select class="select-form" id="language" name="language" formControlName="language">
+                      <option value="c#"> C# </option>
+                      <option value="java"> Java </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-container">
+                  <label for="name-project"> NOME DO PROJETO </label>
+                  <div class="input-group">
+                    <div class="icon"><i class="fa-regular fa-pen-to-square fa-lg"></i></div>
+                    <input type="text" class="input-form" id="name-project" placeholder="Ex. Evaluation System" formControlName="projectName">
+                  </div>
+                </div>
+                <div class="input-container ">
+                  <label for="description"> DESCRIÇÃO </label>
+                  <div class="input-group">
+                    <div class="icon icon-textarea"><i class="fa-regular fa-pen-to-square fa-lg"></i></div>
+                    <textarea class="input-form" placeholder="Ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quas explicabo corporis soluta harum dolor minima beatae unde accusantium natus!&#10;&#10;Repositório: https://github.com/" name="description" id="description" cols="30" rows="5" formControlName="projectDescription"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions"><button type="button" class="submit" (click)="handleButtonAction(form);"> {{ buttonText }} </button></div>
+            </form>
+          </div>
+        </div>
+        <div class="left-side">
+          <div class="dialog-form">
+            <h2> Notas </h2>
+            <div class="line"></div>
+            <app-criteria-table [data]="data"></app-criteria-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><app-footer-credits></app-footer-credits></div>
+</div>
+<app-toast></app-toast>

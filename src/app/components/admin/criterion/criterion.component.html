@@ -1,0 +1,44 @@
+<div class="body">
+  <div class="header">
+    <h1> CRITÉRIOS </h1>
+    <div class="line"></div>
+  </div>
+  <div class="input-container">
+    <div class="input-icons">
+      <div class="search-input">
+        <div class="icon">
+          <i class="fas fa-search fa-lg" ></i>
+        </div>
+        <input type="text" class="input-filter" id="filter" [(ngModel)]="filter" placeholder="FILTRAR">
+      </div>
+      <button class="btn-cadastrar" (click)="openDialog();"> CADASTRAR </button>
+    </div>
+  </div>
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th> <i class="fa-solid fa-list fa-lg"></i> </th>
+          <th> NOME </th>
+          <th> DESCRIÇÃO </th>
+          <th> PESO </th>
+          <th> AÇÕES </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data | filter: filterCols: filter">
+          <td> <i class="fa-solid fa-magnifying-glass-chart fa-lg"></i> </td>
+          <td> {{ item.name }} </td>
+          <td> {{ item.description }} </td>
+          <td> {{ item.weight }} </td>
+          <td class="btn-actions">
+            <button><i class="fa-solid fa-pencil" (click)="edit(item);"></i></button>
+            <button><i class="fa-regular fa-trash-can" (click)="remove(item);"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!data || data.length === 0"><app-fetch-empty></app-fetch-empty></div>
+</div>
+<app-toast></app-toast>

@@ -1,0 +1,234 @@
+@import url(src/styles.scss);
+
+.body {
+    padding: 30px 30px 60px;
+    font-family: var(--font);
+    color: var(--dark-blue);
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--grey);
+    margin: 15px auto;
+}
+
+label {
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+    margin-left: 20px;
+    color: var(--dark-blue);
+}
+
+input {
+    width: 100%;
+    height: 2.5rem;
+    border: 1px solid var(--grey);
+    padding: 10px;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--dark-blue);
+}
+
+input::placeholder {
+    color: var(--grey);
+}
+
+.input-container {
+    padding: 0 40px;
+    margin-top: 15px;
+}
+
+.input-icons {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.search-input {
+    padding-top: 10px;
+    display: flex;
+    width: 100%;
+}
+
+.icon {
+    background-color: var(--dark-blue);
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+#date {
+    color: var(--grey);
+}
+
+.icon {
+    background-color: var(--dark-blue);
+    min-width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button {
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    cursor: pointer;
+}
+.fa-lg {
+    color: var(--white);
+}
+.fa-pencil {
+    color: var(--light-blue);
+}
+
+.fa-trash-can {
+    color: var(--red);
+}
+.form-actions {
+    margin: 25px 0 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  
+    button {
+      border: none;
+      text-decoration: none;
+      width: 12rem;
+      height: 2.5rem;
+      font-size: 1.2rem;
+    }
+  
+    .cancel {
+      color: var(--white);
+      background-color: var(--grey);
+    }
+  
+    .submit {
+      color: var(--white);
+      background-color: var(--dark-blue);
+      transition: 0.3s ease-in-out;
+    }
+    .submit:hover{
+        background-color: var(--dark-blue-hover);
+    }
+  }
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    font-weight: 500;
+}
+
+thead th,
+tbody td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--grey);
+    color: var(--dark-blue);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.checkbox {
+    display: flex;
+    width: 100%;
+}
+
+.checkbox input[type="checkbox"] {
+    position: relative;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--white);
+    border: 1px solid var(--grey);
+    outline: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.checkbox input[type="checkbox"]:checked::before {
+    content: "\2713";
+    font-size: 30px;
+    color: var(--dark-blue);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox label {
+    display: inline-block;
+    vertical-align: middle;
+}
+.checkbox input:disabled {
+    position: relative;
+    background-color: rgb(230, 230, 230); 
+    cursor: not-allowed;
+  }
+
+.input-group-checkbox{
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+.btn-actions {
+    justify-content: center;
+    .cancel {
+        color: var(--white);
+        background-color: var(--grey);
+      }
+
+    button {
+        margin: 0 8px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .input-icons {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .btn-cadastrar {
+        width: 100%;
+    }
+
+    table {
+        max-width: 100vw;
+        font-size: 0.8rem;
+    }
+
+    .body {
+        padding: 30px 0;
+    }
+}

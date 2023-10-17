@@ -1,0 +1,38 @@
+@import url(src/styles.scss);
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey);
+    font-family: var(--font);
+    text-align: center;
+}
+
+th {
+    background-color: var(--white);
+}
+
+.bar-progress{
+    width: 50%;
+}
+h1 {
+    font-size: 1.75rem;
+    font-weight: 400;
+    padding: 10px 0;
+}
+.final-score{
+    text-align: right;
+    padding-top: 20px;
+    font-family: var(--font);
+    color: var(--dark-blue);
+}
+.bold {
+    font-weight: 700;
+}
