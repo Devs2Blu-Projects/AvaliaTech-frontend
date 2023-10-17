@@ -36,8 +36,7 @@
                 <td> {{ group.projectName }} </td>
                 <td> {{ group.language.charAt(0).toUpperCase() + group.language.slice(1) }} </td>
                 <td>
-                  <span class="avaliators-count"> Total de avaliações: {{ group.ratings ? group.ratings.length : 0 }} </span>
-                  <button class="btn-list-evaluators" (click)="openDialogEvaluators(group.ratings);"> Exibir avaliadores </button>
+                  <button class="btn-list-evaluators" (click)="openDialogEvaluators(group.ratings);"> Exibir avaliadores [ {{ group.ratings ? group.ratings.length : 0 }} ] </button>
                 </td>
               </tr>
             </tbody>
