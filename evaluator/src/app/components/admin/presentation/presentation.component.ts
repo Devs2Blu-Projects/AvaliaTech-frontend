@@ -39,7 +39,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.getAll();
     this.updateRef = this._updateService.update
       .subscribe({
-        next: (response: any) => {
+        next: (response: string) => {
           this.toast.elapsedTime = this._updateService.getElapsedTime();
           this.toast.notification = this._updateService.getNotification();
           this.toast.showToast();
