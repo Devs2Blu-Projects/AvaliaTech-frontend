@@ -1,7 +1,7 @@
 @import url(src/styles.scss);
 
 .body {
-  height: 55px;
+  height: 75px;
   width: 100%;
   font-family: var(--font);
   background-color: var(--golden);
@@ -17,8 +17,14 @@
   transition: all 500ms ease-in-out;
 }
 
+.devs{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .body:hover{
-  height: 135px;
+  height: 155px;
 }
 
 .copyright {
@@ -47,7 +53,8 @@ p {
 .logos {
   display: flex;
   align-items: center;
-  gap: 50px;
+  justify-content: center;
+  gap: 25px 50px;
   margin-top: 25px;
 }
 
@@ -83,7 +90,7 @@ p {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: 125px;
+    height: 135px;
   }
 
   .logos {
