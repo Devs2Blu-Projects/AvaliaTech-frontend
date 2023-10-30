@@ -90,7 +90,11 @@ p {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: 135px;
+    height: 145px;
+  }
+
+  .body:hover{
+    height: inherit;
   }
 
   .logos {
